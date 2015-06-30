@@ -402,4 +402,4 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 export PATH=/usr/local/sbin:$PATH
 
-source ./.secrets
+source $DOTFILE_DIR/.secrets
