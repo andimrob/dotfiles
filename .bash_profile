@@ -46,6 +46,11 @@
 # SYSTEM SETTINGS
 ##########################################################################
 
+# load bashrc if can
+if [ -f ~/.bashrc ]; then
+   source ~/.bashrc
+fi
+
 # ==================
 # Path
 # This is a list of all directories in which to look for commands, scripts and programs
@@ -84,6 +89,8 @@ alias python='ipython'
 alias tree='tree -Ca --noreport'
 alias path='echo $PATH | tr ":" "\n"'
 alias pythonpath='echo $PYTHONPATH | tr ":" "\n"'
+
+alias cdhtdocs='cd /Applications/MAMP/htdocs'
 
 # ====================
 # File Navigation
