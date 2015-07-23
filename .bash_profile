@@ -46,7 +46,7 @@
 # SYSTEM SETTINGS
 ##########################################################################
 
-# load bashrc if can
+# load bashrc if possible
 if [ -f ~/.bashrc ]; then
    source ~/.bashrc
 fi
