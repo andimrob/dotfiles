@@ -79,7 +79,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # Dev Shortcuts
 # ====================
 
-DOTFILE_DIR="$HOME/.dotfiles"
+export DOTFILE_DIR="$HOME/.dotfiles"
 
 source "$DOTFILE_DIR/sh/bash_aliases"
 source "$DOTFILE_DIR/sh/bash_functions"
@@ -120,8 +120,6 @@ bind 'TAB: menu-complete'
 export LC_ALL="en_US.UTF-8"
 # use UTF-8
 export LANG="en_US"
-# shortcut to WDI repo
-alias wdi_repo='cd ~/dev/wdi/WDI_NYC_Feb14_Reduce'
 
 # =================
 # History
@@ -379,16 +377,34 @@ zipf () { zip -r "$1".zip "$1" ; }           # zipf: To create a ZIP archive of 
 # .bash_settings and .bash_prompt should be added to .gitignore_global
 # An extra file where you can create other settings, such as your
 # application usernames or API keys...
+
 if [ -f ~/.bash_settings ]; then
   source ~/.bash_settings
 fi
+
 # An extra file where you can create other settings for your prompt.
 if [ -f ~/.bash_prompt ]; then
   source ~/.bash_prompt
 fi
+
 # A welcome prompt with stats for sanity checks
 if [ -f ~/.welcome_prompt ]; then
   source ~/.welcome_prompt
+fi
+
+# secrets and keys we don't want to keep in the repo
+if [ -f "$DOTFILE_DIR/.secrets"]; then
+  source "$DOTFILE_DIR/.secrets"
+fi
+
+# helpful aliases
+if [ -f "$DOTFILE_DIR/sh/bash_aliases"]; then
+  source "$DOTFILE_DIR/sh/bash_aliases"
+fi
+
+# helpful functions
+if [ -f "$DOTFILE_DIR/sh/bash_functions"]; then
+  source "$DOTFILE_DIR/sh/bash_functions"
 fi
 
 # Below here is an area for other commands added by outside programs or
@@ -403,10 +419,8 @@ fi
 # Python virtualenv stuff
 # --------
 
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/dev
 source /usr/local/bin/virtualenvwrapper.sh
 
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/dev
 export PATH=/usr/local/sbin:$PATH
-
-source $DOTFILE_DIR/.secrets
