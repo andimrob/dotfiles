@@ -1,7 +1,7 @@
 # Pull in secrets
 [include]
 
-  path = .gitconfig_secrets
+  path = ~/.dotfiles/.gitconfig_secrets
 
 [color]
 
