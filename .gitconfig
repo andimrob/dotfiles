@@ -14,12 +14,12 @@
 
 [alias]
   f = fetch
+  d = diff
+  st = status
   br = branch
   ci = commit
   co = checkout
   cob = checkout -b
-  st = status
-  d = diff
   ec = config --global -e
   lg = log --decorate --pretty=oneline --abbrev-commit --graph
 
