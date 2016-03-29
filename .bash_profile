@@ -81,8 +81,8 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 
 DOTFILE_DIR="$HOME/.dotfiles"
 
-source $DOTFILE_DIR/sh/bash_aliases
-source $DOTFILE_DIR/sh/bash_functions
+source "$DOTFILE_DIR/sh/bash_aliases"
+source "$DOTFILE_DIR/sh/bash_functions"
 
 alias be='bundle exec '
 alias python='ipython'
