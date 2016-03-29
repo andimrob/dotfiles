@@ -7,95 +7,71 @@
 
 # Pull in secrets
 [include]
-
   path = ~/.dotfiles/.gitconfig_secrets
 
 [color]
-
   ui = always
 
 [alias]
+  f = fetch
+  br = branch
+  ci = commit
+  co = checkout
+  cob = checkout -b
+  st = status
+  d = diff
+  ec = config --global -e
+  lg = log --decorate --pretty=oneline --abbrev-commit --graph
+
+  push-staging = push staging staging_branch:master
+  undocommit = reset --soft HEAD^
+  undopush = push -f origin HEAD^:master
 
   # View abbreviated SHA, description, and history graph of the latest 20 commits
   l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
   #  st = status -sb -uall
 
-  co = checkout
-
-  cob = checkout -b
-
-  ec = config --global -e
-
-  st = status
-
-  d = diff
-
-  lg = log --decorate --pretty=oneline --abbrev-commit --graph
-
-  push-staging = push staging staging_branch:master
-
-  undocommit = reset --soft HEAD^
-
-  undopush = push -f origin HEAD^:master
-
 [core]
-
   editor = subl -w
-
   excludesfile = /Users/Rob/.gitignore_global
 
 [commit]
   template = ~/.gitmessage.txt
-[branch]
-[color "status"]
 
+[branch]
+
+[color "status"]
   changed = yellow
 
 [filter "media"]
-
   required = true
-
   clean = git media clean %f
-
   smudge = git media smudge %f
 
 [difftool "sourcetree"]
-
   cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-
   path =
 
 [mergetool "sourcetree"]
-
   cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-
   trustExitCode = true
 
 [push]
-
   default = simple
 
 [merge "ours"]
-
   driver = true
 
 [filter "hawser"]
-
   clean = git hawser clean %f
-
   smudge = git hawser smudge %f
-
   required = true
 
 [hub]
-
   protocol = ssh
 
 [filter "lfs"]
-
   clean = git lfs clean %f
-
   smudge = git lfs smudge %f
-
   required = true
