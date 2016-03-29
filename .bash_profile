@@ -393,17 +393,17 @@ if [ -f ~/.welcome_prompt ]; then
 fi
 
 # secrets and keys we don't want to keep in the repo
-if [ -f "$DOTFILE_DIR/.secrets"]; then
+if [ -f "$DOTFILE_DIR/.secrets" ]; then
   source "$DOTFILE_DIR/.secrets"
 fi
 
 # helpful aliases
-if [ -f "$DOTFILE_DIR/sh/bash_aliases"]; then
+if [ -f "$DOTFILE_DIR/sh/bash_aliases" ]; then
   source "$DOTFILE_DIR/sh/bash_aliases"
 fi
 
-# helpful functions
-if [ -f "$DOTFILE_DIR/sh/bash_functions"]; then
+# # helpful functions
+if [ -f "$DOTFILE_DIR/sh/bash_functions" ]; then
   source "$DOTFILE_DIR/sh/bash_functions"
 fi
 
