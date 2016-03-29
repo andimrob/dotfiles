@@ -1,0 +1,40 @@
+#   _               _             _ _
+#  | |__   __ _ ___| |__     __ _| (_) __ _ ___  ___  ___
+#  | '_ \ / _` / __| '_ \   / _` | | |/ _` / __|/ _ \/ __|
+#  | |_) | (_| \__ \ | | | | (_| | | | (_| \__ \  __/\__ \
+#  |_.__/ \__,_|___/_| |_|  \__,_|_|_|\__,_|___/\___||___/
+
+# history shortcut
+alias h='history'
+
+# go back one directory
+alias b='cd ..'
+
+# reload bash profile
+alias reload='clear; source ~/.bash_profile'
+
+# ls commands
+# -F includes a slash for directories.
+alias ls='ls -AF'
+alias ll='ls -la'
+alias la='ls -A'
+alias l='ls -CF'
+
+# tree sane defaults
+alias tree='tree -Ca --noreport'
+
+# list load path
+alias path='echo $PATH | tr ":" "\n"'
+
+# hide/show all desktop icons (useful when presenting)
+alias hidedesktop='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'
+alias showdesktop='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
+
+# hide/show hidden files in Finder
+alias hidefiles='defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder'
+alias showfiles='defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder'
+
+# ruby bundler shortcut
+alias be='bundle exec '
+
+alias sayit='echo boner'
