@@ -350,8 +350,8 @@ if [ -f "$DOTFILE_DIR/.welcome_prompt" ]; then
 fi
 
 # env vars, secrets, and keys we don't want to keep in the repo
-if [ -f "$DOTFILE_DIR/.secrets" ]; then
-  source "$DOTFILE_DIR/.secrets"
+if [ -f "$DOTFILE_DIR/sh/api_keys" ]; then
+  source "$DOTFILE_DIR/sh/api_keys"
 fi
 
 # helpful aliases
