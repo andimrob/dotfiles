@@ -345,8 +345,8 @@ if [ -f "$HOME/.bash_prompt" ]; then
 fi
 
 # a welcome prompt with stats for sanity checks
-if [ -f "$DOTFILE_DIR/.welcome_prompt" ]; then
-  source "$DOTFILE_DIR/.welcome_prompt"
+if [ -f "$DOTFILE_DIR/sh/welcome_prompt" ]; then
+  source "$DOTFILE_DIR/sh/welcome_prompt"
 fi
 
 # env vars, secrets, and keys we don't want to keep in the repo
