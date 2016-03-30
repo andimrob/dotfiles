@@ -1,3 +1,5 @@
+# ~/.railsrc
+
 --skip-keeps
 --skip-spring
 --skip-turbolinks
