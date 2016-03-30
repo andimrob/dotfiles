@@ -47,8 +47,8 @@
 ##########################################################################
 
 # load bashrc if possible
-if [ -f ~/.bashrc ]; then
-   source ~/.bashrc
+if [ -f "$HOME/.bashrc" ]; then
+   source "$HOME/.bashrc"
 fi
 
 # ==================
@@ -58,58 +58,35 @@ fi
 
 # Load RVM into a shell session *as a function*
 #[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # PJ: using rbenv now...
-# Add RVM to PATH for scripting
-# PATH=$PATH:$HOME/.rvm/bin # PJ: using rbenv now...
 # Home brew directories
 PATH="/usr/local/bin:$PATH"
 # Node Package Manager
 PATH="/usr/local/share/npm/bin:$PATH"
-# Make sure we're pointing to the Postgres App's psql
-# PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH" # PJ: off
 # Heroku Toolbelt
 PATH="/usr/local/heroku/bin:$PATH"
 # Python goodies
 PATH="/usr/local/bin/python:$PATH"
+# super binaries
 PATH="/usr/local/sbin:$PATH"
-
-
-export JAVA_HOME=$(/usr/libexec/java_home)
 
 # ====================
 # Dev Shortcuts
 # ====================
 
 export DOTFILE_DIR="$HOME/.dotfiles"
-
-source "$DOTFILE_DIR/sh/bash_aliases"
-source "$DOTFILE_DIR/sh/bash_functions"
-
-alias be='bundle exec '
-alias python='ipython'
-alias tree='tree -Ca --noreport'
-alias path='echo $PATH | tr ":" "\n"'
-alias pythonpath='echo $PYTHONPATH | tr ":" "\n"'
-
-alias cdhtdocs='cd /Applications/MAMP/htdocs'
+export PROJECT_HOME=$HOME/dev
+export WORKON_HOME=$HOME/.virtualenvs
+export JAVA_HOME=$(/usr/libexec/java_home)
 
 # ====================
 # File Navigation
 # ====================
-# LS lists information about files. -F includes a slash for directories.
-# long list format including hidden files
-alias ls='ls -AF'
-alias ll='ls -la'
-alias la='ls -A'
-alias l='ls -CF'
+
 # Adds colors to LS
 export CLICOLOR=1
 # http://geoff.greer.fm/lscolors/
 # Describes what color to use for which attribute (files, folders etc.)
 export LSCOLORS=faexcxdxbxegedabagacad # PJ: turned off
-# go back one directory
-alias b='cd ..'
-# If we make a change to our bash profile we need to reload it
-alias reload="clear; source ~/.bash_profile"
 ## Tab improvements
 ## Might not need?
 bind 'set completion-ignore-case on'
@@ -124,8 +101,6 @@ export LANG="en_US"
 # =================
 # History
 # =================
-# History lists your previously entered commands
-alias h='history'
 # http://jorge.fbarr.net/2011/03/24/making-your-bash-history-more-efficient/
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768
@@ -235,12 +210,7 @@ PS1+="${style_cmd}\$ \[${RESET}\]"       # $ (and reset color)
 # =================
 # Other System Settings
 # =================
-# Hide/show all desktop icons (useful when presenting)
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-# Hide/show hidden files in Finder
-alias hidefiles="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
-alias showfiles="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
+
 # Start an HTTP server from a directory, optionally specifying the port
 function server() {
   local port="${1:-8000}"
@@ -249,9 +219,6 @@ function server() {
   # And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
   python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
 }
-# List any open internet sockets on port 3000. Useful if a rogue server is running
-# http://www.akadia.com/services/lsof_intro.html
-alias rogue='lsof -i TCP:3000'
 
 # APPLICATION SETTINGS
 ##########################################################################
@@ -264,26 +231,17 @@ alias rogue='lsof -i TCP:3000'
 # alias subl='open -a "Sublime Text”’
 # alias subl='open -a "Sublime Text 2"'
 
-alias chrome='open -a "Google Chrome"'
-
 # ================
 # Sublime
 # ================
+
 # Make sublime our editor of choice
 export EDITOR="subl -w"
 
 # =================
 # Git
 # =================
-# -----------------
-# Aliases
-# -----------------
-# Alias for hub http://hub.github.com/
-# alias git='hub'
-# Undo a git push
-alias undopush="git push -f origin HEAD^:master"
-# undo a commit
-alias undocommit="git reset --soft HEAD^"
+
 # -----------------
 # For the prompt
 # -----------------
@@ -355,7 +313,6 @@ eval "$(rbenv init -)"
 # =================
 # Students can add a shortcut to quickly access their GA folder
 # example: alias wdi="cd ~/Documents/GA/WDI4"
-# TODO: Set these
 
 cdhwfunc() {
   # takes three args: the week, the day
@@ -378,21 +335,21 @@ zipf () { zip -r "$1".zip "$1" ; }           # zipf: To create a ZIP archive of 
 # An extra file where you can create other settings, such as your
 # application usernames or API keys...
 
-if [ -f ~/.bash_settings ]; then
-  source ~/.bash_settings
+if [ -f "$HOME/.bash_settings" ]; then
+  source "$HOME/.bash_settings"
 fi
 
-# An extra file where you can create other settings for your prompt.
-if [ -f ~/.bash_prompt ]; then
-  source ~/.bash_prompt
+# an extra file where you can create other settings for your prompt.
+if [ -f "$HOME/.bash_prompt" ]; then
+  source "$HOME/.bash_prompt"
 fi
 
-# A welcome prompt with stats for sanity checks
-if [ -f ~/.welcome_prompt ]; then
-  source ~/.welcome_prompt
+# a welcome prompt with stats for sanity checks
+if [ -f "$HOME/.welcome_prompt" ]; then
+  source "$HOME/.welcome_prompt"
 fi
 
-# secrets and keys we don't want to keep in the repo
+# env vars, secrets, and keys we don't want to keep in the repo
 if [ -f "$DOTFILE_DIR/.secrets" ]; then
   source "$DOTFILE_DIR/.secrets"
 fi
@@ -402,25 +359,16 @@ if [ -f "$DOTFILE_DIR/sh/bash_aliases" ]; then
   source "$DOTFILE_DIR/sh/bash_aliases"
 fi
 
-# # helpful functions
+# helpful functions
 if [ -f "$DOTFILE_DIR/sh/bash_functions" ]; then
   source "$DOTFILE_DIR/sh/bash_functions"
+fi
+
+# TODO: not sure if this is necessary for me, or anymore
+if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
+  source "/usr/local/bin/virtualenvwrapper.sh"
 fi
 
 # Below here is an area for other commands added by outside programs or
 # commands. Attempt to reserve this area for their use!
 ##########################################################################
-
-# ====================================
-# Environmental Variables and API Keys
-# ====================================
-
-# --------
-# Python virtualenv stuff
-# --------
-
-source /usr/local/bin/virtualenvwrapper.sh
-
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/dev
-export PATH=/usr/local/sbin:$PATH

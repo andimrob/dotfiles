@@ -37,4 +37,12 @@ alias showfiles='defaults write com.apple.finder AppleShowAllFiles TRUE && killa
 # ruby bundler shortcut
 alias be='bundle exec '
 
-alias sayit='echo boner'
+# open chrome
+alias chrome='open -a "Google Chrome"'
+
+# cd to MAMP apache
+alias cdhtdocs='cd /Applications/MAMP/htdocs'
+
+# List any open internet sockets on port 3000. Useful if a rogue server is running
+# http://www.akadia.com/services/lsof_intro.html
+alias rogue='lsof -i TCP:3000'
