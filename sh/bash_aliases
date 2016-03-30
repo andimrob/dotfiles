@@ -37,6 +37,9 @@ alias showfiles='defaults write com.apple.finder AppleShowAllFiles TRUE && killa
 # ruby bundler shortcut
 alias be='bundle exec'
 
+# edit shortcut
+alias edit='subl'
+
 # open chrome
 alias chrome='open -a "Google Chrome"'
 
