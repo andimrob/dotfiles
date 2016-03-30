@@ -1,3 +1,19 @@
+#!/bin/bash
+
+# ---------------------
+# Print Stats on terminal load
+# ---------------------
+# function welcome() {
+#   sed -i.bak s/welcome_prompt=false/welcome_prompt=true/g ~/.welcome_prompt
+#   echo "Message returned."
+# }
+
+# # Show/Hide stats on terminal load
+# function unwelcome() {
+#   sed -i.bak s/welcome_prompt=true/welcome_prompt=false/g ~/.welcome_prompt
+#   echo "Message removed. Type ${BOLD}welcome${RESET} to return the message."
+# }
+
 #-------------------------------------------------------------------------------
 # Welcome Prompt
 # prints stats on terminal load
