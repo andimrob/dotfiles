@@ -3,6 +3,7 @@
 *.db
 tags
 .session.vim
+.swp
 
 # JavaScript #
 ##############
