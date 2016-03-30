@@ -1,0 +1,28 @@
+# Shared
+*.db
+tags
+.session.vim
+
+# C
+*.o
+
+# OS X
+.DS_Store
+
+# JavaScript
+node_modules
+bower_components
+
+# sass
+.sass-cache/
+
+# Python
+__pycache__/
+.virtualenv/
+*.egg-info/
+
+# Ruby
+.yardoc/
+
+# Rails
+db/*.sqlite3
