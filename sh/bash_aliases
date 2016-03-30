@@ -10,10 +10,13 @@ alias h='history'
 # go back one directory
 alias b='cd ..'
 
+# clear screen shortcut
+alias c='clear'
+
 # reload bash profile
 alias reload='clear; source ~/.bash_profile'
 
-# ls commands
+# ls command implementations
 # -F includes a slash for directories.
 alias ls='ls -AF'
 alias ll='ls -la'
