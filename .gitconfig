@@ -58,7 +58,7 @@
   trustExitCode = true
 
 [push]
-  default = simple
+  default = current
 
 [merge "ours"]
   driver = true
