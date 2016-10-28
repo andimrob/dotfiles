@@ -5,4 +5,3 @@
 --skip-spring
 --skip-turbolinks
 --skip-test-unit
-# --template=/path/to/rails_template.rb
