@@ -22,13 +22,15 @@
   cob = checkout -b
   ec = config --global -e
   lg = log --decorate --pretty=oneline --abbrev-commit --graph
+  ref = reflog
+  unstage = reset
+  uncommit = reset --soft HEAD^
 
   push-staging = push staging staging_branch:master
-  undocommit = reset --soft HEAD^
   undopush = push -f origin HEAD^:master
 
   # View abbreviated SHA, description, and history graph of the latest 20 commits
-  l = log --pretty=oneline -n 20 --graph --abbrev-commit
+  l = log --pretty=oneline -n 20 --graph --abbrev-commit --decorate
 
   #  st = status -sb -uall
 
@@ -75,3 +77,5 @@
   clean = git lfs clean %f
   smudge = git lfs smudge %f
   required = true
+[credential]
+	helper = osxkeychain
