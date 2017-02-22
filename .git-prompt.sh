@@ -94,6 +94,14 @@
 # GIT_PS1_HIDE_IF_PWD_IGNORED to a nonempty value. Override this on the
 # repository level by setting bash.hideIfPwdIgnored to "false".
 
+GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_SHOWDIRTYSTATE=true
+GIT_PS1_SHOWSTASHSTATE=true
+GIT_PS1_SHOWUNTRACKEDFILES=true
+GIT_PS1_DESCRIBE_STYLE="default"
+GIT_PS1_SHOWCOLORHINTS=true
+GIT_PS1_HIDE_IF_PWD_IGNORED=true
+
 # check whether printf supports -v
 __git_printf_supports_v=
 printf -v __git_printf_supports_v -- '%s' yes >/dev/null 2>&1
@@ -476,23 +484,23 @@ __git_ps1 ()
     if [ -n "${GIT_PS1_SHOWDIRTYSTATE-}" ] &&
        [ "$(git config --bool bash.showDirtyState)" != "false" ]
     then
-      git diff --no-ext-diff --quiet || w="*"
-      git diff --no-ext-diff --cached --quiet || i="+"
+      git diff --no-ext-diff --quiet || w="[*]"
+      git diff --no-ext-diff --cached --quiet || i="[+]"
       if [ -z "$short_sha" ] && [ -z "$i" ]; then
-        i="#"
+        i="[#]"
       fi
     fi
     if [ -n "${GIT_PS1_SHOWSTASHSTATE-}" ] &&
        git rev-parse --verify --quiet refs/stash >/dev/null
     then
-      s="$"
+      s="[$]"
     fi
 
     if [ -n "${GIT_PS1_SHOWUNTRACKEDFILES-}" ] &&
        [ "$(git config --bool bash.showUntrackedFiles)" != "false" ] &&
        git ls-files --others --exclude-standard --directory --no-empty-directory --error-unmatch -- ':/*' >/dev/null 2>/dev/null
     then
-      u="%${ZSH_VERSION+%}"
+      u="[%${ZSH_VERSION+%}]"
     fi
 
     if [ -n "${GIT_PS1_SHOWUPSTREAM-}" ]; then

@@ -208,7 +208,6 @@ style_branch="${RED}"
 PS1="${style_user}\u"                    # Username
 PS1+="${style_chars} @ "                # break
 PS1+="${style_time}\h "                  # Computer ID
-# PS1+="${style_chars}"                  # break
 PS1+="${style_path}\w"                  # Working directory
 # PS1+="\$(__git_ps1)"                    # Git details
 PS1+="\$(__git_prompt)"                    # Git details
