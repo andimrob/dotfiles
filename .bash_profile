@@ -46,9 +46,16 @@
 # SYSTEM SETTINGS
 ##########################################################################
 
+# Directory of Script
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 # load bashrc if possible
 if [ -f "$HOME/.bashrc" ]; then
-   source "$HOME/.bashrc"
+  source "$HOME/.bashrc"
+fi
+
+if [ -f "$HOME/.git-prompt.sh" ]; then
+  source "$HOME/.git-prompt.sh"
 fi
 
 # ==================
@@ -199,11 +206,12 @@ style_branch="${RED}"
 # ---------------------
 # Example with committed changes: username ~/documents/GA/wdi on master[+]
 PS1="${style_user}\u"                    # Username
-PS1+="${style_chars} at "                # break
+PS1+="${style_chars} @ "                # break
 PS1+="${style_time}\h "                  # Computer ID
-PS1+="${style_chars}in"                  # break
-PS1+="${style_path} \w"                  # Working directory
-PS1+="\$(prompt_git)"                    # Git details
+# PS1+="${style_chars}"                  # break
+PS1+="${style_path}\w"                  # Working directory
+# PS1+="\$(__git_ps1)"                    # Git details
+PS1+="\$(__git_prompt)"                    # Git details
 PS1+="\n"                                # Newline
 PS1+="${style_cmd}\$ \[${RESET}\]"       # $ (and reset color)
 
@@ -246,13 +254,13 @@ export EDITOR="subl -w"
 # For the prompt
 # -----------------
 # Long git to show + ? !
-is_git_repo() {
+__is_git_repo() {
     $(git rev-parse --is-inside-work-tree &> /dev/null)
 }
-is_git_dir() {
+__is_git_dir() {
     $(git rev-parse --is-inside-git-dir 2> /dev/null)
 }
-get_git_branch() {
+__get_git_branch() {
     local branch_name
     # Get the short symbolic ref
     branch_name=$(git symbolic-ref --quiet --short HEAD 2> /dev/null) ||
@@ -263,12 +271,12 @@ get_git_branch() {
     printf $branch_name
 }
 # Git status information
-prompt_git() {
+__git_prompt() {
     local git_info git_state uc us ut st
-    if ! is_git_repo || is_git_dir; then
+    if ! __is_git_repo || __is_git_dir; then
         return 1
     fi
-    git_info=$(get_git_branch)
+    git_info=$(__get_git_branch)
     # Check for uncommitted changes in the index
     if ! $(git diff --quiet --ignore-submodules --cached); then
         uc="+"
