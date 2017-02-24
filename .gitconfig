@@ -18,6 +18,7 @@
   st = status
   br = branch
   ci = commit
+  cim = commit -m
   co = checkout
   cob = checkout -b
   ec = config --global -e
