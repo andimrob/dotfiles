@@ -18,6 +18,8 @@
   st = status
   br = branch
   ci = commit
+  cim = commit -m
+  car = commit --amend --no-edit
   co = checkout
   cob = checkout -b
   ec = config --global -e
