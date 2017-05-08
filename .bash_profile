@@ -75,6 +75,8 @@ PATH="/usr/local/heroku/bin:$PATH"
 PATH="/usr/local/bin/python:$PATH"
 # super binaries
 PATH="/usr/local/sbin:$PATH"
+# Add Postgresql 9.4
+PATH="/usr/local/opt/postgresql@9.4/bin:$PATH"
 
 # ====================
 # Dev Shortcuts
@@ -84,6 +86,7 @@ export DOTFILE_DIR="$HOME/.dotfiles"
 export PROJECT_HOME=$HOME/dev
 export WORKON_HOME=$HOME/.virtualenvs
 export JAVA_HOME=$(/usr/libexec/java_home)
+export GOPATH="$HOME/go"
 
 # ====================
 # File Navigation
