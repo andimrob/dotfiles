@@ -40,9 +40,6 @@ alias showfiles='defaults write com.apple.finder AppleShowAllFiles TRUE && killa
 # ruby bundler shortcut
 alias be='bundle exec'
 
-# git
-alias g='git'
-
 # rails shortcuts
 alias rc='rails c'
 alias rs='rails s'
