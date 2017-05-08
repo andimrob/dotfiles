@@ -47,6 +47,12 @@
   gpgSign = true
   template = ~/.gitmessage.txt
 
+[status]
+  showUntrackedFiles = all
+
+[transfer]
+  fsckobjects = true
+
 [branch]
 
 [color "status"]
