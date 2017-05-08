@@ -44,6 +44,7 @@
   excludesfile = /Users/Rob/.gitignore_global
 
 [commit]
+  gpgSign = true
   template = ~/.gitmessage.txt
 
 [branch]
