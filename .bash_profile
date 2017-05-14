@@ -314,29 +314,18 @@ alias migrate='bundle exec rake db:migrate; bundle exec rake db:migrate RAILS_EN
 # =================
 # start rbenv (our Ruby environment and version manager) on open
 eval "$(rbenv init -)"
+eval "$(pyenv init -)"
 
 # Other Settings
 ##########################################################################
+
 
 # =================
 # Shortcuts
 # =================
 # Students can add a shortcut to quickly access their GA folder
-# example: alias wdi="cd ~/Documents/GA/WDI4"
 
-cdhwfunc() {
-  # takes three args: the week, the day
-  # and an optional third for the user
-  if [ $1 -lt 10 ]
-  then
-    cd ~/dev/wdi/$class_repo/w0$1/d0$2/${3:-Instructor}
-  else
-    cd ~/dev/wdi/$class_repo/w$1/d0$2/${3:-Instructor}
-  fi
-}
-alias cdhw=cdhwfunc
-
-zipf () { zip -r "$1".zip "$1" ; }           # zipf: To create a ZIP archive of a folder
+zipf () { zip -r "$1".zip "$1" ; } # zipf: To create a ZIP archive of a folder
 
 # =================
 # Source Files
