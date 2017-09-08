@@ -37,5 +37,7 @@
 # --------------------
 # EMOJI USAGE IS ENCOURAGED
 # --------------------
-# For more information about this template, check out
-# https://gist.github.com/adeekshith/cd4c95a064977cdc6c50
+# For more information about this template, check out:
+# http://codeinthehole.com/tips/a-useful-template-for-commit-messages/
+# https://chris.beams.io/posts/git-commit/
+# https://github.com/sparkbox/standard/tree/master/style/git
