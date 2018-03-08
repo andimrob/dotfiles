@@ -54,6 +54,9 @@ alias edit='subl'
 # open chrome
 alias chrome='open -a "Google Chrome"'
 
+# tmux
+alias attach='tmux attach-session'
+
 # cd to MAMP apache
 alias cdhtdocs='cd /Applications/MAMP/htdocs'
 
