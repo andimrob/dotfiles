@@ -58,6 +58,10 @@ if [ -f "$HOME/.git-prompt.sh" ]; then
   source "$HOME/.git-prompt.sh"
 fi
 
+if [ -f "$HOME/.git-completion.bash" ]; then
+  source "$HOME/.git-completion.bash"
+fi
+
 # ==================
 # Path
 # This is a list of all directories in which to look for commands, scripts and programs
