@@ -16,25 +16,41 @@
   ec = config --global -e
   r = reset
   f = fetch
+  cl = clone
+  st = status
+  cp = cherry-pick
+  ls = ls-files
+  ref = reflog
+  #############
+  br = branch
+  brr = branch -r
+  bra = branch -a
+  bd = branch -d
+  bdd = branch -D
+  #############
   d = diff
   dc = diff --cached
-  st = status
-  br = branch
-  cp = cherry-pick
+  dp = diff --patience
+  dk = diff --check
+  dck = diff --cached --check
+  #############
   ci = commit
   car = commit --amend --no-edit
+  #############
   co = checkout
   cob = checkout -b
-  ref = reflog
+  #############
   unstage = reset
   uncommit = reset --soft HEAD^
-
+  #############
+  rmf = rm -f
+  rmrf = rm -r -f
+  #############
   push-staging = push staging staging_branch:master
   undopush = push -f origin HEAD^:master
-
+  #############
   # View abbreviated SHA, description, and history graph of the latest 20 commits
   l = log --pretty=oneline -n 20 --graph --abbrev-commit --decorate
-
   lg = log --decorate --pretty=oneline --abbrev-commit --graph
   ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
