@@ -86,8 +86,8 @@ PATH="/usr/local/opt/postgresql@9.4/bin:$PATH"
 # Dev Shortcuts
 # ====================
 
-export DOTFILE_DIR="$HOME/.dotfiles"
-export PROJECT_HOME=$HOME/dev
+export DOTFILE_DIR="$HOME/code/dotfiles"
+export PROJECT_HOME=$HOME/code
 export WORKON_HOME=$HOME/.virtualenvs
 export JAVA_HOME=$(/usr/libexec/java_home)
 export GOPATH="$HOME/go"
@@ -212,14 +212,14 @@ style_branch="${RED}"
 # Build the prompt
 # ---------------------
 # Example with committed changes: username ~/documents/GA/wdi on master[+]
-PS1="${style_user}\u"                    # Username
-PS1+="${style_chars} @ "                # break
-PS1+="${style_time}\h "                  # Computer ID
-PS1+="${style_path}\w"                  # Working directory
-# PS1+="\$(__git_ps1)"                    # Git details
-PS1+="\$(__git_prompt)"                    # Git details
-PS1+="\n"                                # Newline
-PS1+="${style_cmd}\$ \[${RESET}\]"       # $ (and reset color)
+PS1="${style_user}\u"               # Username
+PS1+="${style_chars} @ "            # break
+PS1+="${style_time}\h "             # Computer ID
+PS1+="${style_path}\w"              # Working directory
+# PS1+="\$(__git_ps1)"              # Git details
+PS1+="\$(__git_prompt)"             # Git details
+PS1+="\n"                           # Newline
+PS1+="${style_cmd}\$ \[${RESET}\]"  # $ (and reset color)
 
 # =================
 # Other System Settings
