@@ -4,17 +4,20 @@
 #  ___) | | | |  __/ | |  / ___ \| | | (_| \__ \  __/\__ \
 # |____/|_| |_|\___|_|_| /_/   \_\_|_|\__,_|___/\___||___/
 
-# history shortcut
+# History shortcut
 alias h='history'
 
-# go back one directory
+# Go back one directory
 alias b='cd ..'
 
-# clear screen shortcut
+# Clear screen shortcut
 alias c='clear'
 
-# reload bash profile
+# Reload bash profile
 alias reload='clear; source ~/.bash_profile'
+
+# List load paths
+alias path='echo $PATH | tr ":" "\n"'
 
 # ls command implementations
 # -F includes a slash for directories.
@@ -23,13 +26,13 @@ alias ll='ls -la'
 alias la='ls -A'
 alias l='ls -CF'
 
-# tree sane defaults
+# Git
+alias g='git'
+
+# Tree sane defaults
 alias tree='tree -Ca --noreport'
 
-# list load path
-alias path='echo $PATH | tr ":" "\n"'
-
-# hide/show all desktop icons (useful when presenting)
+# Hide/show all desktop icons (useful when presenting)
 alias hidedesktop='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'
 alias showdesktop='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
 
@@ -37,28 +40,32 @@ alias showdesktop='defaults write com.apple.finder CreateDesktop -bool true && k
 alias hidefiles='defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder'
 alias showfiles='defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder'
 
-# ruby bundler shortcut
+# Ruby bundler shortcut
 alias be='bundle exec'
 
-# git
-alias g='git'
-
-# rails shortcuts
+# Rails shortcuts
 alias rc='rails c'
 alias rs='rails s'
 alias rd='rails db'
 
-# edit shortcut
+# Editor shortcut
 alias edit='subl'
 
-# open chrome
-alias chrome='open -a "Google Chrome"'
-
-# tmux
+# Tmux helpers
 alias attach='tmux attach-session'
+alias detach='tmux detach'
 
-# cd to MAMP apache
-alias cdhtdocs='cd /Applications/MAMP/htdocs'
+# Update macOS and Homebrew. Also clean up Homebrew.
+alias update='sudo softwareupdate -aiR'
+alias upbrew='brew update; brew upgrade; brew cleanup'
+
+# Finder
+alias f='open .'
+alias fkill="killall Finder"
+
+# Networking
+alias myip="curl ipinfo.io/ip"
+alias copyip="curl ipinfo.io/ip | pbcopy"
 
 # List any open internet sockets on port 3000. Useful if a rogue server is running
 # http://www.akadia.com/services/lsof_intro.html
