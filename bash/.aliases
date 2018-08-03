@@ -1,0 +1,65 @@
+#  ____  _          _ _      _    _ _
+# / ___|| |__   ___| | |    / \  | (_) __ _ ___  ___  ___
+# \___ \| '_ \ / _ \ | |   / _ \ | | |/ _` / __|/ _ \/ __|
+#  ___) | | | |  __/ | |  / ___ \| | | (_| \__ \  __/\__ \
+# |____/|_| |_|\___|_|_| /_/   \_\_|_|\__,_|___/\___||___/
+
+# history shortcut
+alias h='history'
+
+# go back one directory
+alias b='cd ..'
+
+# clear screen shortcut
+alias c='clear'
+
+# reload bash profile
+alias reload='clear; source ~/.bash_profile'
+
+# ls command implementations
+# -F includes a slash for directories.
+alias ls='ls -AF'
+alias ll='ls -la'
+alias la='ls -A'
+alias l='ls -CF'
+
+# tree sane defaults
+alias tree='tree -Ca --noreport'
+
+# list load path
+alias path='echo $PATH | tr ":" "\n"'
+
+# hide/show all desktop icons (useful when presenting)
+alias hidedesktop='defaults write com.apple.finder CreateDesktop -bool false && killall Finder'
+alias showdesktop='defaults write com.apple.finder CreateDesktop -bool true && killall Finder'
+
+# hide/show hidden files in Finder
+alias hidefiles='defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder'
+alias showfiles='defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder'
+
+# ruby bundler shortcut
+alias be='bundle exec'
+
+# git
+alias g='git'
+
+# rails shortcuts
+alias rc='rails c'
+alias rs='rails s'
+alias rd='rails db'
+
+# edit shortcut
+alias edit='subl'
+
+# open chrome
+alias chrome='open -a "Google Chrome"'
+
+# tmux
+alias attach='tmux attach-session'
+
+# cd to MAMP apache
+alias cdhtdocs='cd /Applications/MAMP/htdocs'
+
+# List any open internet sockets on port 3000. Useful if a rogue server is running
+# http://www.akadia.com/services/lsof_intro.html
+alias rogue='lsof -i TCP:3000'
