@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# ---------------------
+# Print Stats on terminal load
+# ---------------------
+# function welcome() {
+#   sed -i.bak s/welcome_prompt=false/welcome_prompt=true/g ~/.welcome_prompt
+#   echo "Message returned."
+# }
+
+# # Show/Hide stats on terminal load
+# function unwelcome() {
+#   sed -i.bak s/welcome_prompt=true/welcome_prompt=false/g ~/.welcome_prompt
+#   echo "Message removed. Type ${BOLD}welcome${RESET} to return the message."
+# }
+
+#-------------------------------------------------------------------------------
+# Welcome Prompt
+# prints stats on terminal load
+#-------------------------------------------------------------------------------
+welcome_prompt=true
+
+function welcome_msg() {
+  echo "------------------------------------------"
+  echo $(git --version)
+  echo $(brew -v)
+  echo $(ruby -v)
+  echo $(psql --version)
+  echo $(rails -v)
+  echo $(heroku --version)
+  echo "------------------------------------------"
+  echo "type ${BOLD}unwelcome${RESET} to remove this message"
+}
+
+if [ $welcome_prompt == true ]; then welcome_msg; fi
