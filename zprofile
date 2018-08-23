@@ -6,9 +6,5 @@
 #                   |_|
 # Oh em gee zsh! https://en.wikipedia.org/wiki/Z_shell
 
-# ====================
-# Shortcuts
-# ====================
+# Shortcuts ##########
 alias reload='clear; source ~/.zprofile'
-alias h='history'
-
