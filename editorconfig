@@ -1,20 +1,16 @@
-# EditorConfig helps developers define and maintain consistent
-# coding styles between different editors and IDEs
-# editorconfig.org
+# For consistent coding styles between different editors and IDEs
+# https://editorconfig.org
 
 root = true
 
 [*]
-
-# We recommend you to keep these unchanged
-end_of_line = lf
 charset = utf-8
+end_of_line = lf
 trim_trailing_whitespace = true
 insert_final_newline = true
 
 # Use 2 spaces for indentation in HTML, JavaScript, Ruby, SCSS, and XML
-
-[*.{html,js,rb,scss,css,xml}]
+[*.{html,js,rb,erb,scss,css,xml}]
 indent_style = space
 indent_size = 2
 
@@ -28,3 +24,8 @@ indent_size = 2
 [*.md]
 indent_size = 4
 trim_trailing_whitespace = false
+
+# 4 space indentation
+[*.py]
+indent_style = space
+indent_size = 4
