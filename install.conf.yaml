@@ -5,19 +5,27 @@
 - clean: ['~']
 
 - link:
-    ~/.dotfiles: ''
-    ~/.tmux.conf:
-    ~/.vim:
-    ~/.vimrc:
-    ~/.curlrc:
-    ~/.wgetrc:
-    ~/.inputrc:
-    ~/.editorconfig:
-    ~/.functions:
     ~/.aliases:
+    ~/.curlrc:
+    ~/.dotfiles: ''
+    ~/.editorconfig:
+    ~/.exports:
+    ~/.functions:
+    ~/.gemrc:
     ~/.gitconfig:
     ~/.gitignore_global:
+    ~/.gitmessage:
+    ~/.gitprompt:
+    ~/.inputrc:
     ~/.pryrc:
+    ~/.psqlrc:
+    ~/.railsrc:
+    ~/.tmux.conf:
+    ~/.vimrc:
+    ~/.wgetrc:
+    ~/.zlogin:
+    ~/.zprofile:
+    ~/.zshrc:
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
