@@ -4,8 +4,6 @@
 #  | |_) | (_| \__ \ | | | | |_) | | | (_) |  _| | |  __/
 #  |_.__/ \__,_|___/_| |_| | .__/|_|  \___/|_| |_|_|\___|
 #                          |_|
-# When Bash starts, it executes the commands in this script
-# http://en.wikipedia.org/wiki/Bash_(Unix_shell)
 #
 # =====================
 # Resources
