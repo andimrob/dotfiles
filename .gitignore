@@ -1,4 +1,8 @@
 .gitconfig_secrets
+gitconfig_secrets
+
 .gitsecrets
+gitsecrets
+
 .gitconfig
 api_keys
