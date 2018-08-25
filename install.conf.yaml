@@ -1,6 +1,7 @@
 - defaults:
     link:
       relink: true
+      force: true
 
 - clean: ['~']
 
@@ -20,7 +21,7 @@
     ~/.wgetrc:
     ~/.zlogin:
     ~/.zprofile:
-    ~/.zshrc:
+    # ~/.zshrc:
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
