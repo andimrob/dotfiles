@@ -1,7 +1,6 @@
 - defaults:
     link:
       relink: true
-      force: true
 
 - clean: ['~']
 
@@ -10,7 +9,6 @@
     ~/.editorconfig:
     ~/.gemrc:
     ~/.gitconfig:
-    ~/.gitignore_global:
     ~/.gitprompt:
     ~/.inputrc:
     ~/.pryrc:
@@ -21,7 +19,7 @@
     ~/.wgetrc:
     ~/.zlogin:
     ~/.zprofile:
-    # ~/.zshrc:
+    ~/.zshrc:
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
