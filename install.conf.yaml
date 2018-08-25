@@ -5,16 +5,11 @@
 - clean: ['~']
 
 - link:
-    ~/.aliases:
     ~/.curlrc:
-    ~/.dotfiles: ''
     ~/.editorconfig:
-    ~/.exports:
-    ~/.functions:
     ~/.gemrc:
     ~/.gitconfig:
     ~/.gitignore_global:
-    ~/.gitmessage:
     ~/.gitprompt:
     ~/.inputrc:
     ~/.pryrc:
