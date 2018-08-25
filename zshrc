@@ -11,3 +11,6 @@ for file in ~/.dotfiles/{exports,aliases,functions,macos}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
+
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/bin:$PATH"
