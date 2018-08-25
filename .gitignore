@@ -6,3 +6,6 @@ gitsecrets
 
 .gitconfig
 api_keys
+
+.secrets
+secrets
