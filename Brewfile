@@ -22,6 +22,7 @@ cask 'spotify'
 cask 'signal'
 cask 'vlc'
 cask 'little-snitch'
+cask 'the-unarchiver'
 
 # Developer Utilities
 brew 'git'
