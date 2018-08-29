@@ -1,5 +1,8 @@
 .gitsecrets
 gitsecrets
 
+.gitconfig
+.gitconfig_secrets
+
 .secrets
 secrets
