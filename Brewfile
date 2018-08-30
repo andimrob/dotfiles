@@ -1,4 +1,4 @@
-cask_args app_dir: '/Applications'
+cask_args appdir: '/Applications'
 
 tap 'homebrew/cask'
 tap 'homebrew/bundle'
