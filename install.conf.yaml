@@ -6,7 +6,6 @@
 
 - link:
     ~/.Brewfile:
-    ~/.curlrc:
     ~/.editorconfig:
     ~/.gemrc:
     ~/.gitconfig:
@@ -17,7 +16,6 @@
     ~/.railsrc:
     ~/.tmux.conf:
     ~/.vimrc:
-    ~/.wgetrc:
     ~/.zlogin:
     ~/.zprofile:
     ~/.zshrc:
