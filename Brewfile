@@ -45,6 +45,7 @@ cask 'gpg-suite'
 cask 'iterm2'
 cask 'little-snitch'
 mas  'magnet', id: 441258766
+cask 'private-internet-access'
 cask 'signal'
 cask 'slack'
 cask 'spotify'
@@ -53,4 +54,3 @@ cask 'the-unarchiver'
 cask 'visual-studio-code'
 cask 'virtualbox'
 cask 'vlc'
-
