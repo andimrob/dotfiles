@@ -1,3 +1,9 @@
+#  ____                     __ _ _
+# | __ ) _ __ _____      __/ _(_) | ___
+# |  _ \| '__/ _ \ \ /\ / / |_| | |/ _ \
+# | |_) | | |  __/\ V  V /|  _| | |  __/
+# |____/|_|  \___| \_/\_/ |_| |_|_|\___|
+
 cask_args appdir: '/Applications'
 
 tap 'homebrew/cask'
@@ -43,3 +49,4 @@ brew 'readline'
 brew 'autojump'
 brew 'fzf'
 brew 'neovim'
+brew 'figlet'

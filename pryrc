@@ -1,3 +1,9 @@
+#  _ __  _ __ _   _ _ __ ___
+# | '_ \| '__| | | | '__/ __|
+# | |_) | |  | |_| | | | (__
+# | .__/|_|   \__, |_|  \___|
+# |_|         |___/
+
 %w[pp awesome_print gist].each do |gem_name|
   begin
     require gem_name
