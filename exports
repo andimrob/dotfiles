@@ -12,4 +12,4 @@ export EDITOR="subl -w"
 
 export SSH_KEY_PATH="~/.ssh/id_rsa"
 
-export DOTFILES_DIR=$(dirname "$0")
+export DOTFILE_DIR=$(dirname "$0")
