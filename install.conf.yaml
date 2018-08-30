@@ -5,6 +5,7 @@
 - clean: ['~']
 
 - link:
+    ~/.Brewfile:
     ~/.curlrc:
     ~/.editorconfig:
     ~/.gemrc:
