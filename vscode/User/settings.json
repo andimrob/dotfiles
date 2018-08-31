@@ -19,7 +19,7 @@
     "workbench.statusBar.feedback.visible": false,
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
-    "terminal.integrated.shellArgs.osx": ["-l", "source ~/.zshrc"],
+    "terminal.integrated.shellArgs.osx": ["-l"],
     "terminal.integrated.env.osx": {},
     "workbench.iconTheme": "vscode-icons"
 }
