@@ -1,0 +1,25 @@
+{
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.snippetSuggestions": "top",
+    "editor.formatOnPaste": true,
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+    "files.insertFinalNewline": true,
+    "editor.fontFamily": "Monaco",
+    "editor.fontSize": 16,
+    "files.hotExit": "off",
+    "files.autoSave": "off",
+    "editor.scrollBeyondLastLine": true,
+    "window.title": "${activeEditorFull}${separator}${rootName}",
+    "editor.tabSize": 2,
+    "files.trimTrailingWhitespace": true,
+    "editor.wordWrap": "off",
+    "workbench.colorTheme": "Monokai",
+    "workbench.statusBar.feedback.visible": false,
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+    "terminal.integrated.shellArgs.osx": ["-l", "source ~/.zshrc"],
+    "terminal.integrated.env.osx": {},
+    "workbench.iconTheme": "vscode-icons"
+}
