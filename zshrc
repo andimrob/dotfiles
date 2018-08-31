@@ -111,7 +111,7 @@ source $ZSH/oh-my-zsh.sh
 
 source "$HOME/.bootstrap/env.sh"
 
-for file in ~/.dotfiles/{exports,aliases,functions,macos,secrets}; do
+for file in ~/.dotfiles/{exports,aliases,functions,macos,secrets,tmuxinator.zsh}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
@@ -122,3 +122,4 @@ alias cache="bundle exec rake tmp:cache:clear"
 alias retail-refresh="cd ~/src/better-core/retail && gums && bundle install && rails db:reset && cd ../retail_core && bundle exec rake app:retail:test:prepare app:bettermentdb:test:prepare && cd ../retail && powder restart && cache && rails assets:clobber"
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
