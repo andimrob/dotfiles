@@ -23,5 +23,6 @@
     "terminal.integrated.env.osx": {},
     "workbench.iconTheme": "vscode-icons",
     "terminal.integrated.fontFamily": "Menlo",
-    "terminal.integrated.fontSize": 15
+    "terminal.integrated.fontSize": 15,
+    "editor.cursorStyle": "block-outline"
 }
