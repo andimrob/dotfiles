@@ -15,7 +15,6 @@
     "editor.tabSize": 2,
     "files.trimTrailingWhitespace": true,
     "editor.wordWrap": "off",
-    "workbench.colorTheme": "Tomorrow Night Eighties",
     "workbench.statusBar.feedback.visible": false,
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
@@ -24,5 +23,6 @@
     "workbench.iconTheme": "vscode-icons",
     "terminal.integrated.fontFamily": "Menlo",
     "terminal.integrated.fontSize": 15,
-    "editor.cursorStyle": "block-outline"
+    "editor.cursorStyle": "block-outline",
+    "workbench.colorTheme": "Tomorrow Night Eighties"
 }
