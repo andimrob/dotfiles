@@ -15,7 +15,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Vundle
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 " Vroom (Rspec)
 Plugin 'skalnik/vim-vroom'
 " Ctrl P (Fuzzy Finder)
@@ -31,6 +31,8 @@ Plugin 'mattn/emmet-vim'
 
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+
+Plugin 'flazz/vim-colorschemes'
 
 " Theme GruvBox
 
@@ -57,6 +59,7 @@ set shiftwidth=2
 set smartindent
 set autoindent
 set expandtab
+set relativenumber
 
 set hlsearch
 
