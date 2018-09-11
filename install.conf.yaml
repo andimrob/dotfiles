@@ -5,7 +5,10 @@
 - clean: ['~']
 
 - link:
+    ~/.bash_profile:
+    ~/.bashrc:
     ~/.Brewfile:
+    ~/.dotfiles: ''
     ~/.editorconfig:
     ~/.gemrc:
     ~/.gitconfig:
