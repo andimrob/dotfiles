@@ -18,6 +18,7 @@
     ~/.psqlrc:
     ~/.railsrc:
     ~/.tmux.conf:
+    ~/.vim:
     ~/.vimrc:
     ~/.zlogin:
     ~/.zprofile:
