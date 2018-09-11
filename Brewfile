@@ -11,29 +11,24 @@ tap 'homebrew/bundle'
 tap 'homebrew/core'
 tap 'homebrew/services'
 
-# Developer Utilities
+brew 'autojump'
+brew 'figlet'
+brew 'fzf'
 brew 'git'
 brew 'heroku-toolbelt'
 brew 'mysql'
+brew 'neovim'
 brew 'node-build'
 brew 'nodenv'
 brew 'node'
 brew 'postgresql'
 brew 'rbenv'
-brew 'ruby-build'
-
-# CLI Tools
-brew 'autojump'
-brew 'figlet'
-brew 'fzf'
-brew 'neovim'
 brew 'readline'
+brew 'ruby-build'
 brew 'the_silver_searcher'
 brew 'tmux'
 brew 'tree'
 
-# Apps
-mas  'amphetamine', id: 937984704
 cask 'alfred'
 cask 'datagrip'
 cask 'dropbox'
@@ -45,15 +40,17 @@ cask 'google-chrome'
 cask 'gpg-suite'
 cask 'iterm2'
 cask 'little-snitch'
-mas  'magnet', id: 441258766
-mas  'paste 2', id: 967805235
 cask 'private-internet-access'
 cask 'signal'
 cask 'slack'
 cask 'spotify'
 cask 'sublime-text'
 cask 'the-unarchiver'
-mas  'Tweetbot 3 for Twitter', id: 1384080005
 cask 'visual-studio-code'
 cask 'virtualbox'
 cask 'vlc'
+
+mas 'amphetamine', id: 937984704
+mas 'magnet', id: 441258766
+mas 'paste 2', id: 967805235
+mas 'Tweetbot 3 for Twitter', id: 1384080005
