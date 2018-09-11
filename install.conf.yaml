@@ -5,7 +5,10 @@
 - clean: ['~']
 
 - link:
+    ~/.bash_profile:
+    ~/.bashrc:
     ~/.Brewfile:
+    ~/.dotfiles: ''
     ~/.editorconfig:
     ~/.gemrc:
     ~/.gitconfig:
@@ -15,6 +18,7 @@
     ~/.psqlrc:
     ~/.railsrc:
     ~/.tmux.conf:
+    ~/.vim:
     ~/.vimrc:
     ~/.zlogin:
     ~/.zprofile:
