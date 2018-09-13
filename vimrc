@@ -44,7 +44,7 @@ set nocompatible
 set t_Co=256
 syntax on
 set background=dark
-set colorcolumn=100
+set colorcolumn=120
 set number
 set tabstop=2
 set shiftwidth=2
@@ -82,11 +82,11 @@ set list listchars=tab:>-,trail:•,precedes:<,extends:>
 " Bars
 " highlight clear SignColumn
 " highlight VertSplit    ctermbg=236
-" highlight ColorColumn  ctermbg=237
-" highlight LineNr       ctermbg=236 ctermfg=240
+highlight ColorColumn  ctermbg=237
+highlight LineNr       ctermbg=236
 " highlight StatusLineNC ctermbg=238 ctermfg=0
 " highlight StatusLine   ctermbg=240 ctermfg=232
-" highlight Visual       ctermbg=240   ctermfg=0
+" highlight Visual       ctermbg=240 ctermfg=0
 " highlight Pmenu        ctermbg=240 ctermfg=12
 " highlight PmenuSel     ctermbg=3   ctermfg=1
 " highlight SpellBad     ctermbg=0   ctermfg=1
