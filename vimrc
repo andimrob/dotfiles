@@ -10,21 +10,21 @@ set nocompatible
 " execute pathogen#infect()
 
 " Vundle
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" filetype off
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
 
 " Vundle
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'skalnik/vim-vroom' " Vroom (Rspec)
-Plugin 'kien/ctrlp.vim' " Ctrl P (Fuzzy Finder)
-Plugin 'tpope/vim-rails.git' " Vim Rails
-Plugin 'vim-ruby/vim-ruby' " Vim Ruby
-Plugin 'tComment' " TComment
-Plugin 'mattn/emmet-vim' " Vim Emmet
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'flazz/vim-colorschemes'
+" Plugin 'VundleVim/Vundle.vim'
+" Plugin 'skalnik/vim-vroom' " Vroom (Rspec)
+" Plugin 'kien/ctrlp.vim' " Ctrl P (Fuzzy Finder)
+" Plugin 'tpope/vim-rails.git' " Vim Rails
+" Plugin 'vim-ruby/vim-ruby' " Vim Ruby
+" Plugin 'tComment' " TComment
+" Plugin 'mattn/emmet-vim' " Vim Emmet
+" Plugin 'SirVer/ultisnips'
+" Plugin 'honza/vim-snippets'
+" Plugin 'flazz/vim-colorschemes'
 
 " Theme GruvBox
 
@@ -37,8 +37,8 @@ Plugin 'flazz/vim-colorschemes'
 " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
 
-call vundle#end()
-filetype plugin indent on
+" call vundle#end()
+" filetype plugin indent on
 
 " Basic visual settings
 set t_Co=256
@@ -112,7 +112,7 @@ set list listchars=tab:>-,trail:•,precedes:<,extends:>
  " ridiculous macro for formatting Ruby hashes
 " :nnoremap <leader>fh $v%lohc<CR><CR><Up><C-r>"<Esc>:s/,/,\r/g<CR>:'[,']norm ==<CR>
 
-" training macro to get rid of arrow keys
+" Disable navigation with arrow keys
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
