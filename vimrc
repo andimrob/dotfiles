@@ -7,7 +7,8 @@
 " Turn off vi compatibility
 set nocompatible
 
-" execute pathogen#infect()
+" Add FZF to runtimepath
+set rtp+=/usr/local/opt/fzf
 
 " Vundle
 " filetype off
