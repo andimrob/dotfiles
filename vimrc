@@ -53,6 +53,9 @@ set autoindent
 set expandtab
 set relativenumber
 
+" Show file options above the command line
+set wildmenu
+
 " We can use different key mappings for easy navigation between splits to save a keystroke.
 " So instead of ctrl-w then j, it’s just ctrl-j:
 nnoremap <C-J> <C-W><C-J>
