@@ -11,3 +11,5 @@ alias showdesktop='defaults write com.apple.finder CreateDesktop -bool true && k
 # hide/show hidden files in Finder
 alias hidefiles='defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder'
 alias showfiles='defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder'
+
+defaults write -g ApplePressAndHoldEnabled -bool false
