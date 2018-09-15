@@ -24,5 +24,8 @@
     "terminal.integrated.fontFamily": "Menlo",
     "terminal.integrated.fontSize": 15,
     "editor.cursorStyle": "block-outline",
-    "workbench.colorTheme": "Tomorrow Night Eighties"
+    "workbench.colorTheme": "Tomorrow Night Eighties",
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "window.zoomLevel": 0
 }

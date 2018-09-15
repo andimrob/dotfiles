@@ -10,21 +10,21 @@ set nocompatible
 " execute pathogen#infect()
 
 " Vundle
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" filetype off
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
 
 " Vundle
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'skalnik/vim-vroom' " Vroom (Rspec)
-Plugin 'kien/ctrlp.vim' " Ctrl P (Fuzzy Finder)
-Plugin 'tpope/vim-rails.git' " Vim Rails
-Plugin 'vim-ruby/vim-ruby' " Vim Ruby
-Plugin 'tComment' " TComment
-Plugin 'mattn/emmet-vim' " Vim Emmet
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'flazz/vim-colorschemes'
+" Plugin 'VundleVim/Vundle.vim'
+" Plugin 'skalnik/vim-vroom' " Vroom (Rspec)
+" Plugin 'kien/ctrlp.vim' " Ctrl P (Fuzzy Finder)
+" Plugin 'tpope/vim-rails.git' " Vim Rails
+" Plugin 'vim-ruby/vim-ruby' " Vim Ruby
+" Plugin 'tComment' " TComment
+" Plugin 'mattn/emmet-vim' " Vim Emmet
+" Plugin 'SirVer/ultisnips'
+" Plugin 'honza/vim-snippets'
+" Plugin 'flazz/vim-colorschemes'
 
 " Theme GruvBox
 
@@ -37,14 +37,14 @@ Plugin 'flazz/vim-colorschemes'
 " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
 
-call vundle#end()
-filetype plugin indent on
+" call vundle#end()
+" filetype plugin indent on
 
 " Basic visual settings
 set t_Co=256
 syntax on
 set background=dark
-set colorcolumn=100
+set colorcolumn=120
 set number
 set tabstop=2
 set shiftwidth=2
@@ -52,6 +52,9 @@ set smartindent
 set autoindent
 set expandtab
 set relativenumber
+
+" Show file options above the command line
+set wildmenu
 
 " We can use different key mappings for easy navigation between splits to save a keystroke.
 " So instead of ctrl-w then j, it’s just ctrl-j:
@@ -63,7 +66,6 @@ nnoremap <C-H> <C-W><C-H>
 " Open new split panes to right and bottom, which feels more natural than Vim’s default:
 set splitbelow
 set splitright
-
 
 set hlsearch
 
@@ -80,11 +82,11 @@ set list listchars=tab:>-,trail:•,precedes:<,extends:>
 " Bars
 " highlight clear SignColumn
 " highlight VertSplit    ctermbg=236
-" highlight ColorColumn  ctermbg=237
-" highlight LineNr       ctermbg=236 ctermfg=240
+highlight ColorColumn  ctermbg=237
+highlight LineNr       ctermbg=236
 " highlight StatusLineNC ctermbg=238 ctermfg=0
 " highlight StatusLine   ctermbg=240 ctermfg=232
-" highlight Visual       ctermbg=240   ctermfg=0
+" highlight Visual       ctermbg=240 ctermfg=0
 " highlight Pmenu        ctermbg=240 ctermfg=12
 " highlight PmenuSel     ctermbg=3   ctermfg=1
 " highlight SpellBad     ctermbg=0   ctermfg=1
@@ -110,7 +112,7 @@ set list listchars=tab:>-,trail:•,precedes:<,extends:>
  " ridiculous macro for formatting Ruby hashes
 " :nnoremap <leader>fh $v%lohc<CR><CR><Up><C-r>"<Esc>:s/,/,\r/g<CR>:'[,']norm ==<CR>
 
-" training macro to get rid of arrow keys
+" Disable navigation with arrow keys
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
@@ -118,14 +120,3 @@ noremap <Right> <NOP>
 
 syntax enable
 " colorscheme solarized
-
-" Make netrw imitate nerdtree
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 25
-augroup ProjectDrawer
-  autocmd!
-  autocmd VimEnter * :Vexplore
-augroup END
