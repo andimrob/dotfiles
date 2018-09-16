@@ -32,6 +32,7 @@ brew 'ruby-build'
 brew 'the_silver_searcher'
 brew 'tmux'
 brew 'tree'
+brew 'zsh'
 
 cask '1password'
 cask 'alfred'
