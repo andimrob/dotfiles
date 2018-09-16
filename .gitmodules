@@ -19,3 +19,6 @@
 [submodule "vim/pack/andimrob/start/emmet"]
 	path = vim/pack/andimrob/start/emmet
 	url = git@github.com:mattn/emmet-vim.git
+[submodule "vim/pack/andimrob/start/nerdcommenter"]
+	path = vim/pack/andimrob/start/nerdcommenter
+	url = git@github.com:scrooloose/nerdcommenter.git
