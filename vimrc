@@ -10,15 +10,7 @@ set nocompatible
 " Add FZF to runtimepath
 set rtp+=/usr/local/opt/fzf
 
-" Vundle
-" filetype off
-" set rtp+=~/.vim/bundle/Vundle.vim
-" call vundle#begin()
-
-" Vundle
-" Plugin 'VundleVim/Vundle.vim'
 " Plugin 'skalnik/vim-vroom' " Vroom (Rspec)
-" Plugin 'kien/ctrlp.vim' " Ctrl P (Fuzzy Finder)
 " Plugin 'tpope/vim-rails.git' " Vim Rails
 " Plugin 'vim-ruby/vim-ruby' " Vim Ruby
 " Plugin 'tComment' " TComment
@@ -26,8 +18,6 @@ set rtp+=/usr/local/opt/fzf
 " Plugin 'SirVer/ultisnips'
 " Plugin 'honza/vim-snippets'
 " Plugin 'flazz/vim-colorschemes'
-
-" Theme GruvBox
 
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
@@ -37,9 +27,6 @@ set rtp+=/usr/local/opt/fzf
 
 " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
-
-" call vundle#end()
-" filetype plugin indent on
 
 " Basic visual settings
 set t_Co=256
