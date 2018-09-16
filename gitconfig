@@ -56,7 +56,7 @@
   la = "!git config -l | grep alias | cut -c 7-"
 
 [core]
-  editor = nvim
+  editor = nvim +startinsert
   excludesFile = ~/.dotfiles/gitignore
 
 [commit]
