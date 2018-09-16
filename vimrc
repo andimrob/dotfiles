@@ -11,11 +11,6 @@ set nocompatible
 set rtp+=/usr/local/opt/fzf
 
 " Plugin 'skalnik/vim-vroom' " Vroom (Rspec)
-" Plugin 'tpope/vim-rails.git' " Vim Rails
-" Plugin 'vim-ruby/vim-ruby' " Vim Ruby
-" Plugin 'tComment' " TComment
-" Plugin 'mattn/emmet-vim' " Vim Emmet
-" Plugin 'SirVer/ultisnips'
 " Plugin 'honza/vim-snippets'
 " Plugin 'flazz/vim-colorschemes'
 
