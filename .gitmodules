@@ -13,3 +13,12 @@
 [submodule "vim/pack/andimrob/start/ruby"]
 	path = vim/pack/andimrob/start/ruby
 	url = git@github.com:vim-ruby/vim-ruby.git
+[submodule "vim/pack/andimrob/start/rails"]
+	path = vim/pack/andimrob/start/rails
+	url = git@github.com:tpope/vim-rails.git
+[submodule "vim/pack/andimrob/start/ultisnips"]
+	path = vim/pack/andimrob/start/ultisnips
+	url = git@github.com:SirVer/ultisnips.git
+[submodule "vim/pack/andimrob/start/emmet"]
+	path = vim/pack/andimrob/start/emmet
+	url = git@github.com:mattn/emmet-vim.git
