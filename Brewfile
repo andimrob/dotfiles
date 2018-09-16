@@ -6,16 +6,20 @@
 
 cask_args appdir: '/Applications'
 
+tap 'caskroom/fonts'
 tap 'homebrew/cask'
 tap 'homebrew/bundle'
 tap 'homebrew/core'
 tap 'homebrew/services'
 
 brew 'autojump'
+brew 'awscli'
+brew 'exiftool'
 brew 'figlet'
 brew 'fzf'
 brew 'git'
 brew 'heroku-toolbelt'
+brew 'httpie'
 brew 'mysql'
 brew 'neovim'
 brew 'node-build'
@@ -36,11 +40,15 @@ cask 'dropbox'
 cask 'docker'
 cask 'evernote'
 cask 'firefox'
+cask 'font-courier-prime-code'
+cask 'font-fira-code'
+cask 'font-source-code-pro'
 cask 'google-backup-and-sync'
 cask 'google-chrome'
 cask 'gpg-suite'
 cask 'hazel'
 cask 'iterm2'
+cask 'licecap'
 cask 'little-snitch'
 cask 'private-internet-access'
 cask 'signal'
@@ -58,4 +66,3 @@ cask 'vlc'
 mas 'amphetamine', id: 937984704
 mas 'magnet', id: 441258766
 mas 'paste 2', id: 967805235
-mas 'Tweetbot 3 for Twitter', id: 1384080005
