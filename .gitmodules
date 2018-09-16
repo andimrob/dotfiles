@@ -10,3 +10,6 @@
 [submodule "vim/pack/andimrob/start/colorschemes"]
 	path = vim/pack/andimrob/start/colorschemes
 	url = https://github.com/flazz/vim-colorschemes.git
+[submodule "vim/pack/andimrob/start/ruby"]
+	path = vim/pack/andimrob/start/ruby
+	url = git@github.com:vim-ruby/vim-ruby.git
