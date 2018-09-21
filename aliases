@@ -148,6 +148,11 @@ alias path='echo $PATH | tr ":" "\n"'
 
 # ruby bundler shortcut
 alias be='bundle exec'
+alias bx='bundle exec'
+alias bxr='bundle exec rspec'
+alias bxg='bundle exec guard'
+alias bxrc='bundle exec rails console'
+alias bxrs='bundle exec rails server'
 
 # edit shortcut
 alias edit='subl'
