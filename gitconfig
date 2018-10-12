@@ -20,6 +20,7 @@
   cp = cherry-pick
   ls = ls-files
   ref = reflog
+  stashes = stash list
   #############
   br = branch
   brr = branch -r
