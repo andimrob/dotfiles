@@ -59,6 +59,7 @@
 [core]
   editor = nvim +startinsert
   excludesFile = ~/.dotfiles/gitignore
+	hooksPath = /Users/robertwhite/.git-templates/hooks
 
 [commit]
   gpgSign = true

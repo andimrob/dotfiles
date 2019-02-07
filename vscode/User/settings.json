@@ -38,5 +38,6 @@
     "workbench.editor.enablePreviewFromQuickOpen": false,
     "search.exclude": {
         "**/vendor/gems/**": true
-    }
+    },
+    "workbench.startupEditor": "newUntitledFile"
 }
