@@ -127,9 +127,6 @@ for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
   alias "${method}"="lwp-request -m '${method}'"
 done
 
-# clear screen shortcut
-alias c='clear'
-
 # reload zsh profile
 alias reload='clear; source ~/.zshrc'
 
