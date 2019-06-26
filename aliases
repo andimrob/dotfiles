@@ -150,6 +150,7 @@ alias bxr='bundle exec rspec'
 alias bxg='bundle exec guard'
 alias bxrc='bundle exec rails console'
 alias bxrs='bundle exec rails server'
+alias bxcop='bundle exec rubocop'
 
 # edit shortcut
 alias edit='subl'
