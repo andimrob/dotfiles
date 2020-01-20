@@ -27,7 +27,9 @@
     "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
     "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
     "ruby.intellisense": "rubyLocate",
-    "solargraph.hover": false,
+    "search.exclude": {
+        "**/vendor/gems/**": true
+    },
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
     "terminal.integrated.shellArgs.osx": ["-l"],
@@ -36,13 +38,15 @@
     "terminal.integrated.fontSize": 15,
     "window.title": "${activeEditorFull}${separator}${rootName}",
     "window.zoomLevel": 0,
-    "workbench.statusBar.feedback.visible": false,
     "workbench.iconTheme": "vscode-icons",
     "workbench.colorTheme": "Tomorrow Night Eighties",
     "workbench.editor.enablePreview": false,
     "workbench.editor.enablePreviewFromQuickOpen": false,
-    "search.exclude": {
-        "**/vendor/gems/**": true
-    },
-    "workbench.startupEditor": "newUntitledFile"
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.sideBar.location": "right",
+    "git.autofetch": true,
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#242424",
+        "statusBar.background": "#00AA00",
+    }
 }
