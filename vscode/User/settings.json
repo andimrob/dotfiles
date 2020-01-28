@@ -26,6 +26,7 @@
     "files.autoSave": "off",
     "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
     "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+    "javascript.implicitProjectConfig.checkJs": true,
     "ruby.intellisense": "rubyLocate",
     "search.exclude": {
         "**/vendor/gems/**": true
@@ -46,7 +47,10 @@
     "workbench.sideBar.location": "right",
     "git.autofetch": true,
     "workbench.colorCustomizations": {
-        "activityBar.background": "#242424",
-        "statusBar.background": "#00AA00",
+        "[Tomorrow Night Eighties]": {
+            "activityBar.background": "#242424",
+            "activityBar.activeBackground": "#00A000",
+            "statusBar.background": "#00A000",
+        }
     }
 }
