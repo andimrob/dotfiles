@@ -110,3 +110,5 @@
 
 [credential]
 	helper = osxkeychain
+[init]
+	templatedir = /Users/robertwhite/.git-templates
