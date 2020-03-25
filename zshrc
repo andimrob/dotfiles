@@ -134,3 +134,5 @@ alias retail-refresh="cd ~/src/better-core/retail && gums && bundle install && r
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 alias sopsorific="secret_editor"
+
+export GIT_TEMPLATE_DIR="$(overcommit --template-dir)"
