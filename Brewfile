@@ -33,6 +33,7 @@ brew 'the_silver_searcher'
 brew 'tmux'
 brew 'tree'
 brew 'zsh'
+brew 'bat'
 
 cask '1password'
 cask 'alfred'

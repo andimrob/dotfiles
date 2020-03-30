@@ -1,9 +1,6 @@
 
-# <opt type>: (If applied, this commit will...) <subject> (Max 50 char)
-# |<----  Using a Maximum Of 50 Characters  ---->|
-
-# Explain why this change is being made
-# |<----   Try To Limit Each Line to a Maximum Of 72 Characters   ---->|
+# ABOVE: <type>: <subject> --- 50 Characters --->
+# BELOW: Explain why this change is being made ----- 72 Characters --->
 
 # --- COMMIT END ---
 # Type can be
@@ -24,5 +21,6 @@
 #    - Can use multiple lines with "-" for bullet points in body
 # --------------------
 # For more information about this template, check out:
+# https://www.conventionalcommits.org/en/v1.0.0-beta.4/#specification
 # http://codeinthehole.com/tips/a-useful-template-for-commit-messages/
 # https://chris.beams.io/posts/git-commit/
