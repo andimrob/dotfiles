@@ -59,10 +59,10 @@
 [core]
   editor = nvim +startinsert
   excludesFile = ~/.dotfiles/gitignore
-	hooksPath = /Users/robertwhite/.git-templates/hooks
+  hooksPath = /Users/robertwhite/.git-templates/hooks
 
 [commit]
-  gpgSign = true
+  # gpgSign = true
   template = ~/.dotfiles/gitmessage
 
 [status]
@@ -109,6 +109,7 @@
   required = true
 
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
+
 [init]
-	templatedir = /Users/robertwhite/.git-templates
+  templatedir = /Users/robertwhite/.git-templates
