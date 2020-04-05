@@ -122,7 +122,7 @@ source $ZSH/oh-my-zsh.sh
 # Source Betterment bootstrap if it's available
 [ -f "$HOME/.bootstrap/env.sh" ] && source "$HOME/.bootstrap/env.sh"
 
-for file in ~/.dotfiles/{exports,aliases,functions,macos,secrets,tmuxinator.zsh}; do
+for file in ~/.dotfiles/{exports.sh,aliases.sh,functions.sh,macos.sh,secrets.sh,tmuxinator.zsh}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
