@@ -11,6 +11,7 @@
     "editor.suggestSelection": "first",
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false,
+    "editor.rulers": [ 140 ],
     "[javascript]": {
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode",

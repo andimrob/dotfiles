@@ -4,15 +4,42 @@
 "  \ V /| | | | | | | | | (__
 "   \_/ |_|_| |_| |_|_|  \___|
 
+" ===========
+" Plugins
+" ===========
+"
+call plug#begin('~/.vim/plugged')
+
+" Collection of color schemes
+Plug 'rafi/awesome-vim-colorschemes'
+
+" More text objects
+Plug 'wellle/targets.vim'
+
+" Quick look at vim buffers/registers
+Plug 'junegunn/vim-peekaboo'
+
+" Use fzf for fuzzy search
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Use nerdtree for a file explorer 
+Plug 'preservim/nerdtree'
+
+call plug#end()
+
+" ===========
+" Configs
+" ===========
+"
+" Use the colorscheme
+colorscheme OceanicNext
+
 " Turn off vi compatibility
 set nocompatible
 
 " Add FZF to runtimepath
 set rtp+=/usr/local/opt/fzf
-
-" Plugin 'skalnik/vim-vroom' " Vroom (Rspec)
-" Plugin 'honza/vim-snippets'
-" Plugin 'flazz/vim-colorschemes'
 
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
@@ -27,7 +54,7 @@ set rtp+=/usr/local/opt/fzf
 set t_Co=256
 syntax on
 set background=dark
-set colorcolumn=120
+set colorcolumn=140
 set number
 set tabstop=2
 set shiftwidth=2
@@ -39,7 +66,7 @@ set relativenumber
 " Show file options above the command line
 set wildmenu
 
-" We can use different key mappings for easy navigation between splits to save a keystroke.
+" Use different key mappings for easy navigation between splits to save a keystroke.
 " So instead of ctrl-w then j, it’s just ctrl-j:
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -101,5 +128,11 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
+if has('nvim')
+  " Use escape key to exit terminal mode
+  tnoremap <Esc> <C-\><C-n>
+
+  " Use Alt-[ to as Esc key for terminal mode
+  tnoremap <A-[> <Esc>
+endif
 syntax enable
-" colorscheme solarized
