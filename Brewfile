@@ -6,7 +6,7 @@
 
 cask_args appdir: '/Applications'
 
-tap 'caskroom/fonts'
+tap 'hombrew/cask-fonts'
 tap 'homebrew/cask'
 tap 'homebrew/bundle'
 tap 'homebrew/core'
@@ -41,10 +41,12 @@ cask 'datagrip'
 cask 'dropbox'
 cask 'docker'
 cask 'evernote'
+cask 'expressvpn'
 cask 'firefox'
 cask 'font-courier-prime-code'
 cask 'font-fira-code'
 cask 'font-source-code-pro'
+cask 'font-cascadia'
 cask 'gitup'
 cask 'google-backup-and-sync'
 cask 'google-chrome'
@@ -53,23 +55,21 @@ cask 'hazel'
 cask 'iterm2'
 cask 'licecap'
 cask 'little-snitch'
-cask 'private-internet-access'
 cask 'qlcolorcode'
 cask 'qlstephen'
 cask 'qlmarkdown'
-cask 'rocket'
 cask 'signal'
 cask 'slack'
 cask 'spotify'
 cask 'sublime-text'
 cask 'the-unarchiver'
-cask 'torbrowser'
-cask 'transmit'
+cask 'tor-browser'
 cask 'visual-studio-code'
 cask 'virtualbox'
-cask 'viscosity'
 cask 'vlc'
+cask 'postman'
 
 mas 'amphetamine', id: 937984704
-mas 'magnet', id: 441258766
-mas 'paste 2', id: 967805235
+mas 'deliveries', id: 924726344
+mas 'focus to-do', id: 1258530160
+mas 'moom', id: 419330170
