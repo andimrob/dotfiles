@@ -5,6 +5,7 @@
 # |_|_| |_| .__/ \__,_|\__|_|  \___|
 #         |_|
 # Inspired by https://www.topbug.net/blog/2017/07/31/inputrc-for-humans/
+# Read more about at https://tiswww.case.edu/php/chet/readline/readline.html
 
 $include /etc/inputrc
 "\C-p":history-search-backward

@@ -53,5 +53,8 @@
             "activityBar.activeBackground": "#00A000",
             "statusBar.background": "#00A000",
         }
+    },
+    "files.associations": {
+        "vimrc": "viml"
     }
 }
