@@ -7,8 +7,8 @@
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 
-# Make sublime our editor of choice
-export EDITOR="subl -w"
+# Make vim our editor of choice
+export EDITOR="vim"
 
 export SSH_KEY_PATH="~/.ssh/id_rsa"
 
