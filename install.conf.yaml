@@ -5,15 +5,15 @@
 - clean: ['~']
 
 - link:
-    ~/.bash_profile:
-    ~/.bashrc:
+    ~/.bash_profile: 'bash_profile.sh'
+    ~/.bashrc: 'bashrc.sh'
     ~/.Brewfile:
     ~/.dotfiles: ''
-    ~/.editorconfig:
+    ~/.editorconfig: 'editorconfig.sh'
     ~/.gemrc:
     ~/.gitconfig:
     ~/.gitprompt:
-    ~/.inputrc:
+    ~/.inputrc: 'inputrc.sh'
     ~/.pryrc:
     ~/.psqlrc:
     ~/.railsrc:
@@ -22,9 +22,12 @@
     ~/.tmux.conf:
     ~/.vim:
     ~/.vimrc:
-    ~/.zlogin:
-    ~/.zprofile:
-    ~/.zshrc:
+    ~/.zlogin: 'zlogin.sh'
+    ~/.zprofile: 'zprofile.sh'
+    ~/.zshrc: 'zshrc.sh'
+
+- create:
+    - ~/src
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

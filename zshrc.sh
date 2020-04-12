@@ -119,17 +119,13 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source "$HOME/.bootstrap/env.sh"
+# Source Betterment bootstrap if it's available
+[ -f "$HOME/.bootstrap/env.sh" ] && source "$HOME/.bootstrap/env.sh"
 
-for file in ~/.dotfiles/{exports,aliases,functions,macos,secrets,tmuxinator.zsh}; do
+for file in ~/.dotfiles/{exports.sh,aliases.sh,functions.sh,macos.sh,secrets.sh,tmuxinator.zsh}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
-
-alias gums="git checkout master && git pull && git checkout stage && git pull && git checkout master"
-alias rcop="bundle exec rake rubocop"
-alias cache="bundle exec rake tmp:cache:clear"
-alias retail-refresh="cd ~/src/better-core/retail && gums && bundle install && rails db:reset && cd ../retail_core && bundle exec rake app:retail:test:prepare app:bettermentdb:test:prepare && cd ../retail && powder restart && cache && rails assets:clobber"
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
