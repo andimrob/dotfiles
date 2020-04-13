@@ -8,7 +8,7 @@
 " Plugins (Using vim-plug https://github.com/junegunn/vim-plug)
 " ============================
 "
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/pack/andimrob')
 
 " Collection of color schemes https://github.com/rafi/awesome-vim-colorschemes
 Plug 'rafi/awesome-vim-colorschemes'
