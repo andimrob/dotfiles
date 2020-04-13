@@ -14,14 +14,14 @@
     ~/.gitconfig:
     ~/.gitprompt:
     ~/.inputrc: 'inputrc.sh'
-    ~/.pryrc:
+    ~/.pryrc: 'pryrc.rb'
     ~/.psqlrc:
     ~/.railsrc:
       # ~/.tmux.conf: tmux/.tmux.conf
       # ~/.tmux.conf.local: tmux/.tmux.conf.local
     ~/.tmux.conf:
     ~/.vim:
-    ~/.vimrc:
+    ~/.vimrc: 'vimrc.vim'
     ~/.zlogin: 'zlogin.sh'
     ~/.zprofile: 'zprofile.sh'
     ~/.zshrc: 'zshrc.sh'
