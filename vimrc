@@ -5,25 +5,25 @@
 "   \_/ |_|_| |_| |_|_|  \___|
 
 " ============================
-" Plugins
+" Plugins (Using vim-plug https://github.com/junegunn/vim-plug)
 " ============================
 "
 call plug#begin('~/.vim/plugged')
 
-" Collection of color schemes
+" Collection of color schemes https://github.com/rafi/awesome-vim-colorschemes
 Plug 'rafi/awesome-vim-colorschemes'
 
-" More text objects
+" More text objects https://github.com/wellle/targets.vim
 Plug 'wellle/targets.vim'
 
-" Quick look at vim buffers/registers
+" Quick look at vim buffers/registers https://github.com/junegunn/vim-peekaboo
 Plug 'junegunn/vim-peekaboo'
 
-" Use fzf for fuzzy search
+" Use fzf for fuzzy search https://github.com/junegunn/fzf.vim
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Use nerdtree for a file explorer
+" Use nerdtree for a file explorer https://github.com/preservim/nerdtree
 Plug 'preservim/nerdtree'
 
 call plug#end()
@@ -35,7 +35,7 @@ call plug#end()
 " Turn off vi compatibility
 set nocompatible
 
-" Add FZF to runtimepath
+" Add FZF to runtimepath (from Homebrew)
 set rtp+=/usr/local/opt/fzf
 
 " ============================
@@ -45,8 +45,10 @@ set rtp+=/usr/local/opt/fzf
 " Use the colorscheme
 colorscheme OceanicNext
 
-set t_Co=256
 syntax on
+syntax enable
+
+set t_Co=256
 set background=dark
 set colorcolumn=140
 set number
@@ -65,8 +67,6 @@ set hlsearch
 
 " Handle ugly whitespace
 set list listchars=tab:>-,trail:•,precedes:<,extends:>
-
-syntax enable
 
 " Show file options above the command line
 set wildmenu
@@ -112,6 +112,14 @@ if has('nvim')
 
   " Use Alt-[ to as Esc key for terminal mode
   tnoremap <A-[> <Esc>
+
+  " FZF in a pop-over window
+  let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+  " Always enable preview window on the right with 60% width
+  let g:fzf_preview_window = 'right:50%'
+
+  command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
 endif
 
 " load indent file for the current filetype
