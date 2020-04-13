@@ -40,3 +40,6 @@
 [submodule "vim/pack/andimrob/emmet-vim"]
 	path = vim/pack/andimrob/emmet-vim
 	url = git@github.com:mattn/emmet-vim.git
+[submodule "vim/pack/andimrob/fzf"]
+	path = vim/pack/andimrob/fzf
+	url = git@github.com:junegunn/fzf.git
