@@ -20,7 +20,7 @@ Plug 'wellle/targets.vim'
 Plug 'junegunn/vim-peekaboo'
 
 " Use fzf for fuzzy search https://github.com/junegunn/fzf.vim
-Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Use nerdtree for a file explorer https://github.com/preservim/nerdtree
@@ -119,7 +119,7 @@ if has('nvim')
   let g:fzf_preview_window = 'right:50%'
 
   command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', '~/.vim/pack/andimrob/fzf.vim/bin/preview.sh {}']}, <bang>0)
 endif
 
 " load indent file for the current filetype
