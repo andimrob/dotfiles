@@ -20,11 +20,14 @@ Plug 'wellle/targets.vim'
 Plug 'junegunn/vim-peekaboo'
 
 " Use fzf for fuzzy search https://github.com/junegunn/fzf.vim
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
 " Use nerdtree for a file explorer https://github.com/preservim/nerdtree
 Plug 'preservim/nerdtree'
+
+" Use Emmet https://github.com/mattn/emmet-vim
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 
@@ -34,9 +37,6 @@ call plug#end()
 
 " Turn off vi compatibility
 set nocompatible
-
-" Add FZF to runtimepath (from Homebrew)
-set rtp+=/usr/local/opt/fzf
 
 " ============================
 " Basic visual settings
