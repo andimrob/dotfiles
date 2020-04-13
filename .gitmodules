@@ -22,3 +22,21 @@
 [submodule "vim/pack/andimrob/start/nerdcommenter"]
 	path = vim/pack/andimrob/start/nerdcommenter
 	url = git@github.com:scrooloose/nerdcommenter.git
+[submodule "vim/plugged/nerdtree"]
+	path = vim/plugged/nerdtree
+	url = git@github.com:preservim/nerdtree.git
+[submodule "vim/pack/andimrob/nerdtree"]
+	path = vim/pack/andimrob/nerdtree
+	url = git@github.com:preservim/nerdtree.git
+[submodule "vim/pack/andimrob/targets.vim"]
+	path = vim/pack/andimrob/targets.vim
+	url = git@github.com:wellle/targets.vim.git
+[submodule "vim/pack/andimrob/vim-peekaboo"]
+	path = vim/pack/andimrob/vim-peekaboo
+	url = git@github.com:junegunn/vim-peekaboo.git
+[submodule "vim/pack/andimrob/awesome-vim-colorschemes"]
+	path = vim/pack/andimrob/awesome-vim-colorschemes
+	url = git@github.com:rafi/awesome-vim-colorschemes.git
+[submodule "vim/pack/andimrob/fzf.vim"]
+	path = vim/pack/andimrob/fzf.vim
+	url = git@github.com:junegunn/fzf.vim.git
