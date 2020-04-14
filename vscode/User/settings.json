@@ -56,5 +56,6 @@
     },
     "files.associations": {
         "vimrc": "viml"
-    }
+    },
+    "html.format.wrapLineLength": 140
 }
