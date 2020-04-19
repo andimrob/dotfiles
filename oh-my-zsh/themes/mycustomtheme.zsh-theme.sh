@@ -16,14 +16,14 @@ if tput setaf 1 &> /dev/null; then
 	# Solarized colors, taken from http://git.io/solarized-colors.
 	black=$(tput setaf 0);
 	blue=$(tput setaf 33);
-	cyan=$(tput setaf 37);
-	green=$(tput setaf 64);
-	orange=$(tput setaf 166);
-	purple=$(tput setaf 125);
-	red=$(tput setaf 124);
-	violet=$(tput setaf 61);
+	cyan=$(tput setaf 14);
+	green=$(tput setaf 10);
+	orange=$(tput setaf 9);
+	purple=$(tput setaf 5);
+	red=$(tput setaf 196);
+	violet=$(tput setaf 13);
 	white=$(tput setaf 15);
-	yellow=$(tput setaf 136);
+	yellow=$(tput setaf 11);
 else
 	bold='';
 	reset="\e[0m";
@@ -44,6 +44,13 @@ if [[ "${USER}" == "root" ]]; then
 	userStyle="${red}";
 else
 	userStyle="${orange}";
+fi;
+
+# Highlight the hostname when connected via SSH.
+if [[ "${SSH_TTY}" ]]; then
+	hostStyle="${bold}${red}";
+else
+	hostStyle="${yellow}";
 fi;
 
 # # Git info
