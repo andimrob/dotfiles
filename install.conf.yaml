@@ -18,13 +18,14 @@
     ~/.editorconfig: 'editorconfig.sh'
     ~/.gemrc:
     ~/.gitconfig:
-    ~/.gitprompt:
+    ~/.gitprompt: 'gitprompt.sh'
     ~/.inputrc: 'inputrc.sh'
+    ~/.oh-my-zsh/themes/mycustomtheme.zsh-theme:
+      create: true
+      path: 'oh-my-zsh/themes/mycustomtheme.zsh-theme.sh'
     ~/.pryrc: 'pryrc.rb'
     ~/.psqlrc:
     ~/.railsrc:
-      # ~/.tmux.conf: tmux/.tmux.conf
-      # ~/.tmux.conf.local: tmux/.tmux.conf.local
     ~/.tmux.conf:
     ~/.vim:
     ~/.vimrc: 'vimrc.vim'

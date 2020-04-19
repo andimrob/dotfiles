@@ -4,9 +4,6 @@
 [submodule "vim/pack/andimrob/start/vim-tmux-navigator"]
 	path = vim/pack/andimrob/start/vim-tmux-navigator
 	url = git@github.com:christoomey/vim-tmux-navigator.git
-[submodule "tmux"]
-	path = tmux
-	url = git@github.com:andimrob/.tmux.git
 [submodule "vim/pack/andimrob/start/ruby"]
 	path = vim/pack/andimrob/start/ruby
 	url = git@github.com:vim-ruby/vim-ruby.git

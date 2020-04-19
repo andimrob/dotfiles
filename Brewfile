@@ -58,6 +58,7 @@ cask 'iterm2'
 cask 'licecap'
 cask 'little-snitch'
 cask 'macdown'
+cask 'postman'
 cask 'qlcolorcode'
 cask 'qlstephen'
 cask 'qlmarkdown'
@@ -70,7 +71,6 @@ cask 'tor-browser'
 cask 'visual-studio-code'
 cask 'virtualbox'
 cask 'vlc'
-cask 'postman'
 
 mas 'amphetamine', id: 937984704
 mas 'deliveries', id: 924726344
