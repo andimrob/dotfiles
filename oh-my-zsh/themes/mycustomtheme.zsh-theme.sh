@@ -54,7 +54,7 @@ else
 fi;
 
 # # Git info
-local exit_code="%(?,,C:%{$fg[red]%}%?%{$reset_color%})"
+exit_code="%(?,,C:%{$fg[red]%}%?%{$reset_color%})"
 
 # Prompt format:
 #
@@ -64,7 +64,7 @@ local exit_code="%(?,,C:%{$fg[red]%}%?%{$reset_color%})"
 # For example:
 #
 # % ys @ ys-mbp in ~/.oh-my-zsh on git:master x [21:47:42] C:0
-ZSH_THEME_GIT_PROMPT_PREFIX=""
+ZSH_THEME_GIT_PROMPT_PREFIX=" ${white}on${red} "
 ZSH_THEME_GIT_PROMPT_SUFFIX=""
 ZSH_THEME_GIT_PROMPT_SEPARATOR="|"
 ZSH_THEME_GIT_PROMPT_BRANCH="%{$fg_bold[magenta]%}"
@@ -77,5 +77,7 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{…%G%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✔%G%}"
 RPROMPT=""
 
-PROMPT="${userStyle}%n${white} at ${hostStyle}%m${white} in ${cyan}%~ ${white}on ${red}$(git_prompt_info) ${white}[${purple}%*${white}] $exit_code
+PROMPT="${userStyle}%n${white} at ${hostStyle}%m${white} in ${cyan}%~"
+PROMPT+='$(git_prompt_info)'
+PROMPT+=" ${white}[${purple}%*${white}] ${exit_code}
 ${blue}$ ${reset}"
