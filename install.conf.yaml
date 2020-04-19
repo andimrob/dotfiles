@@ -8,6 +8,12 @@
     ~/.bash_profile: 'bash_profile.sh'
     ~/.bashrc: 'bashrc.sh'
     ~/.Brewfile:
+    ~/.config/nvim/init.vim:
+      create: true
+      path: 'config/nvim/init.vim'
+    ~/.config/tmuxinator/default.yml:
+      create: true
+      path: 'config/tmuxinator/default.yml'
     ~/.dotfiles: ''
     ~/.editorconfig: 'editorconfig.sh'
     ~/.gemrc:
