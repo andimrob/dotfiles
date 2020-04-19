@@ -4,45 +4,12 @@
 #  | |_) | (_| \__ \ | | | | |_) | | | (_) |  _| | |  __/
 #  |_.__/ \__,_|___/_| |_| | .__/|_|  \___/|_| |_|_|\___|
 #                          |_|
-#
-# =====================
-# Resources
-# =====================
-# http://cli.learncodethehardway.org/bash_cheat_sheet.pdf
+# https://www.kirsle.net/wizards/ps1.html
 # http://ss64.com/bash/syntax-prompt.html
 # https://dougbarton.us/Bash/Bash-prompts.html
 # http://sage.ucsc.edu/xtal/iterm_tab_customization.html
 
-# ====================
-# TOC
-# ====================
-# --------------------
-# System Settings
-# --------------------
-#  1. Path List
-#  2. File Navigation
-#  3. History
-#  4. Bash Prompt
-#  5. Other System Settings
-# --------------------
-# Application Settings
-# --------------------
-#  6. Application Aliases
-#  7. Sublime
-#  8. Git
-#  9. Rails
-# 10. rbenv
-# --------------------
-# Other Settings
-# --------------------
-# 11. Shortcuts
-# 12. Source Files
-# 13. Environmental Variables and API Keys
-# 14. Reserved
-
-
-# SYSTEM SETTINGS
-##########################################################################
+# SYSTEM SETTINGS ##
 
 # Directory of Script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -52,21 +19,14 @@ if [ -f "$HOME/.bashrc" ]; then
   source "$HOME/.bashrc"
 fi
 
-if [ -f "$HOME/.git-prompt.sh" ]; then
-  source "$HOME/.git-prompt.sh"
-fi
-
-if [ -f "$HOME/.git-completion.bash" ]; then
-  source "$HOME/.git-completion.bash"
+if [ -f "$HOME/.gitprompt.sh" ]; then
+  source "$HOME/.gitprompt.sh"
 fi
 
 # ==================
 # Path
-# This is a list of all directories in which to look for commands, scripts and programs
 # ==================
 
-# Load RVM into a shell session *as a function*
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # PJ: using rbenv now...
 # Home brew directories
 PATH="/usr/local/bin:$PATH"
 # Node Package Manager
@@ -77,52 +37,6 @@ PATH="/usr/local/heroku/bin:$PATH"
 PATH="/usr/local/bin/python:$PATH"
 # super binaries
 PATH="/usr/local/sbin:$PATH"
-# Add Postgresql 9.4
-PATH="/usr/local/opt/postgresql@9.4/bin:$PATH"
-
-# ====================
-# Dev Shortcuts
-# ====================
-
-export DOTFILE_DIR="$HOME/code/dotfiles"
-export PROJECT_HOME=$HOME/code
-export WORKON_HOME=$HOME/.virtualenvs
-export JAVA_HOME=$(/usr/libexec/java_home)
-export GOPATH="$HOME/go"
-
-# ====================
-# File Navigation
-# ====================
-
-# Adds colors to LS
-export CLICOLOR=1
-# http://geoff.greer.fm/lscolors/
-# Describes what color to use for which attribute (files, folders etc.)
-export LSCOLORS=faexcxdxbxegedabagacad # PJ: turned off
-## Tab improvements
-## Might not need?
-bind 'set completion-ignore-case on'
-# make completions appear immediately after pressing TAB once
-bind 'set show-all-if-ambiguous on'
-bind 'TAB: menu-complete'
-# Prefer US English
-export LC_ALL="en_US.UTF-8"
-# use UTF-8
-export LANG="en_US"
-
-# =================
-# History
-# =================
-# http://jorge.fbarr.net/2011/03/24/making-your-bash-history-more-efficient/
-# Larger bash history (allow 32³ entries; default is 500)
-export HISTSIZE=32768
-export HISTFILESIZE=$HISTSIZE
-# don't put duplicate lines in the history.
-export HISTCONTROL=ignoredups
-# ignore same sucessive entries.
-export HISTCONTROL=ignoreboth
-# Make some commands not show up in history
-export HISTIGNORE="h:ls:ls *:ll:ll *:"
 
 # =================
 # Bash Prompt
@@ -183,19 +97,6 @@ else
   BOLD=""
   RESET="\033[m"
 fi
-# ---------------------
-# Print Stats on terminal load
-# ---------------------
-function welcome() {
-  sed -i.bak s/welcome_prompt=false/welcome_prompt=true/g ~/.welcome_prompt
-  echo "Message returned."
-}
-
-# Show/Hide stats on terminal load
-function unwelcome() {
-  sed -i.bak s/welcome_prompt=true/welcome_prompt=false/g ~/.welcome_prompt
-  echo "Message removed. Type ${BOLD}welcome${RESET} to return the message."
-}
 
 # ---------------------
 # style the prompt
@@ -222,33 +123,6 @@ PS1+="${style_cmd}\$ \[${RESET}\]"  # $ (and reset color)
 # =================
 # Other System Settings
 # =================
-
-# Start an HTTP server from a directory, optionally specifying the port
-function server() {
-  local port="${1:-8000}"
-  open "http://localhost:${port}/"
-  # Set the default Content-Type to `text/plain` instead of `application/octet-stream`
-  # And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
-  python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
-}
-
-# APPLICATION SETTINGS
-##########################################################################
-
-# ================
-# Application Aliases
-# ================
-
-# Sublime should be symlinked. Otherwise use one of these
-# alias subl='open -a "Sublime Text”’
-# alias subl='open -a "Sublime Text 2"'
-
-# ================
-# Sublime
-# ================
-
-# Make sublime our editor of choice
-export EDITOR="subl -w"
 
 # =================
 # Git
@@ -305,71 +179,16 @@ __git_prompt() {
     printf "${WHITE} on ${style_branch}${git_info}"
 }
 
-# =================
-# Rails
-# =================
-# Migrate Dev and Test databases and annotate models
-alias migrate='bundle exec rake db:migrate; bundle exec rake db:migrate RAILS_ENV=test; bundle exec annotate'
-
-# =================
-# rbenv
-# =================
-# start rbenv (our Ruby environment and version manager) on open
 eval "$(rbenv init -)"
 eval "$(pyenv init -)"
 
-# Other Settings
-##########################################################################
-
-
-# =================
-# Shortcuts
-# =================
-# Students can add a shortcut to quickly access their GA folder
-
-zipf () { zip -r "$1".zip "$1" ; } # zipf: To create a ZIP archive of a folder
+# Other Settings ##
 
 # =================
 # Source Files
 # =================
-# .bash_settings and .bash_prompt should be added to .gitignore_global
-# An extra file where you can create other settings, such as your
-# application usernames or API keys...
 
-if [ -f "$HOME/.bash_settings" ]; then
-  source "$HOME/.bash_settings"
-fi
-
-# an extra file where you can create other settings for your prompt.
-if [ -f "$HOME/.bash_prompt" ]; then
-  source "$HOME/.bash_prompt"
-fi
-
-# a welcome prompt with stats for sanity checks
-if [ -f "$DOTFILE_DIR/sh/welcome_prompt" ]; then
-  source "$DOTFILE_DIR/sh/welcome_prompt"
-fi
-
-# env vars, secrets, and keys we don't want to keep in the repo
-if [ -f "$DOTFILE_DIR/sh/api_keys" ]; then
-  source "$DOTFILE_DIR/sh/api_keys"
-fi
-
-# helpful aliases
-if [ -f "$DOTFILE_DIR/sh/bash_aliases" ]; then
-  source "$DOTFILE_DIR/sh/bash_aliases"
-fi
-
-# helpful functions
-if [ -f "$DOTFILE_DIR/sh/bash_functions" ]; then
-  source "$DOTFILE_DIR/sh/bash_functions"
-fi
-
-# TODO: not sure if this is necessary for me, or anymore
-if [ -f "/usr/local/bin/virtualenvwrapper.sh" ]; then
-  source "/usr/local/bin/virtualenvwrapper.sh"
-fi
-
-# Below here is an area for other commands added by outside programs or
-# commands. Attempt to reserve this area for their use!
-##########################################################################
+for file in ~/.dotfiles/{exports.sh,aliases.sh,functions.sh,macos.sh,secrets.sh,tmuxinator.zsh}; do
+  [ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file
