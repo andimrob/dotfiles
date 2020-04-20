@@ -79,5 +79,5 @@ RPROMPT=""
 
 PROMPT="${white}[${purple}%*${white}] as ${userStyle}%n${white} at ${hostStyle}%m${white} in ${cyan}%~"
 PROMPT+="$(git_prompt_info)"
-PROMPT+="${exit_code}
+PROMPT+=" ${exit_code}
 ${blue}$ ${reset}"
