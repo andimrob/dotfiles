@@ -5,8 +5,17 @@
 #  \___/_/\_\ .__/ \___/|_|   \__|___/
 #           |_|
 
+# Path ############
+eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/bin:$PATH"
-export EDITOR="vim"
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+
 export SSH_KEY_PATH="~/.ssh/id_rsa"
 export DOTFILE_DIR=$(dirname "$0")
 export PROJECT_HOME="$HOME/src"
@@ -30,4 +39,9 @@ export HISTIGNORE="h:ls:ls *:ll:ll *:"
 # Colorize LS ##### http://geoff.greer.fm/lscolors/
 export CLICOLOR=1
 # Describes what color to use for which attribute (files, folders etc.)
-export LSCOLORS=faexcxdxbxegedabagacad
+export LSCOLORS=exfxcxdxbxegedabagacad
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64
+
+# export MANPATH="/usr/local/man:$MANPATH"
