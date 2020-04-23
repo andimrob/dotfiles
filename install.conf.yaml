@@ -20,9 +20,9 @@
     ~/.gitconfig:
     ~/.gitprompt: 'gitprompt.sh'
     ~/.inputrc: 'inputrc.sh'
-    ~/.oh-my-zsh/themes/mycustomtheme.zsh-theme:
+    ~/.oh-my-zsh/themes/blakey.zsh-theme:
       create: true
-      path: 'oh-my-zsh/themes/mycustomtheme.zsh-theme.sh'
+      path: 'oh-my-zsh/themes/blakey.zsh-theme.sh'
     ~/.pryrc: 'pryrc.rb'
     ~/.psqlrc:
     ~/.railsrc:

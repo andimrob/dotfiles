@@ -39,6 +39,7 @@ brew 'thefuck'
 brew 'the_silver_searcher'
 brew 'tmux'
 brew 'tree'
+# brew 'zplug' # Maybe start using this https://github.com/zplug/zplug
 brew 'zsh'
 brew 'bat'
 
