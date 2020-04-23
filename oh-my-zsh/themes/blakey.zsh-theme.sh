@@ -77,7 +77,7 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{…%G%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✔%G%}"
 RPROMPT=""
 
-PROMPT="${white}[${purple}%@${white}] as ${userStyle}%n${white} at ${hostStyle}%m${white} in ${cyan}%~"
+PROMPT="${userStyle}%n${white} at ${hostStyle}%m${white} in ${cyan}%~"
 PROMPT+='$(git_prompt_info)'
-PROMPT+=" ${exit_code}
-${blue}$ ${reset}"
+PROMPT+=" ${white}[${purple}%@${white}] ${exit_code}
+%(?:%{${blue}%}$ :%{${red}%}$ )%{${reset}%}"
