@@ -45,6 +45,7 @@ brew 'bat'
 
 cask '1password'
 cask 'alfred'
+cask 'cyberduck'
 cask 'datagrip'
 cask 'dropbox'
 cask 'docker'
@@ -77,6 +78,7 @@ cask 'tor-browser'
 cask 'visual-studio-code'
 cask 'virtualbox'
 cask 'vlc'
+cask 'xld'
 
 mas 'amphetamine', id: 937984704
 mas 'deliveries', id: 924726344
