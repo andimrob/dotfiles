@@ -1,6 +1,7 @@
 [submodule "dotbot"]
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
 [submodule "vim/pack/andimrob/start/vim-tmux-navigator"]
 	path = vim/pack/andimrob/start/vim-tmux-navigator
 	url = git@github.com:christoomey/vim-tmux-navigator.git
