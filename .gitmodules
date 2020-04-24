@@ -40,3 +40,6 @@
 [submodule "vim/pack/andimrob/fzf"]
 	path = vim/pack/andimrob/fzf
 	url = git@github.com:junegunn/fzf.git
+[submodule "vim/pack/andimrob/coc.nvim"]
+	path = vim/pack/andimrob/coc.nvim
+	url = git@github.com:neoclide/coc.nvim.git
