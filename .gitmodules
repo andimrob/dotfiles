@@ -2,27 +2,27 @@
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
-[submodule "vim/pack/andimrob/nerdtree"]
-	path = vim/pack/andimrob/nerdtree
-	url = git@github.com:preservim/nerdtree.git
 [submodule "vim/pack/andimrob/targets.vim"]
 	path = vim/pack/andimrob/targets.vim
-	url = git@github.com:wellle/targets.vim.git
+	url = https://github.com/wellle/targets.vim.git
 [submodule "vim/pack/andimrob/vim-peekaboo"]
 	path = vim/pack/andimrob/vim-peekaboo
-	url = git@github.com:junegunn/vim-peekaboo.git
+	url = https://github.com/junegunn/vim-peekaboo.git
 [submodule "vim/pack/andimrob/awesome-vim-colorschemes"]
 	path = vim/pack/andimrob/awesome-vim-colorschemes
-	url = git@github.com:rafi/awesome-vim-colorschemes.git
+	url = https://github.com/rafi/awesome-vim-colorschemes.git
 [submodule "vim/pack/andimrob/fzf.vim"]
 	path = vim/pack/andimrob/fzf.vim
-	url = git@github.com:junegunn/fzf.vim.git
+	url = https://github.com/junegunn/fzf.vim.git
 [submodule "vim/pack/andimrob/emmet-vim"]
 	path = vim/pack/andimrob/emmet-vim
-	url = git@github.com:mattn/emmet-vim.git
+	url = https://github.com/mattn/emmet-vim.git
 [submodule "vim/pack/andimrob/fzf"]
 	path = vim/pack/andimrob/fzf
-	url = git@github.com:junegunn/fzf.git
+	url = https://github.com/junegunn/fzf.git
 [submodule "vim/pack/andimrob/coc.nvim"]
 	path = vim/pack/andimrob/coc.nvim
-	url = git@github.com:neoclide/coc.nvim.git
+	url = https://github.com/neoclide/coc.nvim.git
+[submodule "vim/pack/andimrob/vim-surround"]
+	path = vim/pack/andimrob/vim-surround
+	url = https://github.com/tpope/vim-surround.git
