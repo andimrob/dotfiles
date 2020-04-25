@@ -1,0 +1,16 @@
+.gitsecrets
+gitsecrets
+
+.gitconfig
+.gitconfig_secrets
+
+.secrets
+secrets
+.secrets.sh
+secrets.sh
+
+dotbot
+vim
+
+*.log
+.DS_Store
