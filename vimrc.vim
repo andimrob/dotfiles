@@ -32,6 +32,9 @@ Plug 'mattn/emmet-vim'
 " Vscode intellisense / code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" Surround commands
+Plug 'tpope/vim-surround'
+
 call plug#end()
 
 " ============================
