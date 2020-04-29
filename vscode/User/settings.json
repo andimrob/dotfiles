@@ -19,7 +19,9 @@
     "emmet.includeLanguages": {
         "vue-html": "html",
         "javascript": "javascriptreact",
-        "erb": "html"
+        "typescript": "typescriptreact",
+        "erb": "html",
+        "twig": "html"
     },
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
@@ -55,7 +57,8 @@
         }
     },
     "files.associations": {
-        "vimrc": "viml"
+        "vimrc": "viml",
+        "*.twig": "twig",
     },
     "html.format.wrapLineLength": 140
 }
