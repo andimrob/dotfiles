@@ -60,5 +60,8 @@
         "vimrc": "viml",
         "*.twig": "twig",
     },
-    "html.format.wrapLineLength": 140
+    "html.format.wrapLineLength": 140,
+    "gitlens.advanced.telemetry.enabled": false,
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false
 }
