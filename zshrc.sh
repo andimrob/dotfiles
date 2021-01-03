@@ -103,3 +103,7 @@ unset file;
 
 # Display system stats with archey if it's installed
 [ -x "$(command -v archey)" ] && archey
+
+eval "$(direnv hook zsh)"
+
+export PATH="$HOME/.poetry/bin:$PATH"

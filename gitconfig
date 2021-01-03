@@ -14,7 +14,7 @@
   hooksPath = /Users/robertwhite/.git-templates/hooks
 
 [init]
-  templatedir = /Users/robertwhite/.git-templates
+	templatedir = /Users/robertwhite/.git-templates
 
 [commit]
   gpgSign = true
@@ -65,6 +65,7 @@
   lg = log --decorate --pretty=oneline --abbrev-commit --graph
   ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  lol = log --graph --pretty="'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
 
   # list aliases
   la = "!git config -l | grep alias | cut -c 7-"
@@ -99,6 +100,9 @@
 [push]
   default = current
 
+[pull]
+  rebase = false
+
 [merge "ours"]
   driver = true
 
@@ -108,4 +112,4 @@
   required = true
 
 [credential]
-  helper = osxkeychain
+	helper = osxkeychain
