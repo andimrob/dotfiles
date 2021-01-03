@@ -8,3 +8,5 @@
 
 # Shortcuts ##########
 alias reload='clear; source ~/.zprofile'
+
+export PATH="$HOME/.poetry/bin:$PATH"

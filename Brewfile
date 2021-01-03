@@ -45,13 +45,14 @@ brew 'bat'
 
 cask '1password'
 cask 'alfred'
+cask 'authy'
 cask 'cyberduck'
 cask 'datagrip'
 cask 'dropbox'
 cask 'docker'
-cask 'evernote'
 cask 'expressvpn'
 cask 'firefox'
+cask 'firefox-developer-edition'
 cask 'font-courier-prime-code'
 cask 'font-fira-code'
 cask 'font-source-code-pro'
@@ -69,6 +70,7 @@ cask 'postman'
 cask 'qlcolorcode'
 cask 'qlstephen'
 cask 'qlmarkdown'
+cask 'rocket'
 cask 'signal'
 cask 'slack'
 cask 'spotify'
@@ -79,8 +81,11 @@ cask 'visual-studio-code'
 cask 'virtualbox'
 cask 'vlc'
 cask 'xld'
+cask 'zoom'
 
 mas 'amphetamine', id: 937984704
 mas 'deliveries', id: 924726344
+mas 'hand mirror', id: 1502839586
 mas 'focus to-do', id: 1258530160
 mas 'moom', id: 419330170
+mas 'twitter', id: 1482454543
