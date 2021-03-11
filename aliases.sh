@@ -149,6 +149,7 @@ alias bxg='bundle exec guard'
 alias bxrc='bundle exec rails console'
 alias bxrs='bundle exec rails server'
 alias bxcop='bundle exec rubocop'
+alias rbcop="git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs bundle exec rubocop"
 
 # fzf
 # [F]ind [F]ile
