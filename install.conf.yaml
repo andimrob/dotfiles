@@ -19,6 +19,7 @@
     ~/.gemrc:
     ~/.gitconfig:
     ~/.gitprompt: 'gitprompt.sh'
+    ~/.gnupg/gpg.conf: 'gpg.conf'
     ~/.inputrc: 'inputrc.sh'
     ~/.oh-my-zsh/themes/blakey.zsh-theme:
       create: true
