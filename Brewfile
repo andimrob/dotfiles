@@ -11,6 +11,7 @@ tap 'homebrew/cask'
 tap 'homebrew/bundle'
 tap 'homebrew/core'
 tap 'homebrew/services'
+tap 'heroku/brew'
 
 brew 'archey'
 brew 'autojump'
@@ -20,7 +21,7 @@ brew 'figlet'
 brew 'fzf'
 brew 'git'
 brew 'git-extras'
-brew 'heroku-toolbelt'
+brew 'heroku'
 brew 'htop'
 brew 'httpie'
 brew 'mysql'
@@ -85,7 +86,7 @@ cask 'zoom'
 
 mas 'amphetamine', id: 937984704
 mas 'deliveries', id: 924726344
-mas 'hand mirror', id: 1502839586
+# mas 'hand mirror', id: 1502839586
 mas 'focus to-do', id: 1258530160
 mas 'moom', id: 419330170
 mas 'twitter', id: 1482454543
