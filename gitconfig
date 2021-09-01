@@ -14,7 +14,8 @@
   hooksPath = /Users/robertwhite/.git-templates/hooks
 
 [init]
-	templatedir = /Users/robertwhite/.git-templates
+  templatedir = /Users/robertwhite/.git-templates
+  defaultBranch = main
 
 [commit]
   gpgSign = true
