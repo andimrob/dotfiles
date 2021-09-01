@@ -151,6 +151,10 @@ alias bxrs='bundle exec rails server'
 alias bxcop='bundle exec rubocop'
 alias rbcop="git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs bundle exec rubocop"
 
+alias dotfiles='edit ~/.dotfiles'
+
+alias
+
 # fzf
 # [F]ind [F]ile
 alias ff='fzf --layout=reverse --height=1% --min-height=12'
@@ -162,5 +166,4 @@ alias edit='code'
 
 # betterment
 alias murder-retail="psql -c 'select pg_terminate_backend(pg_stat_activity.pid) from pg_stat_activity where pg_stat_activity.datname = '\''retail_development'\'' and pid <> pg_backend_pid()'"
-
-
+alias create-user='bundle exec rake create_user'

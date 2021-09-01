@@ -9,7 +9,7 @@
   path = ~/.dotfiles/gitsecrets
 
 [core]
-  editor = code --wait --new-window
+  # editor = code --wait --new-window
   excludesFile = ~/.dotfiles/gitignore
   hooksPath = /Users/robertwhite/.git-templates/hooks
 
@@ -101,7 +101,7 @@
   default = current
 
 [pull]
-  rebase = false
+  rebase = true
 
 [merge "ours"]
   driver = true
@@ -113,3 +113,23 @@
 
 [credential]
 	helper = osxkeychain
+
+[pager]
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  features = side-by-side line-numbers decorations
+  whitespace-error-style = 22 reverse
+  line-numbers = true
+  side-by-side = true
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
