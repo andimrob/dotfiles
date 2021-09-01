@@ -59,7 +59,6 @@
     "terminal.integrated.fontFamily": "'Cascadia Code', Menlo, Monaco, monospace",
     "terminal.integrated.fontSize": 15,
     "window.title": "${activeEditorFull}${separator}${rootName}",
-    "window.zoomLevel": 0,
     "workbench.iconTheme": "vscode-icons",
     "workbench.colorTheme": "Tomorrow Night Eighties",
     "workbench.editor.enablePreview": true,
@@ -86,5 +85,13 @@
     "cSpell.userWords": [
         "camelize",
         "signup"
+    ],
+    "mssql.connections": [
+        {
+            "server": "{{put-server-name-here}}",
+            "database": "{{put-database-name-here}}",
+            "user": "{{put-username-here}}",
+            "password": "{{put-password-here}}"
+        }
     ]
 }

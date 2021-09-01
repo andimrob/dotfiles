@@ -7,8 +7,6 @@
 --template=https://raw.githubusercontent.com/mattbrictson/rails-template/master/template.rb
 --database=postgresql
 --webpack=react
---api
 --skip-keeps
 --skip-spring
---skip-turbolinks
 --skip-test-unit
