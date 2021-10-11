@@ -13,6 +13,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": false,
     "editor.rulers": [ 140 ],
+    "editor.bracketPairColorization.enabled": true,
 
     // Code Formatting
     "[javascript]": {
@@ -78,10 +79,8 @@
         "*.twig": "twig",
     },
     "html.format.wrapLineLength": 140,
-    "gitlens.advanced.telemetry.enabled": false,
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
-    "java.semanticHighlighting.enabled": true,
     "cSpell.userWords": [
         "camelize",
         "signup"
