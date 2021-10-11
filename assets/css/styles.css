@@ -1,0 +1,57 @@
+:root {
+    font: 100% system-ui;
+    font-size: 10px;
+
+    --text-color: #222;
+    --bg-color: #fff;
+    --link-color: #267CB9;
+    --spacing-md: 0.8rem;
+}
+
+body {
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background: var(--bg-color);
+}
+
+code {
+    border: 0.2rem solid var(--text-color);;
+    padding: var(--spacing-md);
+    border-radius: var(--spacing-md) var(--spacing-md);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+code::before {
+    content: '$'
+}
+
+main {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1, p {
+    text-align: center;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    body, code {
+        --text-color: #eee;
+        --bg-color: #121212;
+    }
+}
