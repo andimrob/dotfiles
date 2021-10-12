@@ -2,9 +2,13 @@
 <html lang="en-US">
   <head>
     <meta charset='utf-8'>
+
+    <title>Rob's Setup</title>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro|Lato' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <main>
@@ -12,13 +16,16 @@
         <div>
           <h1>Install dotfiles</h1>
           <div class="copyableLink">
-            <code>
-              /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/andimrob/dotfiles/HEAD/install)"
-            </code>
+            <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/andimrob/dotfiles/HEAD/install)"</code>
           </div>
+          <p><button id="copyButton" data-clipboard-text='/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/andimrob/dotfiles/HEAD/install)"'>Copy command</button></p>
           <p><a href="https://github.com/andimrob/dotfiles">Source</a></p>
         </div>
       </section>
     </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+    <script type="text/javascript">
+        new Clipboard('#copyButton');
+    </script>
   </body>
 </html>

@@ -2,6 +2,8 @@
     font: 100% system-ui;
     font-size: 10px;
 
+    --main-font: 'Lato';
+    --code-font: 'Source Code Pro';
     --text-color: #222;
     --bg-color: #fff;
     --link-color: #267CB9;
@@ -9,12 +11,14 @@
 }
 
 body {
+    font-family: var(--main-font);
     font-size: 1.6rem;
     color: var(--text-color);
     background: var(--bg-color);
 }
 
 code {
+    font-family: var(--code-font);
     border: 0.2rem solid var(--text-color);;
     padding: var(--spacing-md);
     border-radius: var(--spacing-md) var(--spacing-md);
