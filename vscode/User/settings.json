@@ -92,5 +92,12 @@
             "user": "{{put-username-here}}",
             "password": "{{put-password-here}}"
         }
-    ]
+    ],
+    "editor.inlineSuggest.enabled": true,
+    "github.copilot.enable": {
+        "*": true,
+        "yaml": false,
+        "plaintext": true,
+        "markdown": false
+    }
 }
