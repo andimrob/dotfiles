@@ -71,7 +71,7 @@ plugins=(
   httpie
   history
   npm
-  osx
+  macos
   rails
   thefuck
   tmux
