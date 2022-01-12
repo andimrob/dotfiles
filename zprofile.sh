@@ -7,6 +7,4 @@
 # Oh em gee zsh! https://en.wikipedia.org/wiki/Z_shell
 
 # Shortcuts ##########
-alias reload='clear; source ~/.zprofile'
-
-export PATH="$HOME/.poetry/bin:$PATH"
+eval "$(/opt/homebrew/bin/brew shellenv)"

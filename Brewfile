@@ -16,6 +16,7 @@ tap 'heroku/brew'
 brew 'archey'
 brew 'autojump'
 brew 'awscli'
+brew 'direnv'
 brew 'exiftool'
 brew 'figlet'
 brew 'fzf'
@@ -53,13 +54,12 @@ cask 'dropbox'
 cask 'docker'
 cask 'expressvpn'
 cask 'firefox'
-cask 'firefox-developer-edition'
+cask 'homebrew/cask-versions/firefox-developer-edition'
 cask 'font-courier-prime-code'
 cask 'font-fira-code'
 cask 'font-source-code-pro'
-cask 'font-cascadia'
+cask 'font-cascadia-code'
 cask 'gitup'
-cask 'google-backup-and-sync'
 cask 'google-chrome'
 cask 'gpg-suite'
 cask 'hazel'
@@ -90,4 +90,3 @@ mas 'deliveries', id: 924726344
 mas 'focus to-do', id: 1258530160
 mas 'moom', id: 419330170
 mas 'twitter', id: 1482454543
-mas 'reeder 5', id: 1529448980
