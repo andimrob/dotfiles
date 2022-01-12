@@ -153,8 +153,6 @@ alias rbcop="git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb$' | xargs bu
 
 alias dotfiles='edit ~/.dotfiles'
 
-alias
-
 # fzf
 # [F]ind [F]ile
 alias ff='fzf --layout=reverse --height=1% --min-height=12'
