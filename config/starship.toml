@@ -1,6 +1,7 @@
-# https://starship.rs/config/#prompt
+# https://starship.rs/config
 
 format = "[$all](bold 15)"
+add_newline = false
 
 [hostname]
 format =  "[$hostname](11) in "
