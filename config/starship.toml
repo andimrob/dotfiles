@@ -1,7 +1,15 @@
+# https://starship.rs/config/#prompt
+
+format = "[$all](15)"
+
 [hostname]
-ssh_only = false
-format =  "[$hostname](bold 10) in "
+format =  "[$hostname](11) in "
 
 [username]
-show_always = true
-format = "[$user]($style) on "
+format = "[$user](9) on "
+
+[package]
+disabled = true
+
+[git_branch]
+style = "bold 75"
