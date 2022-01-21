@@ -14,6 +14,9 @@
     ~/.config/tmuxinator/default.yml:
       create: true
       path: 'config/tmuxinator/default.yml'
+    ~/.config/starship.toml:
+      create: true
+      path: 'config/starship.toml'
     ~/.dotfiles: ''
     ~/.editorconfig: 'editorconfig.sh'
     ~/.gemrc:
