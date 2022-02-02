@@ -9,7 +9,7 @@
   path = ~/.dotfiles/gitsecrets
 
 [core]
-  # editor = code --wait --new-window
+  editor = code --wait --new-window
   excludesFile = ~/.dotfiles/gitignore
   hooksPath = /Users/robertwhite/.git-templates/hooks
 

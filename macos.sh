@@ -15,5 +15,5 @@ alias showfiles='defaults write com.apple.finder AppleShowAllFiles TRUE && killa
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 2 # normal minimum is 2 (30 ms)
+defaults write NSGlobalDomain KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 defaults write NSGlobalDomain InitialKeyRepeat -int 15 # normal minimum is 15 (225 ms)

@@ -104,6 +104,9 @@ source $ZSH/oh-my-zsh.sh
 # Source Betterment bootstrap if it's available
 [ -f "$HOME/.bootstrap/env.sh" ] && source "$HOME/.bootstrap/env.sh"
 
+# Source FZF key bindings if it's available
+[ -f "$HOMEBREW_ROOT/opt/fzf/shell/key-bindings.zsh" ] && source "$HOMEBREW_ROOT/opt/fzf/shell/key-bindings.zsh"
+
 # Load additional and overriding configs from dotfiles
 for file in ~/.dotfiles/{exports.sh,aliases.sh,functions.sh,macos.sh,secrets.sh,tmuxinator.zsh}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file";
