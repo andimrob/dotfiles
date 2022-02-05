@@ -5,34 +5,41 @@
 - clean: ['~']
 
 - link:
+    ~/.dotfiles: ''
+
     ~/.bash_profile: 'bash_profile.sh'
     ~/.bashrc: 'bashrc.sh'
+
     ~/.Brewfile:
+    ~/.editorconfig: 'editorconfig.sh'
+    ~/.gnupg/gpg.conf: 'gpg.conf'
+
+    ~/.gitconfig: 'git/gitconfig'
+    ~/.gitprompt: 'git/gitprompt.sh'
+
+    ~/.inputrc: 'inputrc.sh'
+    ~/.gemrc:
+    ~/.psqlrc:
+    ~/.railsrc:
+
+    ~/.config/starship.toml:
+      create: true
+      path: 'config/starship.toml'
     ~/.config/nvim/init.vim:
       create: true
       path: 'config/nvim/init.vim'
     ~/.config/tmuxinator/default.yml:
       create: true
       path: 'config/tmuxinator/default.yml'
-    ~/.config/starship.toml:
-      create: true
-      path: 'config/starship.toml'
-    ~/.dotfiles: ''
-    ~/.editorconfig: 'editorconfig.sh'
-    ~/.gemrc:
-    ~/.gitconfig: 'git/gitconfig'
-    ~/.gitprompt: 'git/gitprompt.sh'
-    ~/.gnupg/gpg.conf: 'gpg.conf'
-    ~/.inputrc: 'inputrc.sh'
+    ~/.tmux.conf: '.tmux/.tmux.conf'
+    ~/.tmux.conf.local: '.tmux/.tmux.conf.local'
+    ~/.vim:
+    ~/.vimrc: 'vimrc.vim'
+
     ~/.oh-my-zsh/themes/blakey.zsh-theme:
       create: true
       path: 'zsh/blakey.zsh-theme.sh'
     ~/.pryrc: 'pryrc.rb'
-    ~/.psqlrc:
-    ~/.railsrc:
-    ~/.tmux.conf:
-    ~/.vim:
-    ~/.vimrc: 'vimrc.vim'
     ~/.zlogin: 'zsh/zlogin.sh'
     ~/.zprofile: 'zsh/zprofile.sh'
     ~/.zshrc: 'zsh/zshrc.sh'
