@@ -63,11 +63,9 @@
   rmrf = rm -r -f
 
   # View abbreviated SHA, description, and history graph of the latest 20 commits
-  l = log --pretty=oneline -n 20 --graph --abbrev-commit --decorate
-  lg = log --decorate --pretty=oneline --abbrev-commit --graph
-  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
-  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-  lol = log --graph --pretty="'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
+  l = log --graph -n 20 --pretty="'%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset'"
+  ll = log --graph --pretty="'%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset'"
+  ld = log --graph -n 20 --numstat --pretty="'%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset'"
 
   # list aliases
   la = "!git config -l | grep alias | cut -c 7-"
