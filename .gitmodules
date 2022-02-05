@@ -26,3 +26,6 @@
 [submodule "vim/pack/andimrob/vim-surround"]
 	path = vim/pack/andimrob/vim-surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule ".tmux"]
+	path = .tmux
+	url = https://github.com/gpakosz/.tmux.git
