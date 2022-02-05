@@ -26,16 +26,16 @@
     ~/.inputrc: 'inputrc.sh'
     ~/.oh-my-zsh/themes/blakey.zsh-theme:
       create: true
-      path: 'oh-my-zsh/themes/blakey.zsh-theme.sh'
+      path: 'zsh/blakey.zsh-theme.sh'
     ~/.pryrc: 'pryrc.rb'
     ~/.psqlrc:
     ~/.railsrc:
     ~/.tmux.conf:
     ~/.vim:
     ~/.vimrc: 'vimrc.vim'
-    ~/.zlogin: 'zlogin.sh'
-    ~/.zprofile: 'zprofile.sh'
-    ~/.zshrc: 'zshrc.sh'
+    ~/.zlogin: 'zsh/zlogin.sh'
+    ~/.zprofile: 'zsh/zprofile.sh'
+    ~/.zshrc: 'zsh/zshrc.sh'
 
 - create:
     - ~/src
