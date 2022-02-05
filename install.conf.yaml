@@ -20,8 +20,8 @@
     ~/.dotfiles: ''
     ~/.editorconfig: 'editorconfig.sh'
     ~/.gemrc:
-    ~/.gitconfig:
-    ~/.gitprompt: 'gitprompt.sh'
+    ~/.gitconfig: 'git/gitconfig'
+    ~/.gitprompt: 'git/gitprompt.sh'
     ~/.gnupg/gpg.conf: 'gpg.conf'
     ~/.inputrc: 'inputrc.sh'
     ~/.oh-my-zsh/themes/blakey.zsh-theme:

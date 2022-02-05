@@ -6,20 +6,20 @@
 #  |___/                            |___/
 
 [include]
-  path = ~/.dotfiles/gitsecrets
+  path = ~/.dotfiles/git/gitsecrets
 
 [core]
   editor = code --wait --new-window
-  excludesFile = ~/.dotfiles/gitignore
-  hooksPath = ~/.git-templates/hooks
+  excludesFile = ~/.dotfiles/git/gitignore
+  hooksPath = ~/.dotfiles/git/hooks
 
 [init]
-	templatedir = ~/.git-templates
+	templatedir = ~/.dotfiles/git/templates
   defaultBranch = main
 
 [commit]
   # gpgSign = true
-  template = ~/.dotfiles/gitmessage
+  template = ~/.dotfiles/git/gitmessage
 
 [color]
   ui = always
@@ -35,13 +35,13 @@
   ref = reflog
   stashes = stash list
   up = pull --rebase --autostash
-  #############
+
   br = branch
   brr = branch -r
   bra = branch -a
   bd = branch -d
   bdd = branch -D
-  #############
+
   d = diff
   dc = diff --cached
   ds = diff --stat
@@ -49,19 +49,19 @@
   dk = diff --check
   dck = diff --cached --check
   dt = difftool
-  #############
+
   ci = commit -m
   car = commit --amend --no-edit
-  #############
+
   co = checkout
   cob = checkout -b
-  #############
+
   unstage = reset
   uncommit = reset --soft HEAD^
-  #############
+
   rmf = rm -f
   rmrf = rm -r -f
-  #############
+
   # View abbreviated SHA, description, and history graph of the latest 20 commits
   l = log --pretty=oneline -n 20 --graph --abbrev-commit --decorate
   lg = log --decorate --pretty=oneline --abbrev-commit --graph
