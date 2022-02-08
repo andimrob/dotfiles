@@ -51,7 +51,8 @@
   dt = difftool
 
   ci = commit -m
-  car = commit --amend --no-edit
+  cx = commit --no-verify -m
+  cam = commit --amend --no-edit
 
   co = checkout
   cob = checkout -b

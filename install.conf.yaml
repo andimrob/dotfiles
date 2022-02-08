@@ -17,8 +17,9 @@
     ~/.gitconfig: 'git/gitconfig'
     ~/.gitprompt: 'git/gitprompt.sh'
 
-    ~/.inputrc: 'inputrc.sh'
     ~/.gemrc:
+    ~/.inputrc: 'inputrc.sh'
+    ~/.pryrc: 'pryrc.rb'
     ~/.psqlrc:
     ~/.railsrc:
 
@@ -39,7 +40,6 @@
     ~/.oh-my-zsh/themes/blakey.zsh-theme:
       create: true
       path: 'zsh/blakey.zsh-theme.sh'
-    ~/.pryrc: 'pryrc.rb'
     ~/.zlogin: 'zsh/zlogin.sh'
     ~/.zprofile: 'zsh/zprofile.sh'
     ~/.zshrc: 'zsh/zshrc.sh'
