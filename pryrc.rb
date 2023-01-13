@@ -5,7 +5,7 @@
 # | .__/|_|   \__, |_|  \___|
 # |_|         |___/
 
-%w[pp awesome_print gist].each do |gem_name|
+%w[pp awesome_print gist pry-doc].each do |gem_name|
   begin
     require gem_name
     AwesomePrint.pry! if gem_name == 'awesome_print'
