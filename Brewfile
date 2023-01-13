@@ -42,6 +42,7 @@ brew 'tig'
 brew 'thefuck'
 brew 'the_silver_searcher'
 brew 'tmux'
+brew 'trash'
 brew 'tree'
 # brew 'zplug' # Maybe start using this https://github.com/zplug/zplug
 brew 'zsh'
