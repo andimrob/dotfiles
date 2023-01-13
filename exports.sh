@@ -45,3 +45,5 @@ export LSCOLORS=exfxcxdxbxegedabagacad
 # export ARCHFLAGS="-arch x86_64
 
 # export MANPATH="/usr/local/man:$MANPATH"
+
+export GPG_TTY=$(tty)
