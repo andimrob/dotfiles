@@ -121,8 +121,6 @@ unset file;
 
 eval "$(direnv hook zsh)"
 
-eval "$(starship init zsh)"
-
 export PATH="$HOME/.poetry/bin:$PATH"
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -133,3 +131,13 @@ export LDFLAGS="-L$HOMEBREW_ROOT/opt/libffi/lib"
 export CPPFLAGS="-I$HOMEBREW_ROOT/opt/libffi/include"
 
 export PKG_CONFIG_PATH="$HOMEBREW_ROOT/opt/libffi/lib/pkgconfig"
+
+export PATH="/opt/homebrew/bin:$PATH"
+
+export PATH="$PATH:$HOME/fvm/default/bin"
+
+export PATH="$PATH:$HOME/fvm/default/bin/cache/dart-sdk/bin"
+
+export PATH="$PATH:$HOME/.pub-cache/bin"
+
+eval "$(starship init zsh)"
