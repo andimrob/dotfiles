@@ -24,6 +24,69 @@
 [color]
   ui = always
 
+[status]
+  showUntrackedFiles = all
+
+[transfer]
+  # fsckObjects = true
+
+[branch]
+
+[color "status"]
+  changed = yellow
+
+[diff]
+  tool = default-difftool
+
+[difftool]
+	prompt = false
+
+[difftool "default-difftool"]
+  cmd = code --wait --new-window --diff $LOCAL $REMOTE
+  prompt = false
+
+[merge]
+  tool = default-mergetool
+
+[mergetool "default-mergetool"]
+  cmd = code --wait --new-window $MERGED
+
+[push]
+  default = current
+
+[pull]
+  rebase = true
+
+[merge "ours"]
+  driver = true
+
+[filter "lfs"]
+  clean = git lfs clean %f
+  smudge = git lfs smudge %f
+  required = true
+
+[credential]
+	helper = osxkeychain
+
+[pager]
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  features = side-by-side line-numbers decorations
+  whitespace-error-style = 22 reverse
+  line-numbers = true
+  side-by-side = true
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
 [alias]
   ec = config --global -e
   r = reset
@@ -99,67 +162,3 @@
       };                                                                                                                                                                                \
       gfzf                                                                                                                                                                              \
   "
-
-[status]
-  showUntrackedFiles = all
-
-[transfer]
-  # fsckObjects = true
-
-[branch]
-
-[color "status"]
-  changed = yellow
-
-[diff]
-  tool = default-difftool
-
-[difftool]
-	prompt = false
-
-[difftool "default-difftool"]
-  cmd = code --wait --new-window --diff $LOCAL $REMOTE
-  prompt = false
-
-[merge]
-  tool = default-mergetool
-
-[mergetool "default-mergetool"]
-  cmd = code --wait --new-window $MERGED
-
-[push]
-  default = current
-
-[pull]
-  rebase = true
-
-[merge "ours"]
-  driver = true
-
-[filter "lfs"]
-  clean = git lfs clean %f
-  smudge = git lfs smudge %f
-  required = true
-
-[credential]
-	helper = osxkeychain
-
-[pager]
-  diff = delta
-  log = delta
-  reflog = delta
-  show = delta
-
-[interactive]
-  diffFilter = delta --color-only
-
-[delta]
-  features = side-by-side line-numbers decorations
-  whitespace-error-style = 22 reverse
-  line-numbers = true
-  side-by-side = true
-
-[delta "decorations"]
-  commit-decoration-style = bold yellow box ul
-  file-style = bold yellow ul
-  file-decoration-style = none
