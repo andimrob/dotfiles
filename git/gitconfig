@@ -11,10 +11,10 @@
 [core]
   editor = code --wait --new-window
   excludesFile = ~/.dotfiles/git/gitignore
-  hooksPath = ~/.dotfiles/git/hooks
+  # hooksPath = ~/.dotfiles/git/hooks
 
 [init]
-	templatedir = /Users/robblakey/.git-templates
+	# templatedir = /Users/robblakey/.git-templates
   defaultBranch = main
 
 [commit]
