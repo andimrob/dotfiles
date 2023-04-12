@@ -14,7 +14,7 @@
   hooksPath = ~/.dotfiles/git/hooks
 
 [init]
-	templatedir = ~/.dotfiles/git/templates
+	templatedir = /Users/robblakey/.git-templates
   defaultBranch = main
 
 [commit]
