@@ -15,12 +15,12 @@
 end
 
 # === EDITOR ===
-Pry.editor = 'subl -w'
+Pry.editor = 'code'
 
 Pry.config.color = true
-Pry.config.prompt = Pry::NAV_PROMPT
+# Pry.config.prompt = Pry::NAV_PROMPT
 
-Pry.config.history.file = "~/.pry_history"
+# Pry.config.history.file = "~/.pry_history"
 
 Pry.config.commands.alias_command "h", "hist -T 20", desc: "Last 20 commands"
 Pry.config.commands.alias_command "hg", "hist -T 20 -G", desc: "Up to 20 commands matching expression"
