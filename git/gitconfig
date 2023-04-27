@@ -89,6 +89,8 @@
   file-decoration-style = none
 
 [alias]
+  context = blame
+
   ec = config --global -e
   r = reset
   f = fetch
