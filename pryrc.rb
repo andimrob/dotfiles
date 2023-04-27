@@ -5,14 +5,14 @@
 # | .__/|_|   \__, |_|  \___|
 # |_|         |___/
 
-%w[pp awesome_print gist pry-doc].each do |gem_name|
-  begin
-    require gem_name
-    AwesomePrint.pry! if gem_name == 'awesome_print'
-  rescue LoadError => e
-    puts "'#{gem_name}' gem not found. Try typing 'gem install #{gem_name}'"
-  end
-end
+# %w[pp awesome_print gist pry-doc].each do |gem_name|
+#   begin
+#     require gem_name
+#     AwesomePrint.pry! if gem_name == 'awesome_print'
+#   rescue LoadError => e
+#     puts "'#{gem_name}' gem not found. Try typing 'gem install #{gem_name}'"
+#   end
+# end
 
 # === EDITOR ===
 Pry.editor = 'code'
