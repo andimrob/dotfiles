@@ -11,8 +11,8 @@
     ~/.bashrc: 'bashrc.sh'
 
     ~/.Brewfile:
-    ~/.editorconfig: 'editorconfig.sh'
-    ~/.gnupg/gpg.conf: 'gpg.conf'
+    ~/.editorconfig: 'editorconfig'
+    ~/.gnupg/gpg-agent.conf: 'gpg-agent.conf'
 
     ~/.gitconfig: 'git/gitconfig'
     ~/.gitprompt: 'git/gitprompt.sh'
