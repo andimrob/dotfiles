@@ -18,7 +18,7 @@
   defaultBranch = main
 
 [commit]
-  gpgSign = true
+  # gpgSign = true
   template = ~/.dotfiles/git/gitmessage
 
 [color]
