@@ -47,3 +47,7 @@ export LSCOLORS=exfxcxdxbxegedabagacad
 # export MANPATH="/usr/local/man:$MANPATH"
 
 export GPG_TTY=$(tty)
+
+# Fixes for Rails bugs on ARM Macs https://github.com/rails/rails/issues/38560
+export DISABLE_SPRING=true
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
