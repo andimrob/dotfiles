@@ -39,11 +39,11 @@ end
 
 # Hit Enter to repeat last command
 Pry::Commands.command /^$/, "repeat last command" do
-  _pry_.run_command Pry.history.to_a.last
+  pry_instance.run_command Pry.history.to_a.last
 end
 
 Pry::Commands.block_command 'pl', "Alias for 'play -l'" do |lines|
-  _pry_.run_command("play -l #{lines}")
+  pry_instance.run_command("play -l #{lines}")
 end
 
 # === CUSTOM COMMANDS ===
