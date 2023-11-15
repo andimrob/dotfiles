@@ -91,7 +91,6 @@ cask 'xld'
 cask 'zoom'
 
 mas 'amphetamine', id: 937984704
-mas 'deliveries', id: 924726344
+# mas 'deliveries', id: 924726344
 mas 'focus to-do', id: 1258530160
 mas 'moom', id: 419330170
-mas 'twitter', id: 1482454543
