@@ -14,8 +14,8 @@
   hooksPath = ~/.dotfiles/git/hooks
 
 [init]
-	# templatedir = /Users/robblakey/.git-templates
   defaultBranch = main
+	templatedir = /Users/robblakey/.git-templates
 
 [commit]
   # gpgSign = true
@@ -31,6 +31,10 @@
   fsckObjects = true
 
 [branch]
+	sort = -committerdate
+
+[column]
+	branch = auto
 
 [color "status"]
   changed = yellow
@@ -91,9 +95,14 @@
   file-style = bold yellow ul
   file-decoration-style = none
 
-[alias]
-  context = blame
+[maintenance]
+	repo = /Users/robblakey/src/retail
 
+[rerere]
+	enabled = true
+	autoUpdate = true
+
+[alias]
   ec = config --global -e
   r = reset
   f = fetch
@@ -104,6 +113,8 @@
   ref = reflog
   stashes = stash list
   up = pull --rebase --autostash
+  bb = blame -w -C -C -C
+  fpush = push --force-with-lease
 
   br = branch
   brr = branch -r
