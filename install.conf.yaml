@@ -29,17 +29,11 @@
     ~/.config/nvim/init.vim:
       create: true
       path: 'config/nvim/init.vim'
-    ~/.config/tmuxinator/default.yml:
-      create: true
-      path: 'config/tmuxinator/default.yml'
     ~/.tmux.conf: '.tmux/.tmux.conf'
     ~/.tmux.conf.local: '.tmux/.tmux.conf.local'
     ~/.vim:
     ~/.vimrc: 'vimrc.vim'
 
-    ~/.oh-my-zsh/themes/blakey.zsh-theme:
-      create: true
-      path: 'zsh/blakey.zsh-theme.sh'
     ~/.zlogin: 'zsh/zlogin.sh'
     ~/.zprofile: 'zsh/zprofile.sh'
     ~/.zshrc: 'zsh/zshrc.sh'
