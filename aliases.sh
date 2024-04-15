@@ -165,3 +165,8 @@ alias edit='code'
 # betterment
 alias murder-retail="psql -c 'select pg_terminate_backend(pg_stat_activity.pid) from pg_stat_activity where pg_stat_activity.datname = '\''retail_development'\'' and pid <> pg_backend_pid()'"
 alias create-user='bundle exec rake create_user'
+
+alias h='history'
+alias hl='history | less'
+# alias hs='history | grep'
+alias hsi='history | grep -i'

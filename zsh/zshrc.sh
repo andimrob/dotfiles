@@ -82,7 +82,6 @@ plugins=(
   colorize
   git
   heroku
-  history
   npm
   macos
   rails
