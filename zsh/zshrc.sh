@@ -81,12 +81,11 @@ plugins=(
   colored-man-pages
   colorize
   git
-  heroku
+  history
   npm
   macos
   rails
   tmux
-  tmuxinator
   vscode
   yarn
 )
