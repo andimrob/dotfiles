@@ -29,8 +29,12 @@
     ~/.config/nvim/init.vim:
       create: true
       path: 'config/nvim/init.vim'
-    ~/.tmux.conf: '.tmux/.tmux.conf'
-    ~/.tmux.conf.local: '.tmux/.tmux.conf.local'
+    ~/.config/archey4/config.json:
+      create: true
+      path: 'config/archey4/config.json'
+
+    # ~/.tmux.conf: '.tmux/.tmux.conf'
+    # ~/.tmux.conf.local: '.tmux/.tmux.conf.local'
     ~/.vim:
     ~/.vimrc: 'vimrc.vim'
 
