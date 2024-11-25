@@ -4,9 +4,5 @@
 # | | | (_| | | \__ \ | | (__
 # |_|  \__,_|_|_|___/_|  \___|
 
---template=https://raw.githubusercontent.com/mattbrictson/rails-template/main/template.rb
 --database=postgresql
---webpack=react
---skip-keeps
---skip-spring
 --skip-test-unit
