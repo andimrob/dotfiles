@@ -18,6 +18,7 @@
 
 [commit]
   # gpgSign = true
+  # test
   template = ~/.dotfiles/git/gitmessage
 
 [color]
