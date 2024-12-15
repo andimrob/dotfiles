@@ -15,7 +15,6 @@
 
 [init]
   defaultBranch = main
-	# templatedir = /Users/robblakey/.git-templates
 
 [commit]
   # gpgSign = true
