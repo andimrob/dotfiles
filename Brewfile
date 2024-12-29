@@ -55,7 +55,8 @@ cask 'android-studio'
 cask 'alfred'
 cask 'arc'
 cask 'authy'
-cask 'cyberduck'
+cask 'balenaetcher'
+# cask 'cyberduck'
 cask 'datagrip'
 cask 'discord'
 cask 'dropbox'
@@ -86,6 +87,7 @@ cask 'xld'
 cask 'zoom'
 
 mas 'amphetamine', id: 937984704
+mas 'deliveries', id: 290986013
 mas 'focus to-do', id: 1258530160
 mas 'moom', id: 419330170
 mas 'xcode', id: 497799835
