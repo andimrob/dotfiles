@@ -17,8 +17,7 @@
   defaultBranch = main
 
 [commit]
-  # gpgSign = true
-  # test
+  gpgSign = true
   template = ~/.dotfiles/git/gitmessage
 
 [color]
@@ -179,3 +178,5 @@
       };                                                                                                                                                                                \
       gfzf                                                                                                                                                                              \
   "
+[safe]
+	directory = *
