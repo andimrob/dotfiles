@@ -72,6 +72,10 @@ db/*.sqlite3
 ehthumbs.db
 Thumbs.db
 
+## AI generated files ##
+########################
+.claude/
+
 # Created by https://www.gitignore.io/api/code
 # Edit at https://www.gitignore.io/?templates=code
 
