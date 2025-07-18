@@ -9,7 +9,7 @@ sudo xcode-select --install
 
 Next we clone the repo and run the installation script:
 ```
-git clone git@github.com:andimrob/dotfiles.git && cd dotfiles && ./install
+git clone git@github.com:andimrob/dotfiles.git && cd dotfiles && ./install.sh
 ```
 
 On a fresh macOS installation we will also want to install all our apps and tools using brew at this point:

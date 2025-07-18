@@ -121,12 +121,10 @@ The installer automatically backs up existing files before replacing them:
 
 4. **Verify everything works** as expected
 
-5. **Optional**: Remove the old dotbot directory and `install.conf.yaml`:
-   ```bash
-   rm -rf dotbot/
-   rm install.conf.yaml
-   rm install  # old install script
-   ```
+5. **Cleanup completed**: The old dotbot files have been removed:
+   - Removed `dotbot/` directory and submodule
+   - Removed `install.conf.yaml` configuration  
+   - Removed `install` script
 
 ## Advantages of the Shell Version
 
@@ -165,9 +163,9 @@ The shell installer provides 100% feature compatibility with your existing dotbo
 
 If you need to rollback to the old system:
 
-1. The original `install` script and `install.conf.yaml` are preserved
+1. The original dotbot files have been removed, but you can restore them from git history
 2. Your backups are stored in `~/.dotfiles-backup/`
-3. You can restore manually or use the original dotbot installer
+3. You can restore manually from backups
 
 ## Support
 
