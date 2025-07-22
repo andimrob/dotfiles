@@ -83,3 +83,5 @@ Thumbs.db
 !.vscode/extensions.json
 
 # End of https://www.gitignore.io/api/code
+
+.claude/settings.local.json
