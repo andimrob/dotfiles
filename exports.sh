@@ -6,7 +6,6 @@
 #           |_|
 
 # Path ############
-eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/bin:$PATH"
 
 # Preferred editor for local and remote sessions
@@ -51,5 +50,3 @@ export GPG_TTY=$(tty)
 # Fixes for Rails bugs on ARM Macs https://github.com/rails/rails/issues/38560
 export DISABLE_SPRING=true
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-
-export JIRA_API_TOKEN=$(op read op://The Fam/Jira Cloud API Key/credential)

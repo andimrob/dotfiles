@@ -139,4 +139,5 @@ export PATH="$PATH:$HOME/fvm/default/bin/cache/dart-sdk/bin"
 export PATH="$PATH:$HOME/.pub-cache/bin"
 
 eval "$(starship init zsh)"
-source /Users/rob/.config/op/plugins.sh
+
+eval "$(op completion zsh)"; compdef _op op
