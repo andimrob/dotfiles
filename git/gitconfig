@@ -153,6 +153,9 @@
 
   # fzf - Interactive git log browser (see git/scripts/git-fzf)
   fzf = "!~/.dotfiles/git/scripts/git-fzf"
+  
+  # stage - Interactive git add using gum (see git/scripts/git-stage)
+  stage = "!~/.dotfiles/git/scripts/git-stage"
 
 [safe]
 	directory = *
