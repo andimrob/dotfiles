@@ -135,7 +135,9 @@
   cam = commit --amend --no-edit
 
   co = checkout
-  cob = checkout -b
+  cob = checkout --branch
+  sw = switch
+  swc = switch --create
 
   unstage = reset
   uncommit = reset --soft HEAD^
@@ -153,7 +155,7 @@
 
   # fzf - Interactive git log browser (see git/scripts/git-fzf)
   fzf = "!~/.dotfiles/git/scripts/git-fzf"
-  
+
   # stage - Interactive git add using gum (see git/scripts/git-stage)
   stage = "!~/.dotfiles/git/scripts/git-stage"
 

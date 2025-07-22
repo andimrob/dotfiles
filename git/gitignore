@@ -85,3 +85,4 @@ Thumbs.db
 # End of https://www.gitignore.io/api/code
 
 .claude/settings.local.json
+.env.template
