@@ -23,15 +23,17 @@
     ~/.psqlrc:
     ~/.railsrc:
 
-    ~/.config/starship.toml:
+    ~/.config/:
       create: true
-      path: 'config/starship.toml'
-    ~/.config/nvim/init.vim:
+      glob: true
+      path: .config/*
+      relink: true
+
+    ~/.claude/:
       create: true
-      path: 'config/nvim/init.vim'
-    ~/.config/archey4/config.json:
-      create: true
-      path: 'config/archey4/config.json'
+      glob: true
+      path: .claude/*
+      relink: true
 
     # ~/.tmux.conf: '.tmux/.tmux.conf'
     # ~/.tmux.conf.local: '.tmux/.tmux.conf.local'
