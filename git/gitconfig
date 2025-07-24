@@ -103,6 +103,8 @@
 
 [alias]
   ec = config --global -e
+  ex = "!${EDITOR:-vi} .git/info/exclude"
+
   r = reset
   f = fetch
   cl = clone
@@ -158,7 +160,6 @@
 
   # stage - Interactive git add using gum (see git/scripts/git-stage)
   stage = "!~/.dotfiles/git/scripts/git-stage"
-	ex = "!${EDITOR:-vi} .git/info/exclude"
 
 [safe]
 	directory = *
