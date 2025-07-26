@@ -178,5 +178,3 @@ alias code-retail="cursor ~/src/dotfiles/workspaces/betterment-web.code-workspac
 
 # Claude AI
 alias cl='claude --ide'
-
-
