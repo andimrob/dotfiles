@@ -161,5 +161,7 @@
   # stage - Interactive git add using gum (see git/scripts/git-stage)
   stage = "!~/.dotfiles/git/scripts/git-stage"
 
+  smart-commit = "!~/.dotfiles/git/scripts/commit.sh"
+
 [safe]
 	directory = *
