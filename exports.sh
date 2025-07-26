@@ -6,7 +6,11 @@
 #           |_|
 
 # Path ############
+eval "$(rbenv init -)"
 export PATH="$HOME/.rbenv/bin:$PATH"
+
+eval "$(nodenv init -)"
+export PATH="$HOME/.nodenv/bin:$PATH"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
