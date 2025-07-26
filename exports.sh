@@ -38,7 +38,7 @@ export HISTIGNORE="h:ls:ls *:ll:ll *:"
 # Colorize LS ##### http://geoff.greer.fm/lscolors/
 export CLICOLOR=1
 # Describes what color to use for which attribute (files, folders etc.)
-export LSCOLORS=exfxcxdxbxegedabagacad
+export LSCOLORS=ExFxCxDxBxegedabagacad
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64
