@@ -15,3 +15,5 @@ gitsecrets
 secrets
 .secrets.sh
 secrets.sh
+
+workspaces/*

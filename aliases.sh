@@ -156,7 +156,8 @@ alias ff='fzf --layout=reverse --height=1% --min-height=12'
 alias fp="fzf --layout=reverse  --preview 'bat --style=numbers --color=always {}'"
 
 # edit shortcut
-alias edit='code'
+alias edit='cursor'
+alias cur="cursor ${pwd}"
 
 # betterment
 alias murder-retail="psql -c 'select pg_terminate_backend(pg_stat_activity.pid) from pg_stat_activity where pg_stat_activity.datname = '\''retail_development'\'' and pid <> pg_backend_pid()'"
@@ -173,6 +174,9 @@ alias dot="${EDITOR:-vi} ~/src/dotfiles"
 
 alias edit-retail="${EDITOR:-vi} ~/src/retail"
 alias edret="${EDITOR:-vi} ~/src/retail"
+alias code-retail="cursor ~/src/dotfiles/workspaces/betterment-web.code-workspace"
 
-# claude
+# Claude AI
 alias cl='claude --ide'
+
+
