@@ -157,7 +157,7 @@ alias fp="fzf --layout=reverse  --preview 'bat --style=numbers --color=always {}
 
 # edit shortcut
 alias edit='cursor'
-alias cur="cursor ${pwd}"
+alias cur='cursor'
 
 # betterment
 alias murder-retail="psql -c 'select pg_terminate_backend(pg_stat_activity.pid) from pg_stat_activity where pg_stat_activity.datname = '\''retail_development'\'' and pid <> pg_backend_pid()'"

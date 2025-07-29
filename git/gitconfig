@@ -137,7 +137,7 @@
   cam = commit --amend --no-edit
 
   co = checkout
-  cob = checkout --branch
+  cob = checkout -b
   sw = switch
   swc = switch --create
 
@@ -148,7 +148,7 @@
   rmrf = rm -r -f
 
   # View abbreviated SHA, description, and history graph of the latest 20 commits
-  l = "!git log --graph -n 20 --pretty=\"%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset\" | nl -v0 | bat --style=grid"
+  l = "!git log --graph -n 20 --pretty=\"%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset\" | nl -v1 | bat --style=grid"
   ll = log --graph --pretty="'%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset'"
   ld = log --graph -n 20 --numstat --pretty="'%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset'"
 
