@@ -17,3 +17,5 @@ secrets
 secrets.sh
 
 workspaces/*
+
+.claude/settings.json

@@ -22,3 +22,9 @@ format = "in [$path]($style)[$read_only]($read_only_style) "
 disabled = false
 time_format = "%R"
 style = "bold 13"
+
+[nodejs]
+symbol = '🤖 '
+
+[ruby]
+symbol = '💎 '
