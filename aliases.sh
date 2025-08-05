@@ -176,5 +176,8 @@ alias edit-retail="${EDITOR:-vi} ~/src/retail"
 alias edret="${EDITOR:-vi} ~/src/retail"
 alias code-retail="cursor ~/src/dotfiles/workspaces/betterment-web.code-workspace"
 
+# Use nvim as vim if available
+command -v nvim >/dev/null && alias vim="nvim"
+
 # Claude AI
 alias cl='claude --ide'
