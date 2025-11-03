@@ -150,6 +150,7 @@ alias bxrc='bundle exec rails console'
 alias bxrs='bundle exec rails server'
 alias bxcop='bundle exec rubocop'
 alias rbcop="git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb'"
+alias bxr-rb="cd ~/src/retail/retail && bundle exec rspec $(git diff --name-only | rg 'spec\.rb$' | sed 's|^retail/||' | tr '\n', ' ')"
 # [F]ind [F]ile
 alias ff='fzf --layout=reverse --height=1% --min-height=12'
 # [F] and [P]review
@@ -174,7 +175,8 @@ alias dot="${EDITOR:-vi} ~/src/dotfiles"
 
 alias edit-retail="${EDITOR:-vi} ~/src/retail"
 alias edret="${EDITOR:-vi} ~/src/retail"
-alias code-retail="cursor ~/src/dotfiles/workspaces/betterment-web.code-workspace"
+alias code-retail="code ~/src/dotfiles/workspaces/betterment-web.code-workspace"
+alias cur-retail="cursor ~/src/dotfiles/workspaces/betterment-web.code-workspace"
 
 # Use nvim as vim if available
 command -v nvim >/dev/null && alias vim="nvim"
