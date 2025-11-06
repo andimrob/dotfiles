@@ -105,11 +105,19 @@ source $ZSH/oh-my-zsh.sh
 # Source FZF key bindings if it's available
 [ -f "$HOMEBREW_ROOT/opt/fzf/shell/key-bindings.zsh" ] && source "$HOMEBREW_ROOT/opt/fzf/shell/key-bindings.zsh"
 
-# Load additional and overriding configs from dotfiles
+# Load base portable configs from dotfiles
 for file in ~/.dotfiles/{exports.sh,aliases.sh,functions.sh,macos.sh,secrets.sh,tmuxinator.zsh}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file";
 done;
 unset file;
+
+# Load machine-specific local configs (if they exist)
+if [ -d ~/.dotfiles/local ]; then
+  for file in ~/.dotfiles/local/*.sh; do
+    [ -r "$file" ] && [ -f "$file" ] && source "$file";
+  done;
+  unset file;
+fi
 
 # For autojump
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
@@ -140,4 +148,6 @@ export PATH="$PATH:$HOME/.pub-cache/bin"
 
 eval "$(starship init zsh)"
 
-eval "$(op completion zsh)"; compdef _op op
+eval "$(op completion zsh)"
+
+source /Users/robblakey/.config/op/plugins.sh

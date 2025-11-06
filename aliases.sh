@@ -150,7 +150,6 @@ alias bxrc='bundle exec rails console'
 alias bxrs='bundle exec rails server'
 alias bxcop='bundle exec rubocop'
 alias rbcop="git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb'"
-alias bxr-rb="cd ~/src/retail/retail && bundle exec rspec $(git diff --name-only | rg 'spec\.rb$' | sed 's|^retail/||' | tr '\n', ' ')"
 # [F]ind [F]ile
 alias ff='fzf --layout=reverse --height=1% --min-height=12'
 # [F] and [P]review
@@ -160,10 +159,6 @@ alias fp="fzf --layout=reverse  --preview 'bat --style=numbers --color=always {}
 alias edit='cursor'
 alias cur='cursor'
 
-# betterment
-alias murder-retail="psql -c 'select pg_terminate_backend(pg_stat_activity.pid) from pg_stat_activity where pg_stat_activity.datname = '\''retail_development'\'' and pid <> pg_backend_pid()'"
-alias create-user='bundle exec rake create_user'
-
 alias h='history'
 alias hl='history | less'
 alias hs='history | ag'
@@ -172,11 +167,6 @@ alias hfzf='history | fzf'
 
 alias dotfiles="${EDITOR:-vi} ~/src/dotfiles"
 alias dot="${EDITOR:-vi} ~/src/dotfiles"
-
-alias edit-retail="${EDITOR:-vi} ~/src/retail"
-alias edret="${EDITOR:-vi} ~/src/retail"
-alias code-retail="code ~/src/dotfiles/workspaces/betterment-web.code-workspace"
-alias cur-retail="cursor ~/src/dotfiles/workspaces/betterment-web.code-workspace"
 
 # Use nvim as vim if available
 command -v nvim >/dev/null && alias vim="nvim"
