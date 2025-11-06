@@ -19,3 +19,7 @@ secrets.sh
 workspaces/*
 
 .claude/settings.json
+
+# Local machine-specific configs
+local/
+local/*.sh
