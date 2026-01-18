@@ -12,6 +12,9 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(nodenv init -)"
 export PATH="$HOME/.nodenv/bin:$PATH"
 
+# uv tools (Python)
+export PATH="$HOME/.local/bin:$PATH"
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -54,3 +57,5 @@ export GPG_TTY=$(tty)
 # Fixes for Rails bugs on ARM Macs https://github.com/rails/rails/issues/38560
 export DISABLE_SPRING=true
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+export GITHUB_BMT_PAT="op://Personal/Github PAT - BMT Bootstrap/password"
