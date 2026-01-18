@@ -160,9 +160,6 @@ alias edit='cursor'
 alias cur='cursor'
 
 alias h='history'
-alias hl='history | less'
-alias hs='history | ag'
-alias hsi='history | grep -i'
 alias hfzf='history | fzf'
 
 alias dotfiles="${EDITOR:-vi} ~/src/dotfiles"
@@ -173,3 +170,20 @@ command -v nvim >/dev/null && alias vim="nvim"
 
 # Claude AI
 alias cl='claude --ide'
+
+# Coach console shortcuts
+@stage() {
+	cd ~/src/retail/retail && coach console retail stage
+}
+
+@production() {
+	cd ~/src/retail/retail && coach console retail production
+}
+
+# @stage-institutional() {
+# 	cd ~/src/retail/institutional && coach console retail stage
+# }
+
+# @production-institutional() {
+# 	cd ~/src/retail/institutional && coach console retail production
+# }

@@ -18,7 +18,7 @@
 	templatedir = /Users/robblakey/.git-templates
 
 [commit]
-  gpgSign = true
+  # gpgSign = true
   template = ~/.dotfiles/git/gitmessage
 
 [color]
@@ -28,7 +28,7 @@
   showUntrackedFiles = all
 
 [transfer]
-  fsckObjects = true
+  # fsckObjects = true
 
 [branch]
 	sort = -committerdate
@@ -68,10 +68,6 @@
   clean = git lfs clean %f
   smudge = git lfs smudge %f
   required = true
-
-[credential]
-	helper = osxkeychain
-
 [gpg]
 	program = gpg2
 
@@ -168,3 +164,13 @@
 
 [safe]
 	directory = *
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+# [credential]
+#   helper = osxkeychain
+[github]
+	user = andimrob

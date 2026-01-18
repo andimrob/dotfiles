@@ -81,7 +81,6 @@ plugins=(
   colored-man-pages
   colorize
   git
-  history
   npm
   macos
   rails
@@ -151,3 +150,13 @@ eval "$(starship init zsh)"
 eval "$(op completion zsh)"
 
 source /Users/robblakey/.config/op/plugins.sh
+
+# pnpm
+export PNPM_HOME="/Users/robblakey/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
