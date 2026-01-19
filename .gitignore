@@ -23,3 +23,6 @@ workspaces/*
 # Local machine-specific configs
 local/
 local/*.sh
+
+.claude
+.specify
