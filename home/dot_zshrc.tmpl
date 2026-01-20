@@ -81,6 +81,7 @@ export XDG_CONFIG_HOME="$HOME/.config"       # User-specific configuration files
 export XDG_STATE_HOME="$HOME/.local/state"   # User-specific state data (logs, history, etc.)
 
 {{- if eq .chezmoi.os "darwin" }}
+
 # Use homebrew https://brew.sh/
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -100,9 +101,8 @@ eval "$(mise completion zsh)"
 # Use Starship https://starship.rs/
 eval "$(starship init zsh)"
 
-# Use 1password CLI https://developer.1password.com/docs/cli/
+# Use 1password completions and plugins when install
 eval "$(op completion zsh)"
-# Source 1Password plugins when op is installed
 command -v op &>/dev/null && [ -f "$XDG_CONFIG_HOME/op/plugins.sh" ] && source "$XDG_CONFIG_HOME/op/plugins.sh"
 
 # Use zoxide (cd replacement) https://github.com/ajeetdsouza/zoxide
@@ -132,8 +132,8 @@ esac
 # pnpm end
 {{- end }}
 
-# Load base portable configs from dotfiles
-for file in ~/.dotfiles/{exports.sh,aliases.sh,functions.sh,macos.sh,secrets.sh}; do
-  [ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
+# Load modular zsh configs (numeric prefixes control load order)
+for file in "$XDG_CONFIG_HOME/zsh/"*.sh; do
+  [ -r "$file" ] && source "$file"
+done
+unset file
