@@ -1,13 +1,12 @@
 {{/* user input */}}
-{{- $email := promptStringOnce . "email" "Your email address" -}}
 {{- $name := promptStringOnce . "name" "Your full name" -}}
+{{- $email := promptStringOnce . "email" "Your email address" -}}
 
 {{/* boolean feature tags */}}
 {{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
 {{- $work := false -}}{{/* true if this machine is a work machine */}}
 {{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
 {{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
-{{- "" -}}
 
 {{- $osID := .chezmoi.os -}}
 {{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
@@ -20,12 +19,15 @@
 {{-   $headless = true -}}
 {{- end -}}
 
-{{- if eq .chezmoi.os "windows" -}}
-{{-   $ephemeral = true -}}
+{{/* work around unreliable hostname on darwin */}}
+{{- $hostname := .chezmoi.hostname -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $hostname := output "scutil" "--get" "LocalHostName" | trim -}}
 {{- end -}}
 
+
 {{- if not $ephemeral -}}
-{{-   if eq $hostname "macbook-air-m3" -}}
+{{-   if eq $hostname "shadowbox" -}}
 {{-     $personal = true -}}
 {{-   else if eq $hostname "thinkpad" -}}
 {{-     $personal = true -}}
@@ -46,8 +48,9 @@
 [data]
     ephemeral = {{ $ephemeral }}
     email = {{ $email | quote }}
-    work = {{ $work }}
     headless = {{ $headless }}
     hostname = {{ $hostname | quote }}
+    name = {{ $name | quote }}
     personal = {{ $personal }}
     osid = {{ $osID | quote }}
+    work = {{ $work }}
