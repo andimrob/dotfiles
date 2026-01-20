@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+_run_rubocop(){
+  echo "Running rubocop pre-commit hook"
+
+  git rev-parse -q --verify MERGE_HEAD && echo "" && echo "Merge commit... skipping rubocop checks." && exit 0
+
+  # List of subdirectories to check
+  SUBDIRECTORIES=("b4c" "investing" "retail" "doctor" "cst" "broker-dealer" "institutional")
+
+  # Get a list of changed files that are about to be committed
+  FILES=$(git diff --cached --name-only --diff-filter=ACM)
+
+  # Set default exit code
+  FINAL_CODE=0
+
+  echo "Changed files:"
+  echo $FILES
+
+  # Check if any of the files are in the list of subdirectories
+  for DIR in "${SUBDIRECTORIES[@]}"
+  do
+    if echo $FILES | tr ' ' '\n' | grep -q "^$DIR/"; then
+      cd $DIR
+
+      # Get the list of changed files that are in the current subdirectory
+      CHANGED_FILES=$(echo $FILES | tr ' ' '\n' | grep "$DIR/" | sed -e "s/^$DIR\///g" | grep "\.rb" )
+
+      echo "Running rubocop against $DIR"
+      echo "Changed files: $CHANGED_FILES"
+
+      if [ -z "$CHANGED_FILES" ]; then
+        echo "No files to check. Skipping."
+      else
+        # Run Rubocop against the changed files in the current subdirectory
+        bundle exec rubocop $CHANGED_FILES
+
+        # If we changed something, we want to make sure we fail the commit
+        if [ $? -ne 0 ]; then
+          FINAL_CODE=1
+
+          # Then re-run to fix the failures
+          bundle exec rubocop -a $CHANGED_FILES
+        fi
+      fi
+
+      cd ..
+    fi
+  done
+
+  if [ $FINAL_CODE -ne 0 ]; then
+    echo "Rubocop updated files. Resubmit your commit."
+    exit $FINAL_CODE
+  fi
+
+  echo "Rubocopping complete..."
+}
+
+_run_rubocop
