@@ -11,6 +11,7 @@ tap 'homebrew/bundle'
 tap 'homebrew/services'
 
 brew 'awscli'
+brew 'chroma'
 brew 'btop'
 brew 'direnv'
 brew 'exiftool'
