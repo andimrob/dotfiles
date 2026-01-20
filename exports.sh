@@ -6,11 +6,11 @@
 #           |_|
 
 # Path ############
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
+# export PATH="$HOME/.rbenv/bin:$PATH"
 
-eval "$(nodenv init -)"
-export PATH="$HOME/.nodenv/bin:$PATH"
+# eval "$(nodenv init -)"
+# export PATH="$HOME/.nodenv/bin:$PATH"
 
 # uv tools (Python)
 export PATH="$HOME/.local/bin:$PATH"
