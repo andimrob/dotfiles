@@ -1,0 +1,37 @@
+#           _ _ _                             __ _
+#   ___  __| (_) |_ ___  _ __ ___ ___  _ __  / _(_) __ _
+#  / _ \/ _` | | __/ _ \| '__/ __/ _ \| '_ \| |_| |/ _` |
+# |  __/ (_| | | || (_) | | | (_| (_) | | | |  _| | (_| |
+#  \___|\__,_|_|\__\___/|_|  \___\___/|_| |_|_| |_|\__, |
+#                                                  |___/
+# For consistent coding styles between different editors and IDEs
+# https://editorconfig.org
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# Use 2 spaces for indentation in HTML, JavaScript, Ruby, SCSS, and XML
+[*.{html,js,rb,erb,scss,css,xml}]
+indent_style = space
+indent_size = 2
+
+[Gemfile*]
+indent_size = 2
+
+[Rakefile]
+indent_size = 2
+
+# Use 4 spaces for indentation in Markdown files
+[*.md]
+indent_size = 4
+trim_trailing_whitespace = false
+
+# 4 space indentation
+[*.py]
+indent_style = space
+indent_size = 4
