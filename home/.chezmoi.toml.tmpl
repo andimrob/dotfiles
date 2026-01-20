@@ -1,6 +1,6 @@
 {{/* user input */}}
-{{- $name := promptStringOnce . "name" "Your full name" -}}
-{{- $email := promptStringOnce . "email" "Your email address" -}}
+{{- $name := promptStringOnce . "name" "Your git name" -}}
+{{- $email := promptStringOnce . "email" "Your git email address" -}}
 
 {{/* boolean feature tags */}}
 {{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
@@ -14,7 +14,7 @@
 {{- end -}}
 
 {{/* detect GitHub codespaces, VSCode remote containers, Docker containers, Multipass VMs, and Vagrant boxes */}}
-{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
+{{- if or (env "CODESPACES") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
 {{-   $ephemeral = true -}}
 {{-   $headless = true -}}
 {{- end -}}
@@ -24,7 +24,6 @@
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   $hostname := output "scutil" "--get" "LocalHostName" | trim -}}
 {{- end -}}
-
 
 {{- if not $ephemeral -}}
 {{-   if eq $hostname "shadowbox" -}}
