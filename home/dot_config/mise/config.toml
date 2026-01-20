@@ -1,6 +1,7 @@
 min_version = "2025.11.8"
 
 [tools]
+1password-cli = "latest"
 bat = "0.26.1"
 btop = "1.4.4"
 chezmoi = "latest"
@@ -11,11 +12,12 @@ github-cli = "2.82.1"
 lsd = "1.2.0"
 neovim = "0.11.5"
 node = "24.13.0"
+opencode = "1.1.8"
 ripgrep = "14.1.1"
 ruby = "4.0.1"
 starship = "1.23.0"
+zellij = "0.43.0"
 zoxide = "0.9.8"
-opencode = "1.1.8"
 
 [settings]
 lockfile = true
