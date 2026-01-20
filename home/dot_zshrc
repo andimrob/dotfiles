@@ -76,7 +76,6 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  autojump
   aws
   colored-man-pages
   colorize
@@ -84,7 +83,6 @@ plugins=(
   npm
   macos
   rails
-  tmux
   vscode
   yarn
 )
@@ -98,6 +96,10 @@ source $ZSH/oh-my-zsh.sh
 
 # My Config #######################
 eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(mise activate zsh)"
+eval "$(starship init zsh)"
+eval "$(op completion zsh)"
+eval "$(zoxide init --cmd j zsh)"
 
 # Source Betterment bootstrap if it's available
 [ -f "$HOME/.bootstrap/env.sh" ] && source "$HOME/.bootstrap/env.sh"
@@ -119,11 +121,8 @@ if [ -d ~/.dotfiles/local ]; then
   unset file;
 fi
 
-# For autojump
-[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
-
 # Display system stats with archey if it's installed
-[ -x "$(command -v archey)" ] && archey
+[ -x "$(command -v fastfetch )" ] && fastfetch
 
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -150,10 +149,6 @@ export PATH="$PATH:$HOME/fvm/default/bin/cache/dart-sdk/bin"
 
 export PATH="$PATH:$HOME/.pub-cache/bin"
 
-eval "$(starship init zsh)"
-
-eval "$(op completion zsh)"
-
 source /Users/robblakey/.config/op/plugins.sh
 
 # pnpm
@@ -164,5 +159,4 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
 

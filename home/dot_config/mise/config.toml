@@ -14,7 +14,6 @@ node = "24.13.0"
 ripgrep = "14.1.1"
 ruby = "4.0.1"
 starship = "1.23.0"
-zellij = "0.43.0"
 zoxide = "0.9.8"
 opencode = "1.1.8"
 
