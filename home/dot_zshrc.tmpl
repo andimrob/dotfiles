@@ -87,7 +87,14 @@ export XDG_STATE_HOME="$HOME/.local/state"   # User-specific state data (logs, h
 {{- if eq .chezmoi.os "darwin" }}
 # Use homebrew https://brew.sh/
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
 export HOMEBREW_PREFIX="$(brew --prefix)"
+export LDFLAGS="-L$HOMEBREW_PREFIX/opt/libffi/lib"
+export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/libffi/include"
+export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig"
+
+# Source FZF key bindings when available
+[ -f "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh" ] && source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
 {{- end }}
 
 # Use Mise https://mise.jdx.dev/
@@ -118,20 +125,6 @@ command -v fastfetch &>/dev/null && fastfetch
 export PATH="$PATH:$HOME/fvm/default/bin"
 export PATH="$PATH:$HOME/fvm/default/bin/cache/dart-sdk/bin"
 export PATH="$PATH:$HOME/.pub-cache/bin"
-{{- end }}
-
-# Source FZF key bindings if it's available
-[ -f "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh" ] && source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
-
-# Load base portable configs from dotfiles
-for file in ~/.dotfiles/{exports.sh,aliases.sh,functions.sh,macos.sh,secrets.sh,tmuxinator.zsh}; do
-  [ -r "$file" ] && [ -f "$file" ] && source "$file";
-done;
-unset file;
-
-export LDFLAGS="-L$HOMEBREW_PREFIX/opt/libffi/lib"
-export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/libffi/include"
-export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig"
 
 # pnpm
 export PNPM_HOME="/Users/robblakey/Library/pnpm"
@@ -140,3 +133,10 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+{{- end }}
+
+# Load base portable configs from dotfiles
+for file in ~/.dotfiles/{exports.sh,aliases.sh,functions.sh,macos.sh,secrets.sh}; do
+  [ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
