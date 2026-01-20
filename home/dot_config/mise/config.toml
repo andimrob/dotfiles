@@ -2,7 +2,6 @@ min_version = "2025.11.8"
 
 [tools]
 1password-cli = "latest"
-btop = "1.4.4"
 chezmoi = "latest"
 doggo = "1.0.5"
 fastfetch = "2.57.1"
