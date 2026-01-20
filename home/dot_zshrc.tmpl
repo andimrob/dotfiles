@@ -4,23 +4,8 @@
 #  / /\__ \ | | | | | (__
 # /___|___/_| |_|_|  \___|
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="blakey"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -76,15 +61,12 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  aws
   colored-man-pages
   colorize
   git
-  npm
   macos
   rails
   vscode
-  yarn
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -93,18 +75,50 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
+# ---------------------------------------------------------------------
 
-# My Config #######################
+# XDG Base Directory Specification
+# These variables define standard locations for user files, helping to keep $HOME clean
+# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+export XDG_DATA_HOME="$HOME/.local/share"    # User-specific data files
+export XDG_CONFIG_HOME="$HOME/.config"       # User-specific configuration files
+export XDG_STATE_HOME="$HOME/.local/state"   # User-specific state data (logs, history, etc.)
+
+{{- if eq .chezmoi.os "darwin" }}
+# Setup homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
+export HOMEBREW_PREFIX="$(brew --prefix)"
+{{- end }}
+
+# Use Mise https://mise.jdx.dev/
 eval "$(mise activate zsh)"
+
+# Use Starship https://starship.rs/
 eval "$(starship init zsh)"
+
+# Use 1password CLI https://developer.1password.com/docs/cli/
 eval "$(op completion zsh)"
+# Source 1Password plugins when op is installed
+command -v op &>/dev/null && [ -f "$XDG_CONFIG_HOME/op/plugins.sh" ] && source "$XDG_CONFIG_HOME/op/plugins.sh"
+
+# Use zoxide (cd replacement) https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init --cmd j zsh)"
 
+# Use direnv https://github.com/direnv/direnv
+eval "$(direnv hook zsh)"
+
+# Display system stats with fastfetch when installed
+command -v fastfetch &>/dev/null && fastfetch
+
+{{- if .work }}
 # Source Betterment bootstrap if it's available
 [ -f "$HOME/.bootstrap/env.sh" ] && source "$HOME/.bootstrap/env.sh"
 
-export HOMEBREW_PREFIX="$(brew --prefix)"
+# Flutter and Dart additions
+export PATH="$PATH:$HOME/fvm/default/bin"
+export PATH="$PATH:$HOME/fvm/default/bin/cache/dart-sdk/bin"
+export PATH="$PATH:$HOME/.pub-cache/bin"
+{{- end }}
 
 # Source FZF key bindings if it's available
 [ -f "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh" ] && source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
@@ -115,40 +129,9 @@ for file in ~/.dotfiles/{exports.sh,aliases.sh,functions.sh,macos.sh,secrets.sh,
 done;
 unset file;
 
-# Load machine-specific local configs (if they exist)
-if [ -d ~/.dotfiles/local ]; then
-  for file in ~/.dotfiles/local/*.sh; do
-    [ -r "$file" ] && [ -f "$file" ] && source "$file";
-  done;
-  unset file;
-fi
-
-# Display system stats with archey if it's installed
-[ -x "$(command -v fastfetch )" ] && fastfetch
-
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_STATE_HOME="$HOME/.local/state"
-
-eval "$(direnv hook zsh)"
-
-export PATH="$HOME/.poetry/bin:$PATH"
-
 export LDFLAGS="-L$HOMEBREW_PREFIX/opt/libffi/lib"
-
 export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/libffi/include"
-
 export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig"
-
-export PATH="/opt/homebrew/bin:$PATH"
-
-export PATH="$PATH:$HOME/fvm/default/bin"
-
-export PATH="$PATH:$HOME/fvm/default/bin/cache/dart-sdk/bin"
-
-export PATH="$PATH:$HOME/.pub-cache/bin"
-
-source /Users/robblakey/.config/op/plugins.sh
 
 # pnpm
 export PNPM_HOME="/Users/robblakey/Library/pnpm"
