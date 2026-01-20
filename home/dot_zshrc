@@ -104,8 +104,10 @@ eval "$(zoxide init --cmd j zsh)"
 # Source Betterment bootstrap if it's available
 [ -f "$HOME/.bootstrap/env.sh" ] && source "$HOME/.bootstrap/env.sh"
 
+export HOMEBREW_PREFIX="$(brew --prefix)"
+
 # Source FZF key bindings if it's available
-[ -f "$HOMEBREW_ROOT/opt/fzf/shell/key-bindings.zsh" ] && source "$HOMEBREW_ROOT/opt/fzf/shell/key-bindings.zsh"
+[ -f "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh" ] && source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
 
 # Load base portable configs from dotfiles
 for file in ~/.dotfiles/{exports.sh,aliases.sh,functions.sh,macos.sh,secrets.sh,tmuxinator.zsh}; do
@@ -132,11 +134,11 @@ eval "$(direnv hook zsh)"
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
-export LDFLAGS="-L$HOMEBREW_ROOT/opt/libffi/lib"
+export LDFLAGS="-L$HOMEBREW_PREFIX/opt/libffi/lib"
 
-export CPPFLAGS="-I$HOMEBREW_ROOT/opt/libffi/include"
+export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/libffi/include"
 
-export PKG_CONFIG_PATH="$HOMEBREW_ROOT/opt/libffi/lib/pkgconfig"
+export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig"
 
 export PATH="/opt/homebrew/bin:$PATH"
 
