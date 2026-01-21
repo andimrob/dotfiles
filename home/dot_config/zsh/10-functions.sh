@@ -5,8 +5,8 @@
 # |_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
 
 # FZF helpers / configuration
-
 # fd [F]ind [D]irectory - cd to child directory
+# ---------------------------------------------------------------------
 fd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
@@ -15,6 +15,7 @@ fd() {
 }
 
 # fdr [F]ind [D]irectory [R]everse - cd to selected parent directory
+# ---------------------------------------------------------------------
 fdr() {
   local declare dirs=()
   get_parent_dirs() {
@@ -30,11 +31,13 @@ fdr() {
 }
 
 # fh [F]ind [H]istory - seach history
+# ---------------------------------------------------------------------
 fh() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
 }
 
 # fco [F]ind and [C]heck [O]ut - checkout git branch
+# ---------------------------------------------------------------------
 fco() {
   local branches branch
   branches=$(git branch -vv) &&
