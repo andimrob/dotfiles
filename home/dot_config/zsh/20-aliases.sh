@@ -13,7 +13,6 @@ alias ~='cd ~' # `cd` is probably faster to type though
 alias -- -='cd -'
 
 # Shortcuts
-alias d='cd ~/Documents/Dropbox'
 alias dl='cd ~/Downloads'
 alias dt='cd ~/Desktop'
 alias proj='cd ~/src'
@@ -80,11 +79,6 @@ command -v md5sum >/dev/null || alias md5sum="md5"
 # macOS has no `sha1sum`, so use `shasum` as a fallback
 command -v sha1sum >/dev/null || alias sha1sum="shasum"
 
-# JavaScriptCore REPL
-jscbin="/System/Library/Frameworks/JavaScriptCore.framework/Versions/A/Resources/jsc"
-[ -e "${jscbin}" ] && alias jsc="${jscbin}"
-unset jscbin
-
 # Trim new lines and copy to clipboard
 # alias c="tr -d '\n' | pbcopy"
 
@@ -111,18 +105,10 @@ alias spoton="sudo mdutil -a -i on"
 # PlistBuddy alias, because sometimes `defaults` just doesn't cut it
 alias plistbuddy="/usr/libexec/PlistBuddy"
 
-# Airport CLI alias
-alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
-
 # Intuitive map function
 # For example, to list all directories that contain a certain file:
 # find . -name .gitattributes | map dirname
 alias map="xargs -n1"
-
-# One of @janmoesen's ProTip™s
-for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-	alias "${method}"="lwp-request -m '${method}'"
-done
 
 # reload zsh profile
 alias reload='clear; source ~/.zshrc'
@@ -141,7 +127,6 @@ alias tree='tree -Ca --noreport'
 alias path='echo $PATH | tr ":" "\n"'
 
 # ruby bundler shortcut
-alias be='bundle exec'
 alias bx='bundle exec'
 alias bxr='bundle exec rspec'
 alias bxrf='bundle exec rspec $(fzf --layout=reverse --height=1% --min-height=12)'
@@ -156,14 +141,14 @@ alias ff='fzf --layout=reverse --height=1% --min-height=12'
 alias fp="fzf --layout=reverse  --preview 'bat --style=numbers --color=always {}'"
 
 # edit shortcut
-alias edit='cursor'
+alias edit="${EDITOR:-vi}"
 alias cur='cursor'
 
 alias h='history'
 alias hfzf='history | fzf'
 
-alias dotfiles="${EDITOR:-vi} ~/src/dotfiles"
-alias dot="${EDITOR:-vi} ~/src/dotfiles"
+alias dotfiles="${EDITOR:-vi} ~/src/.dotfiles"
+alias dot="${EDITOR:-vi} ~/src/.dotfiles"
 
 # Use nvim as vim if available
 command -v nvim >/dev/null && alias vim="nvim"
@@ -179,11 +164,3 @@ alias cl='claude --ide'
 @production() {
 	cd ~/src/retail/retail && coach console retail production
 }
-
-# @stage-institutional() {
-# 	cd ~/src/retail/institutional && coach console retail stage
-# }
-
-# @production-institutional() {
-# 	cd ~/src/retail/institutional && coach console retail production
-# }
