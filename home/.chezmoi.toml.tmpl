@@ -28,6 +28,9 @@
 {{- if not $ephemeral -}}
 {{-   if eq $hostname "shadowbox" -}}
 {{-     $personal = true -}}
+{{-   else if eq $hostname "REM-BETTERMENT02134" -}}
+{{-     $work = true -}}
+{{-     $headless = false -}}
 {{-   else if eq $hostname "ubuntu" -}}
 {{-     $headless = true -}}
 {{-     $personal = true -}}
