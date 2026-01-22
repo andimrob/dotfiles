@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Variables
+readonly DOTFILES_LINK="$HOME/.dotfiles"
+readonly CHEZMOI_SOURCE="{{ .chezmoi.workingTree }}"
+
+# Logging function
+log() {
+    echo "[dotfiles] $*"
+}
+
+# Main logic
+main() {
+    # Check if symlink already exists and points to correct target
+    if [ -L "$DOTFILES_LINK" ]; then
+        local current_target
+        current_target=$(readlink "$DOTFILES_LINK")
+        if [ "$current_target" = "$CHEZMOI_SOURCE" ]; then
+            return 0 # Symlink exists, exit silently
+        fi
+        log "Removing incorrect symlink: $DOTFILES_LINK -> $current_target"
+        rm "$DOTFILES_LINK"
+    elif [ -e "$DOTFILES_LINK" ]; then
+        log "Error: $DOTFILES_LINK exists but is not a symlink"
+        exit 1
+    fi
+
+    # Validate source exists before creating symlink
+    if [ ! -d "$CHEZMOI_SOURCE" ]; then
+        log "Error: Source directory does not exist: $CHEZMOI_SOURCE"
+        exit 1
+    fi
+
+    # Create the symlink
+    log "Creating symlink: $DOTFILES_LINK -> $CHEZMOI_SOURCE"
+    if ! ln -s "$CHEZMOI_SOURCE" "$DOTFILES_LINK"; then
+        log "Error: Failed to create symlink"
+        exit 1
+    fi
+    log "Symlink created successfully"
+}
+
+# Run main function
+main "$@"
