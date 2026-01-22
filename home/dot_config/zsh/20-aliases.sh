@@ -17,6 +17,7 @@ alias dl='cd ~/Downloads'
 alias dt='cd ~/Desktop'
 alias proj='cd ~/src'
 alias g='git'
+alias gwcd='cd $(git worktree list | fzf | awk "{print \$1}")'
 alias attach='tmux attach-session'
 alias h='history'
 
