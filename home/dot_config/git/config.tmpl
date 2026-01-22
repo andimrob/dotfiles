@@ -145,6 +145,9 @@
   rmf = rm -f
   rmrf = rm -r -f
 
+  wt = worktree
+  trees = worktree list
+
   # View abbreviated SHA, description, and history graph of the latest 20 commits
   l = "!git log --graph -n 20 --pretty=\"%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset\" | nl -v1 | bat --style=grid"
   ll = log --graph --pretty="'%C(yellow)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)[%an]%Creset'"
