@@ -8,6 +8,10 @@
 [user]
   name = {{ .name }}
   email = {{ .email }}
+  signingkey = "key::{{ onepasswordRead "op://Developer/Personal - Github.com/public key" }}"
+
+[gpg]
+  format = ssh
 
 [core]
   # editor = code --wait --new-window
@@ -19,7 +23,7 @@
   templatedir = ~/.config/git/template
 
 [commit]
-  # gpgSign = true
+  gpgSign = true
   template = ~/.config/git/message
 
 [color]
@@ -155,12 +159,10 @@
   la = "!git config -l | grep alias | cut -c 7- | bat --language=gitconfig --style=numbers,grid"
 
   # fzf - Interactive git log browser (see git/scripts/git-fzf)
-  fzf = "!~/.dotfiles/git/scripts/git-fzf"
+  fzf = "!~/.config/git/scripts/git-fzf"
 
   # stage - Interactive git add using gum (see git/scripts/git-stage)
-  stage = "!~/.dotfiles/git/scripts/git-stage"
-
-  smart-commit = "!~/.dotfiles/git/scripts/commit.sh"
+  stage = "!~/.config/git/scripts/git-stage"
 
 	cleanup-branches = !git branch --format=\"%(refname:short)\" | grep -v \"$(git branch --show-current)\" | fzf --multi --preview \"git log --oneline --graph --date=short\n  --pretty=format:%C(auto)%cd_%h%d_%s {} | head -50\" | xargs -r git branch -D
 
