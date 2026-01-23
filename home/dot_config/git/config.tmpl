@@ -10,7 +10,7 @@
   email = {{ .email }}
 
 [core]
-  editor = code --wait --new-window
+  # editor = code --wait --new-window
   excludesFile = ~/.config/git/ignore
   hooksPath = ~/.config/git/hooks
 
@@ -69,6 +69,7 @@
   clean = git lfs clean %f
   smudge = git lfs smudge %f
   required = true
+
 [gpg]
 	program = gpg2
 
@@ -91,9 +92,6 @@
   commit-decoration-style = bold yellow box ul
   file-style = bold yellow ul
   file-decoration-style = none
-
-[maintenance]
-	repo = /Users/robblakey/src/retail
 
 [rerere]
 	enabled = true
@@ -168,13 +166,17 @@
 
 [safe]
 	directory = *
-[credential "https://github.com"]
-	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper =
-	helper = !/opt/homebrew/bin/gh auth git-credential
-# [credential]
-#   helper = osxkeychain
+
 [github]
 	user = andimrob
+
+[credential "https://github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential
+{{- if eq .chezmoi.os "darwin" }}
+
+[credential]
+  helper = osxkeychain
+{{ end -}}
