@@ -52,4 +52,8 @@ export GPG_TTY=$(tty)
 export DISABLE_SPRING=true
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
-export GITHUB_BMT_PAT={{ onepasswordRead "op://Personal/Github PAT - BMT Bootstrap/password" | quote }}
+{{- if .work }}
+
+export GITHUB_BMT_PAT={{ onepasswordRead "op://Developer/Github PAT - BMT Bootstrap/password" | quote }}
+{{- end }}
+export GITHUB_TOKEN={{ onepasswordRead "op://Developer/GitHub Personal Access Token/token" | quote }}
