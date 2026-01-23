@@ -57,3 +57,9 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export GITHUB_BMT_PAT={{ onepasswordRead "op://Developer/Github PAT - BMT Bootstrap/password" | quote }}
 {{- end }}
 export GITHUB_TOKEN={{ onepasswordRead "op://Developer/GitHub Personal Access Token/token" | quote }}
+
+{{ if eq .chezmoi.os "darwin" -}}
+export SSH_AUTH_SOCK="~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+{{ else if eq .chezmoi.os "linux" -}}
+export SSH_AUTH_SOCK="~/.1password/agent.sock"
+{{- end }}
