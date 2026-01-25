@@ -8,39 +8,51 @@
 # fd [F]ind [D]irectory - cd to child directory
 # ---------------------------------------------------------------------
 fd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
+	local dir
+	dir=$(find ${1:-.} -path '*/\.*' -prune \
+		-o -type d -print 2>/dev/null | fzf +m) &&
+		cd "$dir"
 }
 
 # fdr [F]ind [D]irectory [R]everse - cd to selected parent directory
 # ---------------------------------------------------------------------
 fdr() {
-  local declare dirs=()
-  get_parent_dirs() {
-    if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
-    if [[ "${1}" == '/' ]]; then
-      for _dir in "${dirs[@]}"; do echo $_dir; done
-    else
-      get_parent_dirs $(dirname "$1")
-    fi
-  }
-  local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
-  cd "$DIR"
+	local declare dirs=()
+	get_parent_dirs() {
+		if [[ -d "${1}" ]]; then dirs+=("$1"); else return; fi
+		if [[ "${1}" == '/' ]]; then
+			for _dir in "${dirs[@]}"; do echo $_dir; done
+		else
+			get_parent_dirs $(dirname "$1")
+		fi
+	}
+	local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
+	cd "$DIR"
 }
 
 # fh [F]ind [H]istory - seach history
 # ---------------------------------------------------------------------
 fh() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
+	print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
 }
 
 # fco [F]ind and [C]heck [O]ut - checkout git branch
 # ---------------------------------------------------------------------
 fco() {
-  local branches branch
-  branches=$(git branch -vv) &&
-  branch=$(echo "$branches" | fzf +m) &&
-  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+	local branches branch
+	branches=$(git branch -vv) &&
+		branch=$(echo "$branches" | fzf +m) &&
+		git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
+
+# fuzzy cd a git worktree
+wt() {
+	local dir
+	dir=$(git worktree list | fzf \
+		--height 50% \
+		--reverse \
+		--preview 'git -C {1} log --oneline -10' \
+		--preview-window right:50% |
+		awk '{print $1}')
+	[[ -n "$dir" ]] && cd "$dir"
 }
