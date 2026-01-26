@@ -1,6 +1,7 @@
 {{/* user input */}}
 {{- $name := promptStringOnce . "name" "Your git name" -}}
 {{- $email := promptStringOnce . "email" "Your git email address" -}}
+{{- $githubUsername := promptStringOnce . "githubUsername" "Your GitHub username" -}}
 
 {{/* boolean feature tags */}}
 {{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
@@ -46,6 +47,7 @@
 [data]
     ephemeral = {{ $ephemeral }}
     email = {{ $email | quote }}
+    githubUsername = {{ $githubUsername | quote }}
     headless = {{ $headless }}
     hostname = {{ $hostname | quote }}
     name = {{ $name | quote }}
