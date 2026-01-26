@@ -5,3 +5,8 @@
 .Brewfile
 .config/zsh/90-macos.sh
 {{ end }}
+
+{{ if not .personal }}
+.ssh
+.ssh/**
+{{ end }}
