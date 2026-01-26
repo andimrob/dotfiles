@@ -1,23 +1,27 @@
 min_version = "2025.11.8"
 
 [tools]
-1password-cli = "latest"
-chezmoi = "latest"
-doggo = "1.0.5"
-fastfetch = "2.57.1"
-fzf = "0.67.0"
-github-cli = "2.82.1"
-lsd = "1.2.0"
-neovim = "0.11.5"
+# Lang
+go   = "1.25.6"
 node = "24.13.0"
-opencode = "1.1.8"
-pnpm = "latest"
-ripgrep = "14.1.1"
 ruby = "4.0.1"
-starship = "1.23.0"
-usage = "latest"
-zellij = "0.43.0"
-zoxide = "0.9.8"
+
+# Util
+1password-cli = "latest"
+chezmoi       = "latest"
+doggo         = "1.0.5"
+fastfetch     = "2.57.1"
+fzf           = "0.67.0"
+github-cli    = "2.82.1"
+lsd           = "1.2.0"
+neovim        = "0.11.5"
+opencode      = "1.1.8"
+pnpm          = "latest"
+ripgrep       = "14.1.1"
+starship      = "1.23.0"
+usage         = "latest"
+zellij        = "0.43.0"
+zoxide        = "0.9.8"
 
 [settings]
 lockfile = true
