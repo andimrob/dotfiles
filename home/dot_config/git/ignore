@@ -90,3 +90,7 @@ Thumbs.db
 # Git worktrees
 .worktrees/
 
+# Claude
+**/.claude/Claude.local.md
+**/.claude/artifacts/*
+
