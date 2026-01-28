@@ -1,3 +1,4 @@
+{{ if eq .chezmoi.os "darwin" -}}
 #                        ___  ____
 #  _ __ ___   __ _  ___ / _ \/ ___|
 # | '_ ` _ \ / _` |/ __| | | \___ \
@@ -20,3 +21,4 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 # ---------------------------------------------------------------------
 defaults write NSGlobalDomain KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 defaults write NSGlobalDomain InitialKeyRepeat -int 15 # normal minimum is 15 (225 ms)
+{{ end -}}
