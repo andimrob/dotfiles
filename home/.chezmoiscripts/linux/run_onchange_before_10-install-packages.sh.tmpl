@@ -1,0 +1,120 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Hash of mise config to trigger re-run when tools change
+# mise.toml hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+
+# Variables
+readonly MISE_INSTALL_URL="https://mise.run"
+
+# Logging function
+log() {
+    echo "[linux-deps] $*"
+}
+
+# Install Linux system dependencies
+install_system_packages() {
+    log "Checking Linux system dependencies..."
+
+    # Check if we can use sudo
+    local sudo_cmd=""
+    if [[ $EUID -ne 0 ]]; then
+        if command -v sudo &>/dev/null; then
+            sudo_cmd="sudo"
+        else
+            log "Warning: Not running as root and sudo not available"
+            return 0
+        fi
+    fi
+
+    # Use apt if available (Ubuntu/Debian)
+    if command -v apt-get &>/dev/null; then
+        log "Using apt package manager..."
+
+        # Update package list if stale (older than 1 hour)
+        local apt_marker="/var/lib/apt/periodic/update-success-stamp"
+        if [[ ! -f "$apt_marker" ]] || [[ $(find "$apt_marker" -mmin +60 2>/dev/null) ]]; then
+            log "Updating package list..."
+            $sudo_cmd apt-get update -qq 2>/dev/null || true
+        fi
+
+        # Install essential packages
+        local packages=(
+            "build-essential"
+            "curl"
+            "git"
+            "gpg"
+            "libssl-dev"
+            "pkg-config"
+            "zlib1g-dev"
+        )
+
+        for pkg in "${packages[@]}"; do
+            if ! dpkg -s "$pkg" &>/dev/null; then
+                log "Installing $pkg..."
+                $sudo_cmd apt-get install -y -qq "$pkg" 2>/dev/null || log "Warning: Failed to install $pkg"
+            fi
+        done
+    else
+        log "Warning: apt not found. Please install curl, git, gpg, and build-essential manually."
+    fi
+}
+
+# Install mise if not already available
+install_mise() {
+    if command -v mise &>/dev/null; then
+        log "mise already installed ($(mise --version))"
+        return 0
+    fi
+
+    log "Installing mise..."
+    if ! curl -fsSL "$MISE_INSTALL_URL" | sh; then
+        log "Error: Failed to install mise"
+        exit 1
+    fi
+
+    # Add mise to PATH for current session
+    export PATH="$HOME/.local/bin:$PATH"
+
+    if ! command -v mise &>/dev/null; then
+        log "Error: mise command not found after installation"
+        exit 1
+    fi
+
+    log "mise installed successfully ($(mise --version))"
+}
+
+# Install all mise-managed tools (idempotent)
+install_mise_tools() {
+    log "Installing mise-managed tools..."
+
+    # Ensure mise shims are available
+    eval "$(mise activate bash)"
+
+    # mise install is idempotent - skips already installed tools
+    if ! mise install; then
+        log "Error: Failed to install mise tools"
+        exit 1
+    fi
+
+    log "All mise tools installed successfully"
+}
+
+# Main logic
+main() {
+    log "Setting up Linux dependencies..."
+
+    # Install system packages
+    install_system_packages
+
+    # Install mise if needed (idempotent)
+    install_mise
+
+    # Install all tools from mise config (idempotent)
+    install_mise_tools
+
+    log "All Linux dependencies ready"
+}
+
+# Run main function
+main "$@"
