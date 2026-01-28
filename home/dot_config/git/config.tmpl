@@ -8,7 +8,7 @@
 [user]
   name = {{ .name }}
   email = {{ .email }}
-  signingkey = {{ onepasswordRead "op://Developer/Personal - Github.com/public key" "my.1password.com" }}
+  signingkey = {{ onepasswordRead "op://Developer/Personal - Github.com/public key" "personal" }}
 
 [github]
 	user = {{ .githubUsername }}
@@ -107,7 +107,7 @@
 
 [credential]
   helper = osxkeychain
-{{ end -}}
+{{ end }}
 
 [include]
   # Include aliases.
