@@ -1,3 +1,4 @@
+{{ if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 set -euo pipefail
 
@@ -115,3 +116,4 @@ main() {
 
 # Run main function
 main "$@"
+{{ end -}}
