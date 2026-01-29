@@ -47,25 +47,13 @@ teardown() {
 	[ -f "$TEST_DIR/.worktrees/test-worktree/file.txt" ]
 }
 
-@test "wt new with branch creates worktree on that branch" {
-	# Create a branch first
-	git branch feature-branch
-
-	wt new test-worktree feature-branch
+@test "wt new with branch name creates that branch" {
+	wt new test-worktree custom-branch
 
 	[ -d "$TEST_DIR/.worktrees/test-worktree" ]
 	cd "$TEST_DIR/.worktrees/test-worktree"
 	run git branch --show-current
-	[ "$output" = "feature-branch" ]
-}
-
-@test "wt new -b creates new branch and worktree" {
-	wt new -b new-feature test-worktree
-
-	[ -d "$TEST_DIR/.worktrees/test-worktree" ]
-	cd "$TEST_DIR/.worktrees/test-worktree"
-	run git branch --show-current
-	[ "$output" = "new-feature" ]
+	[ "$output" = "custom-branch" ]
 }
 
 @test "wt passes unknown subcommands to git worktree" {
@@ -79,12 +67,6 @@ teardown() {
 	[ ! -d "$TEST_DIR/.worktrees/to-remove" ]
 }
 
-@test "wt new -b validates arguments" {
-	# Missing name argument
-	run wt new -b branch-only
-	[ "$status" -eq 1 ]
-	[[ "$output" == *"Usage"* ]]
-}
 
 @test "__wt_fzf helper outputs correct format" {
 	# Create a worktree

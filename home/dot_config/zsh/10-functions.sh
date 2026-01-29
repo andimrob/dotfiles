@@ -43,10 +43,10 @@ fco() {
 }
 
 # wt - git worktree helper
-#   wt           fzf select and cd
-#   wt rm        fzf select and remove
-#   wt new NAME  create in .worktrees/ and cd
-#   wt *         passthrough to git worktree
+#   wt                    fzf select and cd
+#   wt rm                 fzf select and remove
+#   wt new NAME [BRANCH]  create new branch in .worktrees/ and cd
+#   wt *                  passthrough to git worktree
 __wt_preview='git -C {1} log --oneline -10 | awk "NR==1 {print \"H \" \$0; next} {print NR-1 \" \" \$0}"'
 
 __wt_fzf() {
@@ -83,23 +83,13 @@ wt() {
 		[[ -n "$dir" ]] && git worktree remove "$dir"
 	elif [[ "$1" == "new" && $# -ge 2 ]]; then
 		shift
-		local root name wt_path
+		local root name branch wt_path
 		root=$(git rev-parse --show-toplevel) || return 1
 		mkdir -p "$root/.worktrees"
-		if [[ "$1" == "-b" ]]; then
-			if [[ -z "$2" || -z "$3" ]]; then
-				echo "Usage: wt new -b <branch> <name>" >&2
-				return 1
-			fi
-			name="$3"
-			wt_path="$root/.worktrees/$name"
-			git worktree add -b "$2" "$wt_path" && cd "$wt_path"
-		else
-			name="$1"
-			wt_path="$root/.worktrees/$name"
-			shift
-			git worktree add "$wt_path" "$@" && cd "$wt_path"
-		fi
+		name="$1"
+		branch="${2:-$1}"
+		wt_path="$root/.worktrees/$name"
+		git worktree add -b "$branch" "$wt_path" && cd "$wt_path"
 	else
 		git worktree "$@"
 	fi
