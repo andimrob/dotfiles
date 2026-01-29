@@ -4,9 +4,7 @@
 # |  _| |_| | | | | (__| |_| | (_) | | | \__ \
 # |_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
 
-# FZF helpers / configuration
-# fd [F]ind [D]irectory - cd to child directory
-# ---------------------------------------------------------------------
+# fd - cd to child directory
 fd() {
 	local dir
 	dir=$(find ${1:-.} -path '*/\.*' -prune \
@@ -14,8 +12,7 @@ fd() {
 		cd "$dir"
 }
 
-# fdr [F]ind [D]irectory [R]everse - cd to selected parent directory
-# ---------------------------------------------------------------------
+# fdr - cd to parent directory
 fdr() {
 	local declare dirs=()
 	get_parent_dirs() {
@@ -30,29 +27,80 @@ fdr() {
 	cd "$DIR"
 }
 
-# fh [F]ind [H]istory - seach history
-# ---------------------------------------------------------------------
+# fh - search history
 fh() {
 	print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
 }
 
-# fco [F]ind and [C]heck [O]ut - checkout git branch
-# ---------------------------------------------------------------------
+# fco - checkout git branch
 fco() {
-	local branches branch
-	branches=$(git branch -vv) &&
-		branch=$(echo "$branches" | fzf +m) &&
-		git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+	local branch
+	branch=$(git for-each-ref --color=always --sort=-committerdate --count=20 \
+		--format='%(color:yellow)%(refname:short)%(color:reset) %(color:magenta)%(committerdate:relative)%(color:reset) %(subject)' \
+		refs/heads/ | \
+		fzf --ansi +m --height=50% --reverse) &&
+		git checkout $(echo "$branch" | awk '{print $1}')
 }
 
-# fuzzy cd a git worktree
-wt() {
-	local dir
-	dir=$(git worktree list | fzf \
+# wt - git worktree helper
+#   wt           fzf select and cd
+#   wt rm        fzf select and remove
+#   wt new NAME  create in .worktrees/ and cd
+#   wt *         passthrough to git worktree
+__wt_preview='git -C {1} log --oneline -10 | awk "NR==1 {print \"H \" \$0; next} {print NR-1 \" \" \$0}"'
+
+__wt_fzf() {
+	local blue yellow reset
+	blue=$(tput setaf 4)
+	yellow=$(tput setaf 3)
+	reset=$(tput sgr0)
+
+	git worktree list | awk -v blue="$blue" -v yellow="$yellow" -v reset="$reset" '{
+		wt_path = $1
+		n = split(wt_path, parts, "/")
+		dirname = parts[n]
+		branch = $3
+		gsub(/[\[\]]/, "", branch)
+		printf "%s %s%s%s %s%s%s\n", wt_path, blue, dirname, reset, yellow, branch, reset
+	}' | fzf --ansi \
 		--height 50% \
 		--reverse \
-		--preview 'git -C {1} log --oneline -10' \
+		--with-nth 2.. \
+		--header "${1:-}" \
+		--preview "$__wt_preview" \
 		--preview-window right:50% |
-		awk '{print $1}')
-	[[ -n "$dir" ]] && cd "$dir"
+		awk '{print $1}'
+}
+
+wt() {
+	if [[ $# -eq 0 ]]; then
+		local dir
+		dir=$(__wt_fzf)
+		[[ -n "$dir" ]] && cd "$dir"
+	elif [[ "$1" == "rm" && $# -eq 1 ]]; then
+		local dir
+		dir=$(__wt_fzf)
+		[[ -n "$dir" ]] && git worktree remove "$dir"
+	elif [[ "$1" == "new" && $# -ge 2 ]]; then
+		shift
+		local root name wt_path
+		root=$(git rev-parse --show-toplevel) || return 1
+		mkdir -p "$root/.worktrees"
+		if [[ "$1" == "-b" ]]; then
+			if [[ -z "$2" || -z "$3" ]]; then
+				echo "Usage: wt new -b <branch> <name>" >&2
+				return 1
+			fi
+			name="$3"
+			wt_path="$root/.worktrees/$name"
+			git worktree add -b "$2" "$wt_path" && cd "$wt_path"
+		else
+			name="$1"
+			wt_path="$root/.worktrees/$name"
+			shift
+			git worktree add "$wt_path" "$@" && cd "$wt_path"
+		fi
+	else
+		git worktree "$@"
+	fi
 }
