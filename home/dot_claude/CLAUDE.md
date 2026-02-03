@@ -4,6 +4,10 @@
 
 When creating PR descriptions, always use `PULL_REQUEST_TEMPLATE.md` files (typically found in `.github/` directory) as the structural reference for formatting the PR description.
 
+## Development Methodology
+
+Always write code using Test-Driven Development (TDD): write failing tests first, then implement the code to make them pass.
+
 ## Code Quality
 
 Before committing changes to code, always run the appropriate linter for the language:
