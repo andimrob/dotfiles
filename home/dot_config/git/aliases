@@ -46,6 +46,9 @@
   rmrf = rm -r -f
 
   wt = worktree
+  wtl = worktree list
+  wta = worktree add
+  wtr = worktree remove
   trees = worktree list
 
   # View abbreviated SHA, description, and history graph of the latest 20 commits
