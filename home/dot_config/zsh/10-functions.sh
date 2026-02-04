@@ -35,7 +35,7 @@ fh() {
 # fco - checkout git branch
 fco() {
 	local branch
-	branch=$(git for-each-ref --color=always --sort=-committerdate --count=20 \
+	branch=$(git for-each-ref --color=always --sort=-committerdate \
 		--format='%(color:yellow)%(refname:short)%(color:reset) %(color:magenta)%(committerdate:relative)%(color:reset) %(subject)' \
 		refs/heads/ | \
 		fzf --ansi +m --height=50% --reverse) &&
