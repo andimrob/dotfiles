@@ -95,6 +95,14 @@ export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig"
 [ -f "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh" ] && source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
 {{- end }}
 
+{{- if eq .chezmoi.os "linux" }}
+
+# Ensure proper TERM for SSH sessions and terminal compatibility
+if [[ "$TERM" != "xterm-256color" ]] && [[ "$TERM" != "screen-256color" ]] && [[ "$TERM" != "tmux-256color" ]]; then
+    export TERM=xterm-256color
+fi
+{{- end }}
+
 # Use Mise https://mise.jdx.dev/
 eval "$(mise activate zsh)"
 eval "$(mise completion zsh)"
