@@ -28,7 +28,7 @@ export LANG="en_US.UTF-8"
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768
 export HISTFILESIZE=$HISTSIZE
-# don't put duplicate lines in the history.
+# do not put duplicate lines in the history.
 export HISTCONTROL=ignoredups
 # ignore same successive entries.
 export HISTCONTROL=ignoreboth
@@ -42,7 +42,7 @@ export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 # Compilation flags ---------------------------------------------------
-# export ARCHFLAGS="-arch x86_64
+# export ARCHFLAGS="-arch x86_64"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -71,3 +71,5 @@ export PATH="/Users/robblakey/.antigravity/antigravity/bin:$PATH"
 export GOPRIVATE="github.com/andimrob/*"
 
 export ANTHROPIC_API_KEY={{ onepasswordRead "op://Developer/Anthropic Test Key/credential" "my.1password.com" | quote }}
+
+export PRECOMMIT="true"
