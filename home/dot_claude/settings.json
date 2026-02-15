@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+
+  "model": "claude-opus-4-6",
+
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(yarn run *)",
+      "Bash(pnpm run *)",
+      "Bash(rubocop *)",
+      "Bash(prettier *)",
+      "Bash(eslint *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git branch *)",
+      "Bash(npm install *)",
+      "Bash(yarn install *)",
+      "Bash(bundle install *)",
+      "Bash(pytest *)",
+      "Bash(rspec *)",
+      "Bash(jest *)",
+      "Bash(vitest *)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(git force-push *)",
+      "Bash(docker *)",
+      "Bash(kubectl *)",
+      "Bash(rm -rf *)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(secrets/**)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/secrets/**)",
+      "Write(.env)",
+      "Write(.env.*)",
+      "Write(secrets/**)"
+    ],
+    "defaultMode": "acceptEdits"
+  },
+
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "network": {
+      "allowedDomains": [
+        "github.com",
+        "*.github.com",
+        "*.npmjs.org",
+        "registry.npmjs.org",
+        "rubygems.org",
+        "*.rubygems.org",
+        "pypi.org",
+        "*.pypi.org",
+        "betterconfluence.atlassian.net"
+      ],
+      "allowLocalBinding": true
+    }
+  },
+
+  "respectGitignore": true,
+
+  "spinnerTipsEnabled": true,
+
+  "terminalProgressBarEnabled": true,
+
+  "showTurnDuration": true,
+
+  "cleanupPeriodDays": 60,
+
+  "autoUpdatesChannel": "latest"
+}
