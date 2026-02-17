@@ -20,6 +20,7 @@
       "Bash(git log *)",
       "Bash(git branch *)",
       "Bash(npm install *)",
+      "Bash(pnpm install *)",
       "Bash(yarn install *)",
       "Bash(bundle install *)",
       "Bash(pytest *)",
@@ -77,5 +78,19 @@
 
   "cleanupPeriodDays": 60,
 
-  "autoUpdatesChannel": "latest"
+  "autoUpdatesChannel": "latest",
+
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+
+  "extraKnownMarketplaces": {
+    "personal": {
+      "source": {
+        "source": "github",
+        "repo": "andimrob/claude-plugins"
+      }
+    }
+  }
 }
