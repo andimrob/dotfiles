@@ -1,0 +1,121 @@
+#  _               _
+# | |__   __ _ ___| |__  _ __ ___
+# | '_ \ / _` / __| '_ \| '__/ __|
+# | |_) | (_| \__ \ | | | | | (__
+# |_.__/ \__,_|___/_| |_|_|  \___|
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# XDG Base Directory Specification
+# These variables define standard locations for user files, helping to keep $HOME clean
+# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+export XDG_DATA_HOME="$HOME/.local/share"    # User-specific data files
+export XDG_CONFIG_HOME="$HOME/.config"       # User-specific configuration files
+export XDG_STATE_HOME="$HOME/.local/state"   # User-specific state data (logs, history, etc.)
+
+# Bash Shell Options ──────────────────────────────────────────────────────
+shopt -s histappend     # Append to history file instead of overwriting
+shopt -s checkwinsize   # Update LINES/COLUMNS after each command
+shopt -s globstar       # Enable ** recursive globbing (zsh has this by default)
+shopt -s nocaseglob     # Case-insensitive pathname expansion
+shopt -s cdspell        # Auto-correct minor typos in cd arguments
+shopt -s direxpand      # Expand variables during tab completion
+
+# Write history to file after every command (works with histappend for multi-terminal safety)
+PROMPT_COMMAND="history -a${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
+# ─────────────────────────────────────────────────────────────────────────
+
+# Bash Completion ─────────────────────────────────────────────────────────
+# Source bash-completion if available (replaces oh-my-zsh's completion system)
+if [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]]; then
+  source "/opt/homebrew/etc/profile.d/bash_completion.sh"
+elif [[ -r "/usr/share/bash-completion/bash_completion" ]]; then
+  source "/usr/share/bash-completion/bash_completion"
+elif [[ -r "/etc/bash_completion" ]]; then
+  source "/etc/bash_completion"
+fi
+
+{{- if eq .chezmoi.os "darwin" }}
+
+# Use homebrew https://brew.sh/
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+export HOMEBREW_PREFIX="$(brew --prefix)"
+export LDFLAGS="-L$HOMEBREW_PREFIX/opt/libffi/lib"
+export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/libffi/include"
+export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig"
+
+# Source FZF key bindings for bash
+[[ -f "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.bash" ]] && source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.bash"
+[[ -f "$HOMEBREW_PREFIX/opt/fzf/shell/completion.bash" ]] && source "$HOMEBREW_PREFIX/opt/fzf/shell/completion.bash"
+{{- end }}
+
+{{- if eq .chezmoi.os "linux" }}
+
+# Ensure proper TERM for SSH sessions and terminal compatibility
+if [[ "$TERM" != "xterm-256color" ]] && [[ "$TERM" != "screen-256color" ]] && [[ "$TERM" != "tmux-256color" ]]; then
+    export TERM=xterm-256color
+fi
+{{- end }}
+
+# Use Mise https://mise.jdx.dev/
+eval "$(mise activate bash)"
+eval "$(mise completion bash)"
+
+# Use Starship https://starship.rs/
+eval "$(starship init bash)"
+
+# Use 1password completions and plugins when installed
+eval "$(op completion bash)"
+command -v op &>/dev/null && [[ -f "$XDG_CONFIG_HOME/op/plugins.sh" ]] && source "$XDG_CONFIG_HOME/op/plugins.sh"
+
+# Use zoxide (cd replacement) https://github.com/ajeetdsouza/zoxide
+eval "$(zoxide init --cmd j bash)"
+
+# Use direnv https://github.com/direnv/direnv
+eval "$(direnv hook bash)"
+
+# Display system stats with fastfetch when installed
+command -v fastfetch &>/dev/null && fastfetch
+
+{{- if .work }}
+
+# Source Betterment bootstrap if it's available
+[[ -f "$HOME/.bootstrap/env.sh" ]] && source "$HOME/.bootstrap/env.sh"
+
+# Flutter and Dart additions
+export PATH="$PATH:$HOME/fvm/default/bin"
+export PATH="$PATH:$HOME/fvm/default/bin/cache/dart-sdk/bin"
+export PATH="$PATH:$HOME/.pub-cache/bin"
+
+# pnpm
+export PNPM_HOME="/Users/robblakey/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+{{- end }}
+
+# Load modular shell configs (shared with zsh — numeric prefixes control load order)
+for file in "$XDG_CONFIG_HOME/zsh/"*.sh; do
+  [[ -r "$file" ]] && source "$file"
+done
+unset file
+
+# Bash-specific overrides ─────────────────────────────────────────────────
+# These override zsh-specific items loaded from the shared configs above
+
+# fh - search history (bash version, replaces zsh's print -z)
+fh() {
+  local cmd
+  cmd=$(history | fzf +s --tac | sed 's/^ *[0-9]* *//')
+  if [[ -n "$cmd" ]]; then
+    history -s "$cmd"
+    eval "$cmd"
+  fi
+}
+
+# reload bash profile instead of zsh
+alias reload='clear; source ~/.bashrc'
