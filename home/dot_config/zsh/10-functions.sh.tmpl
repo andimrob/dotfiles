@@ -94,6 +94,12 @@ wt() {
 		git worktree "$@"
 	fi
 }
+# cleanup - recursively delete .DS_Store and ._ resource fork files
+cleanup() {
+	local count
+	count=$(find . -type f \( -name '.DS_Store' -o -name '._*' \) -delete -print | wc -l | tr -d ' ')
+	echo "Removed $count files"
+}
 {{- if .work }}
 
 # Coach console shortcuts
