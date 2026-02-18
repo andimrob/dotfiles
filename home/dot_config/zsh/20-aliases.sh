@@ -88,8 +88,6 @@ alias fp="fzf --layout=reverse  --preview 'bat --style=numbers --color=always {}
 alias edit="${EDITOR:-vi}"
 alias cur='cursor'
 
-alias hfzf='history | fzf'
-
 alias dot="${EDITOR:-vi} ~/.dotfiles"
 
 # Use nvim as vim if available

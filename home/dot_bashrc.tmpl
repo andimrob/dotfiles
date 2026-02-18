@@ -104,17 +104,6 @@ done
 unset file
 
 # Bash-specific overrides -----------------------------------------------------
-# These override zsh-specific items loaded from the shared configs above
-
-# fh - search history (bash version, replaces zsh's print -z)
-fh() {
-  local cmd
-  cmd=$(history | fzf +s --tac | sed 's/^ *[0-9]* *//')
-  if [[ -n "$cmd" ]]; then
-    history -s "$cmd"
-    eval "$cmd"
-  fi
-}
 
 # reload bash profile instead of zsh
 alias reload='clear; source ~/.bashrc'
