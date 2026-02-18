@@ -67,7 +67,7 @@ eval "$(mise completion bash)"
 eval "$(starship init bash)"
 
 # Use 1password completions and plugins when installed
-eval "$(op completion bash)"
+command -v op &>/dev/null && eval "$(op completion bash)"
 command -v op &>/dev/null && [[ -f "$XDG_CONFIG_HOME/op/plugins.sh" ]] && source "$XDG_CONFIG_HOME/op/plugins.sh"
 
 # Use zoxide (cd replacement) https://github.com/ajeetdsouza/zoxide
