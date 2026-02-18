@@ -1,54 +1,57 @@
 #!/usr/bin/env bash
 
-_run_rubocop(){
+_run_rubocop() {
   echo "Running rubocop pre-commit hook"
 
-  git rev-parse -q --verify MERGE_HEAD && echo "" && echo "Merge commit... skipping rubocop checks." && exit 0
+  git rev-parse -q --verify MERGE_HEAD && echo "Merge commit... skipping rubocop checks." && exit 0
 
-  # List of subdirectories to check
-  SUBDIRECTORIES=("b4c" "investing" "retail" "doctor" "cst" "broker-dealer" "institutional")
-
-  # Get a list of changed files that are about to be committed
   FILES=$(git diff --cached --name-only --diff-filter=ACM)
 
-  # Set default exit code
+  echo "Changed files:"
+  echo "$FILES"
+
   FINAL_CODE=0
 
-  echo "Changed files:"
-  echo $FILES
+  _check_and_run_rubocop() {
+    local dir="$1"
+    local changed_files
 
-  # Check if any of the files are in the list of subdirectories
-  for DIR in "${SUBDIRECTORIES[@]}"
-  do
-    if echo $FILES | tr ' ' '\n' | grep -q "^$DIR/"; then
-      cd $DIR
+    if [[ "$dir" == "." ]]; then
+      changed_files=$(echo "$FILES" | grep '\.rb$' | grep -v '/')
+    else
+      changed_files=$(echo "$FILES" | grep "^${dir}/" | grep '\.rb$' | sed "s|^${dir}/||")
+    fi
 
-      # Get the list of changed files that are in the current subdirectory
-      CHANGED_FILES=$(echo $FILES | tr ' ' '\n' | grep "$DIR/" | sed -e "s/^$DIR\///g" | grep "\.rb" )
+    [[ -z "$changed_files" ]] && return
 
-      echo "Running rubocop against $DIR"
-      echo "Changed files: $CHANGED_FILES"
+    echo "Running rubocop against $dir"
+    echo "Changed files: $changed_files"
 
-      if [ -z "$CHANGED_FILES" ]; then
-        echo "No files to check. Skipping."
-      else
-        # Run Rubocop against the changed files in the current subdirectory
-        bundle exec rubocop $CHANGED_FILES
+    pushd "$dir" > /dev/null || return
+    # shellcheck disable=SC2086
+    if ! bundle exec rubocop $changed_files; then
+      FINAL_CODE=1
+      # shellcheck disable=SC2086
+      bundle exec rubocop -a $changed_files
+    fi
+    popd > /dev/null || return
+  }
 
-        # If we changed something, we want to make sure we fail the commit
-        if [ $? -ne 0 ]; then
-          FINAL_CODE=1
+  # Check root directory
+  if [[ -f "Gemfile" ]] && [[ -f ".rubocop.yml" ]]; then
+    _check_and_run_rubocop "."
+  fi
 
-          # Then re-run to fix the failures
-          bundle exec rubocop -a $CHANGED_FILES
-        fi
-      fi
-
-      cd ..
+  # Check direct child directories (skip symlinks)
+  for dir in */; do
+    dir="${dir%/}"
+    [[ -L "$dir" ]] && continue
+    if [[ -f "$dir/Gemfile" ]] && [[ -f "$dir/.rubocop.yml" ]]; then
+      _check_and_run_rubocop "$dir"
     fi
   done
 
-  if [ $FINAL_CODE -ne 0 ]; then
+  if [[ $FINAL_CODE -ne 0 ]]; then
     echo "Rubocop updated files. Resubmit your commit."
     exit $FINAL_CODE
   fi
