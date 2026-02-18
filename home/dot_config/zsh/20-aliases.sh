@@ -72,7 +72,6 @@ alias bxg='bundle exec guard'
 alias bxrc='bundle exec rails console'
 alias bxrs='bundle exec rails server'
 alias bxcop='bundle exec rubocop'
-alias rbcop="git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb'"
 # [F]ind [F]ile
 alias ff='fzf --layout=reverse --height=~15'
 # [F] and [P]review
