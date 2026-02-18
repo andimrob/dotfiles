@@ -21,12 +21,6 @@ alias gwcd='cd $(git worktree list | fzf | awk "{print \$1}")'
 alias attach='tmux attach-session'
 alias h='history'
 
-# Always enable colored `grep` output
-# Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-
 # Enable aliases to be sudo'ed
 alias sudo='sudo '
 
@@ -73,16 +67,16 @@ alias path='echo $PATH | tr ":" "\n"'
 # ruby bundler shortcut
 alias bx='bundle exec'
 alias bxr='bundle exec rspec'
-alias bxrf='bundle exec rspec $(fzf --layout=reverse --height=1% --min-height=12)'
+alias bxrf='bundle exec rspec $(fzf --layout=reverse --height=~15)'
 alias bxg='bundle exec guard'
 alias bxrc='bundle exec rails console'
 alias bxrs='bundle exec rails server'
 alias bxcop='bundle exec rubocop'
 alias rbcop="git ls-files -m | xargs ls -1 2>/dev/null | grep '\.rb'"
 # [F]ind [F]ile
-alias ff='fzf --layout=reverse --height=1% --min-height=12'
+alias ff='fzf --layout=reverse --height=~15'
 # [F] and [P]review
-alias fp="fzf --layout=reverse  --preview 'bat --style=numbers --color=always {}'"
+alias fp="fzf --layout=reverse --preview 'bat --style=numbers --color=always {}'"
 
 # edit shortcut
 alias edit="${EDITOR:-vi}"
