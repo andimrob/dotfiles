@@ -97,12 +97,3 @@ command -v nvim >/dev/null && alias vim="nvim"
 
 # Claude AI
 alias cl='claude --ide'
-
-# Coach console shortcuts
-@stage() {
-	cd ~/src/retail/retail && coach console retail stage
-}
-
-@production() {
-	cd ~/src/retail/retail && coach console retail production
-}
