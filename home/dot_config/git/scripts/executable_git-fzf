@@ -23,9 +23,9 @@ function gfzf() {
                         
 FZFEOF" \
                 --bind="ctrl-y:execute-silent:
-                        (rg -o '\b[a-f0-9]{7,}\b' | head -1 | tr -d \$'\n' | clipboard) << FZFEOF
+                        (rg -o '\b[a-f0-9]{7,}\b' | head -1 | tr -d \$'\n' | if command -v pbcopy &>/dev/null; then pbcopy; elif command -v xclip &>/dev/null; then xclip -selection clipboard; else xsel --clipboard --input; fi) << FZFEOF
                         {}
-                        
+
 FZFEOF" \
                 --preview-window=right:60%;
 };
