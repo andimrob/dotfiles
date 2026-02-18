@@ -124,7 +124,6 @@ alias fp="fzf --layout=reverse  --preview 'bat --style=numbers --color=always {}
 alias edit="${EDITOR:-vi}"
 alias cur='cursor'
 
-alias h='history'
 alias hfzf='history | fzf'
 
 alias dotfiles="${EDITOR:-vi} ~/src/.dotfiles"
