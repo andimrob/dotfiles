@@ -5,22 +5,10 @@
 # | .__/|_|   \__, |_|  \___|
 # |_|         |___/
 
-# %w[pp awesome_print gist pry-doc].each do |gem_name|
-#   begin
-#     require gem_name
-#     AwesomePrint.pry! if gem_name == 'awesome_print'
-#   rescue LoadError => e
-#     puts "'#{gem_name}' gem not found. Try typing 'gem install #{gem_name}'"
-#   end
-# end
-
 # === EDITOR ===
-Pry.editor = 'code'
+Pry.editor = ENV.fetch('EDITOR', 'vim')
 
 Pry.config.color = true
-# Pry.config.prompt = Pry::NAV_PROMPT
-
-# Pry.config.history.file = "~/.pry_history"
 
 Pry.config.commands.alias_command "h", "hist -T 20", desc: "Last 20 commands"
 Pry.config.commands.alias_command "hg", "hist -T 20 -G", desc: "Up to 20 commands matching expression"
