@@ -41,7 +41,6 @@ fi
 # Use homebrew https://brew.sh/
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-export HOMEBREW_PREFIX="$(brew --prefix)"
 export LDFLAGS="-L$HOMEBREW_PREFIX/opt/libffi/lib"
 export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/libffi/include"
 export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig"
