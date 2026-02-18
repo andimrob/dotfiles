@@ -11,7 +11,7 @@
   signingkey = {{ onepasswordRead "op://Developer/Personal - Github.com/public key" "my.1password.com" }}
 
 [github]
-	user = {{ .githubUsername }}
+  user = {{ .githubUsername }}
 
 [gpg]
   format = ssh
@@ -39,10 +39,10 @@
   # fsckObjects = true
 
 [branch]
-	sort = -committerdate
+  sort = -committerdate
 
 [column]
-	branch = auto
+  branch = auto
 
 [color "status"]
   changed = yellow
@@ -51,7 +51,7 @@
   tool = default-difftool
 
 [difftool]
-	prompt = false
+  prompt = false
 
 [difftool "default-difftool"]
   cmd = code --wait --new-window --diff $LOCAL $REMOTE
@@ -98,11 +98,11 @@
   file-decoration-style = none
 
 [rerere]
-	enabled = true
-	autoUpdate = true
+  enabled = true
+  autoUpdate = true
 
 [safe]
-	directory = *
+  directory = *
 {{- if eq .chezmoi.os "darwin" }}
 
 [credential]
