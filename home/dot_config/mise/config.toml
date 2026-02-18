@@ -8,6 +8,7 @@ ruby = "4.0.1"
 
 # Util
 bat           = "latest"
+delta         = "latest"
 1password-cli = "latest"
 chezmoi       = "latest"
 doggo         = "1.0.5"
