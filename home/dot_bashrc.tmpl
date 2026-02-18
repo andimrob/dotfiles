@@ -14,7 +14,7 @@ export XDG_DATA_HOME="$HOME/.local/share"    # User-specific data files
 export XDG_CONFIG_HOME="$HOME/.config"       # User-specific configuration files
 export XDG_STATE_HOME="$HOME/.local/state"   # User-specific state data (logs, history, etc.)
 
-# Bash Shell Options ──────────────────────────────────────────────────────
+# Bash Shell Options ----------------------------------------------------------
 shopt -s histappend     # Append to history file instead of overwriting
 shopt -s checkwinsize   # Update LINES/COLUMNS after each command
 shopt -s globstar       # Enable ** recursive globbing (zsh has this by default)
@@ -24,9 +24,9 @@ shopt -s direxpand      # Expand variables during tab completion
 
 # Write history to file after every command (works with histappend for multi-terminal safety)
 PROMPT_COMMAND="history -a${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
-# ─────────────────────────────────────────────────────────────────────────
+# -----------------------------------------------------------------------------
 
-# Bash Completion ─────────────────────────────────────────────────────────
+# Bash Completion -------------------------------------------------------------
 # Source bash-completion if available (replaces oh-my-zsh's completion system)
 if [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]]; then
   source "/opt/homebrew/etc/profile.d/bash_completion.sh"
@@ -104,7 +104,7 @@ for file in "$XDG_CONFIG_HOME/zsh/"*.sh; do
 done
 unset file
 
-# Bash-specific overrides ─────────────────────────────────────────────────
+# Bash-specific overrides -----------------------------------------------------
 # These override zsh-specific items loaded from the shared configs above
 
 # fh - search history (bash version, replaces zsh's print -z)
