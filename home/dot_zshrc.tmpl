@@ -92,7 +92,7 @@ export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/libffi/include"
 export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/libffi/lib/pkgconfig"
 
 # Source FZF key bindings when available
-[ -f "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh" ] && source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
+[[ -f "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh" ]] && source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
 {{- end }}
 
 {{- if eq .chezmoi.os "linux" }}
@@ -112,7 +112,7 @@ eval "$(starship init zsh)"
 
 # Use 1password completions and plugins when install
 eval "$(op completion zsh)"
-command -v op &>/dev/null && [ -f "$XDG_CONFIG_HOME/op/plugins.sh" ] && source "$XDG_CONFIG_HOME/op/plugins.sh"
+command -v op &>/dev/null && [[ -f "$XDG_CONFIG_HOME/op/plugins.sh" ]] && source "$XDG_CONFIG_HOME/op/plugins.sh"
 
 # Use zoxide (cd replacement) https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init --cmd j zsh)"
@@ -126,7 +126,7 @@ command -v fastfetch &>/dev/null && fastfetch
 {{- if .work }}
 
 # Source Betterment bootstrap if it's available
-[ -f "$HOME/.bootstrap/env.sh" ] && source "$HOME/.bootstrap/env.sh"
+[[ -f "$HOME/.bootstrap/env.sh" ]] && source "$HOME/.bootstrap/env.sh"
 
 # Flutter and Dart additions
 export PATH="$PATH:$HOME/fvm/default/bin"
@@ -144,6 +144,6 @@ esac
 
 # Load modular zsh configs (numeric prefixes control load order)
 for file in "$XDG_CONFIG_HOME/zsh/"*.sh; do
-  [ -r "$file" ] && source "$file"
+  [[ -r "$file" ]] && source "$file"
 done
 unset file
