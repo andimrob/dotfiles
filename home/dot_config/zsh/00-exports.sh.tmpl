@@ -5,7 +5,7 @@
 #  \___/_/\_\ .__/ \___/|_|   \__|___/
 #           |_|
 
-# Path ----------------------------------------------------------------
+# Path --------------------------------------------------------------------
 # uv tools (Python)
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -18,12 +18,12 @@ fi
 
 export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 
-# Locale --------------------------------------------------------------
+# Locale ------------------------------------------------------------------
 # Prefer US English
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
-# History -------------------------------------------------------------
+# History -----------------------------------------------------------------
 # http://jorge.fbarr.net/2011/03/24/making-your-bash-history-more-efficient/
 # Larger bash history (allow 32³ entries; default is 500)
 export HISTSIZE=32768
@@ -33,7 +33,7 @@ export HISTCONTROL=ignoreboth
 # Make some commands not show up in history
 export HISTIGNORE="h:ls:ls *:ll:ll *:"
 
-# Colorize LS ---------------------------------------------------------
+# Colorize LS -------------------------------------------------------------
 # http://geoff.greer.fm/lscolors/
 export CLICOLOR=1
 # Detect which `ls` flavor is in use
@@ -43,7 +43,7 @@ else # macOS `ls`
 	export LSCOLORS='ExFxCxDxBxegedabagacad'
 fi
 
-# Compilation flags ---------------------------------------------------
+# Compilation flags -----------------------------------------------------------
 # export ARCHFLAGS="-arch x86_64"
 
 # export MANPATH="/usr/local/man:$MANPATH"
