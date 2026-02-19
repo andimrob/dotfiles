@@ -103,12 +103,10 @@
 
 [safe]
   directory = *
-{{- if eq .chezmoi.os "darwin" }}
-
+{{ if eq .chezmoi.os "darwin" }}
 [credential]
   helper = osxkeychain
-{{ end -}}
-
+{{ end }}
 [include]
   # Include aliases.
   path = ~/.config/git/aliases
