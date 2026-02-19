@@ -45,10 +45,10 @@ export NPM_CONFIG_MIN_RELEASE_AGE=7
 
 {{- if .work }}
 
-export GITHUB_BMT_PAT={{ onepasswordRead "op://Developer/Github PAT - BMT Bootstrap/password" "my.1password.com" | quote }}
+export GITHUB_BMT_PAT={{ onepasswordRead "op://Developer/Github PAT - BMT Bootstrap/password" | quote }}
 {{- end }}
 {{- if .headless }}
-export GITHUB_TOKEN={{ onepasswordRead "op://Developer/GitHub Personal Access Token/token" "my.1password.com" | quote }}
+export GITHUB_TOKEN={{ onepasswordRead "op://Developer/GitHub Personal Access Token/token" | quote }}
 {{- end }}
 
 {{ if eq .chezmoi.os "darwin" -}}
@@ -64,7 +64,7 @@ export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 export GOPRIVATE="github.com/andimrob/*"
 
 {{- if not .work }}
-export ANTHROPIC_API_KEY={{ onepasswordRead "op://Developer/Anthropic Test Key/credential" "my.1password.com" | quote }}
+export ANTHROPIC_API_KEY={{ onepasswordRead "op://Developer/Anthropic Test Key/credential" | quote }}
 {{- end }}
 
 export OBSIDIAN_VAULT_PATH="$HOME/Documents/personal"
