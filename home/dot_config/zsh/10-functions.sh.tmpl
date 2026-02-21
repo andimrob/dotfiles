@@ -4,14 +4,6 @@
 # |  _| |_| | | | | (__| |_| | (_) | | | \__ \
 # |_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
 
-# fd - cd to child directory
-fd() {
-	local dir
-	dir=$(find "${1:-.}" -path '*/\.*' -prune \
-		-o -type d -print 2>/dev/null | fzf +m) &&
-		cd "$dir"
-}
-
 # fco - checkout git branch
 fco() {
 	local branch

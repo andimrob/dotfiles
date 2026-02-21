@@ -110,8 +110,10 @@ eval "$(mise completion zsh)"
 eval "$(starship init zsh)"
 
 # Use 1password completions and plugins when installed
-command -v op &>/dev/null && eval "$(op completion zsh)"
-command -v op &>/dev/null && [[ -f "$XDG_CONFIG_HOME/op/plugins.sh" ]] && source "$XDG_CONFIG_HOME/op/plugins.sh"
+if command -v op &>/dev/null; then
+  eval "$(op completion zsh)"
+  [[ -f "$XDG_CONFIG_HOME/op/plugins.sh" ]] && source "$XDG_CONFIG_HOME/op/plugins.sh"
+fi
 
 # Use zoxide (cd replacement) https://github.com/ajeetdsouza/zoxide
 eval "$(zoxide init --cmd j zsh)"

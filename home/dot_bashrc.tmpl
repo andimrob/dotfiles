@@ -24,6 +24,13 @@ shopt -s direxpand      # Expand variables during tab completion
 
 # Write history to file after every command (works with histappend for multi-terminal safety)
 PROMPT_COMMAND="history -a${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
+
+# History ------------------------------------------------------------------
+# http://jorge.fbarr.net/2011/03/24/making-your-bash-history-more-efficient/
+export HISTSIZE=32768
+export HISTFILESIZE=$HISTSIZE
+export HISTCONTROL=ignoreboth          # ignore duplicates and commands starting with space
+export HISTIGNORE="h:ls:ls *:ll:ll *:" # hide common noise from history
 # -----------------------------------------------------------------------------
 
 # Bash Completion -------------------------------------------------------------
