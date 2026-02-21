@@ -24,16 +24,6 @@ export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
-# History -----------------------------------------------------------------
-# http://jorge.fbarr.net/2011/03/24/making-your-bash-history-more-efficient/
-# Larger bash history (allow 32³ entries; default is 500)
-export HISTSIZE=32768
-export HISTFILESIZE=$HISTSIZE
-# ignore duplicates and commands starting with space
-export HISTCONTROL=ignoreboth
-# Make some commands not show up in history
-export HISTIGNORE="h:ls:ls *:ll:ll *:"
-
 # Colorize LS -------------------------------------------------------------
 # http://geoff.greer.fm/lscolors/
 export CLICOLOR=1

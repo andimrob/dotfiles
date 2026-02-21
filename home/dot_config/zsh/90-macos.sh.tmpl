@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "darwin" }}
 #                        ___  ____
 #  _ __ ___   __ _  ___ / _ \/ ___|
 # | '_ ` _ \ / _` |/ __| | | \___ \
@@ -49,3 +50,4 @@ alias spoton="sudo mdutil -a -i on"
 
 # PlistBuddy alias, because sometimes `defaults` just doesn't cut it
 alias plistbuddy="/usr/libexec/PlistBuddy"
+{{- end }}
