@@ -15,6 +15,7 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
+command -v code &>/dev/null && export VISUAL='code --wait'
 
 export SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 

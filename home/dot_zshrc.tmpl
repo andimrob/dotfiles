@@ -141,8 +141,8 @@ esac
 # pnpm end
 {{- end }}
 
-# Load modular zsh configs (numeric prefixes control load order)
-for file in "$XDG_CONFIG_HOME/zsh/"*.sh; do
+# Load modular shell configs (numeric prefixes control load order)
+for file in "$XDG_CONFIG_HOME/zsh/"*.{sh,zsh}(N); do
   [[ -r "$file" ]] && source "$file"
 done
 unset file
