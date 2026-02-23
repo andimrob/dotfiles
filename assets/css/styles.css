@@ -1,61 +1,171 @@
-:root {
-    font: 100% system-ui;
-    font-size: 10px;
+/* ── Design tokens ──────────────────────────────────────────────────── */
 
-    --main-font: 'Lato';
-    --code-font: 'Source Code Pro';
-    --text-color: #222;
-    --bg-color: #fff;
-    --link-color: #267CB9;
-    --spacing-md: 0.8rem;
+:root {
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-code: 'Source Code Pro', ui-monospace, monospace;
+
+    /* Light palette */
+    --color-bg: #fafafa;
+    --color-card: #ffffff;
+    --color-text: #1a1a2e;
+    --color-text-muted: #64748b;
+    --color-accent: #3b82f6;
+    --color-accent-hover: #2563eb;
+    --color-copied: #10b981;
+    --color-border: #e2e8f0;
+    --color-shadow: rgba(0, 0, 0, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-bg: #0f172a;
+        --color-card: #1e293b;
+        --color-text: #e2e8f0;
+        --color-text-muted: #94a3b8;
+        --color-accent: #60a5fa;
+        --color-accent-hover: #93bbfd;
+        --color-copied: #34d399;
+        --color-border: #334155;
+        --color-shadow: rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* ── Reset & base ──────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
 }
 
 body {
-    font-family: var(--main-font);
-    font-size: 1.6rem;
-    color: var(--text-color);
-    background: var(--bg-color);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    background: var(--color-bg);
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-code {
-    font-family: var(--code-font);
-    border: 0.2rem solid var(--text-color);;
-    padding: var(--spacing-md);
-    border-radius: var(--spacing-md) var(--spacing-md);
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-code::before {
-    content: '$'
-}
+/* ── Layout ────────────────────────────────────────────────────────── */
 
 main {
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 2rem;
 }
 
 section {
-    min-height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-h1, p {
+    max-width: 720px;
+    width: 100%;
     text-align: center;
 }
 
-a {
-    color: var(--link-color);
-    text-decoration: none;
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-    body, code {
-        --text-color: #eee;
-        --bg-color: #121212;
+/* ── Code card ─────────────────────────────────────────────────────── */
+
+.card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px var(--color-shadow), 0 1px 2px var(--color-shadow);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+pre {
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+code {
+    font-family: var(--font-code);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.7;
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+
+.prompt {
+    user-select: none;
+    color: var(--color-text-muted);
+}
+
+/* ── Copy button ───────────────────────────────────────────────────── */
+
+button {
+    display: block;
+    width: 100%;
+    min-width: 6rem;
+    padding: 0.625rem 1.25rem;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--color-accent);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background: var(--color-accent-hover);
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+button.copied {
+    background: var(--color-copied);
+}
+
+/* ── Footer link ───────────────────────────────────────────────────── */
+
+p {
+    margin-top: 1rem;
+}
+
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ── Mobile ────────────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .card {
+        padding: 1rem;
+        border-radius: 0.5rem;
+    }
+
+    code {
+        font-size: 0.75rem;
     }
 }
