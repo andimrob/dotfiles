@@ -98,8 +98,6 @@ code {
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.7;
-    word-break: break-all;
-    white-space: pre-wrap;
 }
 
 .prompt {
