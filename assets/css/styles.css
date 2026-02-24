@@ -9,8 +9,8 @@
     --color-card: #ffffff;
     --color-text: #1a1a2e;
     --color-text-muted: #64748b;
-    --color-accent: #3b82f6;
-    --color-accent-hover: #2563eb;
+    --color-accent: #2563eb;
+    --color-accent-hover: #1d4ed8;
     --color-copied: #10b981;
     --color-border: #e2e8f0;
     --color-shadow: rgba(0, 0, 0, 0.06);
@@ -22,8 +22,8 @@
         --color-card: #1e293b;
         --color-text: #e2e8f0;
         --color-text-muted: #94a3b8;
-        --color-accent: #60a5fa;
-        --color-accent-hover: #93bbfd;
+        --color-accent: #3b82f6;
+        --color-accent-hover: #2563eb;
         --color-copied: #34d399;
         --color-border: #334155;
         --color-shadow: rgba(0, 0, 0, 0.3);
@@ -40,17 +40,12 @@
     padding: 0;
 }
 
-html {
-    font-size: 16px;
-}
-
 body {
     font-family: var(--font-body);
     font-size: 1rem;
     line-height: 1.6;
     color: var(--color-text);
     background: var(--color-bg);
-    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* ── Layout ────────────────────────────────────────────────────────── */
@@ -81,18 +76,14 @@ h1 {
     background: var(--color-card);
     border: 1px solid var(--color-border);
     border-radius: 0.75rem;
-    box-shadow: 0 1px 3px var(--color-shadow), 0 1px 2px var(--color-shadow);
+    box-shadow: 0 1px 3px var(--color-shadow);
     padding: 1.25rem 1.5rem;
     margin-bottom: 1.5rem;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-}
-
-.card-body {
-    margin-bottom: 1rem;
 }
 
 pre {
     overflow-x: auto;
+    margin-bottom: 1rem;
 }
 
 code {
@@ -136,10 +127,6 @@ button.copied {
 }
 
 /* ── Footer link ───────────────────────────────────────────────────── */
-
-p {
-    margin-top: 1rem;
-}
 
 a {
     color: var(--color-accent);
