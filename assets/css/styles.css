@@ -64,8 +64,8 @@ main {
 }
 
 section {
-    max-width: 960px;
-    width: 100%;
+    width: fit-content;
+    max-width: 100%;
     text-align: center;
 }
 
@@ -88,14 +88,7 @@ h1 {
 }
 
 .card-body {
-    display: flex;
-    justify-content: center;
     margin-bottom: 1rem;
-}
-
-.card-footer {
-    display: flex;
-    justify-content: center;
 }
 
 pre {
@@ -117,7 +110,7 @@ code {
 /* ── Copy button ───────────────────────────────────────────────────── */
 
 button {
-    min-width: 6rem;
+    width: 100%;
     padding: 0.625rem 1.25rem;
     font-family: var(--font-body);
     font-size: 0.875rem;
