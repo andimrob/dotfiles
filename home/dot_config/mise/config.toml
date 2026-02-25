@@ -7,6 +7,7 @@ node = "24.13.0"
 ruby = "4.0.1"
 
 # Util
+ast-grep      = "latest"
 bat           = "latest"
 delta         = "latest"
 direnv        = "latest"
