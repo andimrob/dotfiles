@@ -4,6 +4,7 @@ input=$(cat)
 # Parse fields from JSON stdin
 MODEL=$(echo "$input" | jq -r '.model.display_name // "Unknown"')
 PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
+WINDOW_SIZE=$(echo "$input" | jq -r '.context_window.context_window_size // 200000')
 COST=$(echo "$input" | jq -r '.cost.total_cost_usd // 0')
 DURATION_MS=$(echo "$input" | jq -r '.cost.total_duration_ms // 0')
 DIR=$(echo "$input" | jq -r '.workspace.current_dir // ""')
@@ -15,6 +16,14 @@ SECS=$((DURATION_SEC % 60))
 
 # Format cost to 2 decimal places
 COST_FMT=$(printf '%.2f' "$COST")
+
+# Format token count in 1K increments
+TOKENS=$((PCT * WINDOW_SIZE / 100))
+if [ "$TOKENS" -lt 1000 ]; then
+  TOKEN_FMT="<1K"
+else
+  TOKEN_FMT="$((TOKENS / 1000))K"
+fi
 
 # Progress bar with color based on context usage
 BAR_WIDTH=10
@@ -32,7 +41,7 @@ fi
 
 FILLED_STR=$(printf "%${FILLED}s" | tr ' ' '▓')
 EMPTY_STR=$(printf "%${EMPTY}s" | tr ' ' '░')
-BAR=$(printf "%b" "${COLOR}[${FILLED_STR}${RESET}${EMPTY_STR}] ${PCT}%%")
+BAR=$(printf "%b" "${COLOR}[${FILLED_STR}${RESET}${EMPTY_STR}] ${PCT}% ${TOKEN_FMT}")
 
 # Git branch (cached for 5s to avoid lag)
 BRANCH=""
