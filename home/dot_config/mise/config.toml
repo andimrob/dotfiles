@@ -28,6 +28,7 @@ ripgrep       = "14.1.1"
 starship      = "1.23.0"
 tmux          = "latest"
 usage         = "latest"
+uv            = "latest"
 zellij        = "0.43.0"
 zoxide        = "0.9.8"
 
