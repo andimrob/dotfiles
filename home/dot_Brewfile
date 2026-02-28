@@ -19,6 +19,7 @@ brew 'mas'
 brew 'ollama'
 brew 'pinentry-mac'
 brew 'postgresql'
+brew 'rtk' # Rust Token Killer https://github.com/rtk-ai/rtk
 brew 'shellcheck'
 brew 'trash'
 brew 'tree'
