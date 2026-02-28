@@ -1,12 +1,10 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-
-  "model": "claude-opus-4-6",
-
+  "respectGitignore": true,
+  "cleanupPeriodDays": 60,
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
-
   "permissions": {
     "allow": [
       "Bash(npm run *)",
@@ -28,13 +26,6 @@
       "Bash(jest *)",
       "Bash(vitest *)"
     ],
-    "ask": [
-      "Bash(git push *)",
-      "Bash(git force-push *)",
-      "Bash(docker *)",
-      "Bash(kubectl *)",
-      "Bash(rm -rf *)"
-    ],
     "deny": [
       "Read(.env)",
       "Read(.env.*)",
@@ -46,9 +37,32 @@
       "Write(.env.*)",
       "Write(secrets/**)"
     ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(git force-push *)",
+      "Bash(docker *)",
+      "Bash(kubectl *)",
+      "Bash(rm -rf *)"
+    ],
     "defaultMode": "acceptEdits"
   },
-
+  "model": "claude-opus-4-6",
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh"
+  },
+  "enabledPlugins": {
+    "code-simplifier@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "personal": {
+      "source": {
+        "source": "github",
+        "repo": "andimrob/claude-plugins"
+      }
+    }
+  },
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
@@ -67,30 +81,21 @@
       "allowLocalBinding": true
     }
   },
-
-  "respectGitignore": true,
-
   "spinnerTipsEnabled": true,
-
-  "terminalProgressBarEnabled": true,
-
-  "showTurnDuration": true,
-
-  "cleanupPeriodDays": 60,
-
   "autoUpdatesChannel": "latest",
-
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh"
-  },
-
-  "extraKnownMarketplaces": {
-    "personal": {
-      "source": {
-        "source": "github",
-        "repo": "andimrob/claude-plugins"
+  "terminalProgressBarEnabled": true,
+  "showTurnDuration": true,
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/rob/.claude/hooks/rtk-rewrite.sh"
+          }
+        ]
       }
-    }
+    ]
   }
 }
