@@ -47,7 +47,7 @@ BAR=$(printf "%b" "${COLOR}[${FILLED_STR}${RESET}${EMPTY_STR}] ${PCT}% ${TOKEN_F
 BRANCH=""
 CACHE="/tmp/.claude_statusline_git"
 if [ -n "$DIR" ] && [ -d "$DIR/.git" ]; then
-  if [ -f "$CACHE" ] && [ $(($(date +%s) - $(stat -f %m "$CACHE" 2>/dev/null || echo 0))) -lt 5 ]; then
+  if [ -f "$CACHE" ] && [ $(($(date +%s) - $(date -r "$CACHE" +%s 2>/dev/null || echo 0))) -lt 5 ]; then
     BRANCH=$(cat "$CACHE")
   else
     BRANCH=$(git -C "$DIR" branch --show-current 2>/dev/null)
