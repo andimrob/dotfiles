@@ -5,7 +5,7 @@
 - Use `PULL_REQUEST_TEMPLATE.md` files (typically found in `.github/` directory) as the structural reference for formatting the PR description
 - Link related tickets using full URLs in the format `/task <jira-ticket-url>` (e.g., `/task https://betterconfluence.atlassian.net/browse/B2BG-349`)
 - Always use conventional commit style for PR titles (e.g., `fix: resolve rate boost sync race condition`)
-- Always attempt to create PRs with the `ITR:NoSkip` label (when it's available)
+- Always create PRs with the `ITR:NoSkip` label
 
 ## Commits
 
@@ -21,3 +21,5 @@ Before committing changes to code, always run the appropriate linter for the lan
 - Ruby (`.rb`): rubocop
 - JavaScript/TypeScript: prettier and eslint
 - Other languages: use the project's configured linter if available
+
+@RTK.md
