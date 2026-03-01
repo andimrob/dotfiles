@@ -1,13 +1,17 @@
 #!/bin/bash
 input=$(cat)
 
-# Parse fields from JSON stdin
-MODEL=$(echo "$input" | jq -r '.model.display_name // "Unknown"')
-PCT=$(echo "$input" | jq -r '.context_window.used_percentage // 0' | cut -d. -f1)
-WINDOW_SIZE=$(echo "$input" | jq -r '.context_window.context_window_size // 200000')
-COST=$(echo "$input" | jq -r '.cost.total_cost_usd // 0')
-DURATION_MS=$(echo "$input" | jq -r '.cost.total_duration_ms // 0')
-DIR=$(echo "$input" | jq -r '.workspace.current_dir // ""')
+# Parse all fields from JSON stdin in a single jq call
+IFS=$'\t' read -r MODEL PCT WINDOW_SIZE COST DURATION_MS DIR < <(
+  echo "$input" | jq -r '[
+    .model.display_name // "Unknown",
+    (.context_window.used_percentage // 0 | floor),
+    .context_window.context_window_size // 200000,
+    .cost.total_cost_usd // 0,
+    .cost.total_duration_ms // 0,
+    .workspace.current_dir // ""
+  ] | @tsv'
+)
 
 # Format duration as Xm Ys
 DURATION_SEC=$((DURATION_MS / 1000))

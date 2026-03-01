@@ -28,7 +28,7 @@ WORKBENCH="$OBSIDIAN_VAULT_PATH/0-Agent Workbench"
 mkdir -p "$WORKBENCH"
 
 # Extract a name from the first markdown heading, falling back to filename
-name=$(grep -m1 '^#' "$file_path" | sed 's/^#\+ *//' | tr '/' '-')
+name=$(grep -m1 '^#' "$file_path" | sed -E 's/^#+ *//' | tr '/' '-')
 if [[ -z "$name" ]]; then
   name=$(basename "$file_path" .md)
 fi
