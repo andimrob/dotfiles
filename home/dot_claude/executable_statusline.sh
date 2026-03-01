@@ -47,16 +47,10 @@ FILLED_STR=$(printf "%${FILLED}s" | tr ' ' '▓')
 EMPTY_STR=$(printf "%${EMPTY}s" | tr ' ' '░')
 BAR=$(printf "%b" "${COLOR}[${FILLED_STR}${RESET}${EMPTY_STR}] ${PCT}% ${TOKEN_FMT}")
 
-# Git branch (cached for 5s to avoid lag)
+# Git branch
 BRANCH=""
-CACHE="/tmp/.claude_statusline_git"
 if [ -n "$DIR" ] && [ -d "$DIR/.git" ]; then
-  if [ -f "$CACHE" ] && [ $(($(date +%s) - $(date -r "$CACHE" +%s 2>/dev/null || echo 0))) -lt 5 ]; then
-    BRANCH=$(cat "$CACHE")
-  else
-    BRANCH=$(git -C "$DIR" branch --show-current 2>/dev/null)
-    echo "$BRANCH" > "$CACHE"
-  fi
+  BRANCH=$(git -C "$DIR" branch --show-current 2>/dev/null)
 fi
 
 # Assemble status line with emoji
