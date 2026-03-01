@@ -81,7 +81,7 @@ alias fp="fzf --layout=reverse --preview 'bat --style=numbers --color=always {}'
 alias edit="${EDITOR:-vi}"
 alias cur='cursor'
 
-alias dot="${EDITOR:-vi} ~/.dotfiles"
+alias dot="${EDITOR:-vi} $(chezmoi source-path)"
 
 # Use nvim as vim if available
 command -v nvim >/dev/null && alias vim="nvim"

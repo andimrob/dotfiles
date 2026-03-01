@@ -62,4 +62,4 @@
   # fzf - Interactive git log browser (see git/scripts/git-fzf)
   fzf = "!~/.config/git/scripts/git-fzf"
 
-	cleanup-branches = !git branch --format=\"%(refname:short)\" | grep -v \"$(git branch --show-current)\" | fzf --multi --preview \"git log --oneline --graph --date=short\n  --pretty=format:%C(auto)%cd_%h%d_%s {} | head -50\" | xargs -r git branch -D
+  cleanup-branches = !git branch --format=\"%(refname:short)\" | grep -v \"$(git branch --show-current)\" | fzf --multi --preview \"git log --oneline --graph --date=short\n  --pretty=format:%C(auto)%cd_%h%d_%s {} | head -50\" | xargs -r git branch -D
