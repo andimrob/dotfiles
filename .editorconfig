@@ -16,7 +16,7 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 
 # Use 2 spaces for indentation in HTML, JavaScript, Ruby, SCSS, and XML
-[*.{html,js,rb,erb,scss,css,xml}]
+[*.{sh,html,js,rb,erb,scss,css,xml,toml,yaml,yml,lua}]
 indent_style = space
 indent_size = 2
 
