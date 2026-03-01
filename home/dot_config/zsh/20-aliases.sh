@@ -17,7 +17,12 @@ alias dl='cd ~/Downloads'
 alias dt='cd ~/Desktop'
 alias proj='cd ~/src'
 alias g='git'
-alias gwcd='cd $(git worktree list | fzf | awk "{print \$1}")'
+# worktrunk (wt) shortcuts
+alias wts='wt switch'
+alias wtsc='wt switch --create'
+alias wtl='wt list'
+alias wtr='wt remove'
+alias wtm='wt merge'
 alias attach='tmux attach-session'
 alias h='history'
 
