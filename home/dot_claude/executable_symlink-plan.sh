@@ -28,20 +28,15 @@ WORKBENCH="$OBSIDIAN_VAULT_PATH/0-Agent Workbench"
 mkdir -p "$WORKBENCH"
 
 # Extract a name from the first markdown heading, falling back to filename
-name=$(grep -m1 '^#' "$file_path" | sed -E 's/^#+ *//' | tr '/' '-')
+name=$(sed -n -E 's/^#+ *//p' "$file_path" | head -1 | tr '/' '-')
 if [[ -z "$name" ]]; then
   name=$(basename "$file_path" .md)
 fi
 
 # Clean the name for filesystem use
-name=$(echo "$name" | sed 's/[:]/ -/g' | sed 's/[*?"<>|]//g' | xargs)
+name=$(sed -e 's/[:]/ -/g' -e 's/[*?"<>|]//g' -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' <<< "$name")
 
 symlink="$WORKBENCH/$name.md"
 
-# If a symlink with this name already points to the same file, nothing to do
-if [[ -L "$symlink" && "$(readlink "$symlink")" == "$file_path" ]]; then
-  exit 0
-fi
-
-# Create or update the symlink
+# Create or update the symlink (ln -sf is idempotent)
 ln -sf "$file_path" "$symlink"
