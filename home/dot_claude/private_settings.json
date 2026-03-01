@@ -96,6 +96,18 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/symlink-plan.sh",
+            "timeout": 5000
+          }
+        ]
+      }
     ]
   }
 }
