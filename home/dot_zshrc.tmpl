@@ -148,3 +148,5 @@ for file in "$XDG_CONFIG_HOME/zsh/"*.{sh,zsh}(N); do
   [[ -r "$file" ]] && source "$file"
 done
 unset file
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
