@@ -93,3 +93,5 @@ command -v nvim >/dev/null && alias vim="nvim"
 
 # Claude AI
 alias cl='claude --ide'
+alias plans='glow ~/.claude/plans/'
+alias editplans='${EDITOR:-vi} ~/.claude/plans/'
