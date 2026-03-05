@@ -54,7 +54,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/rob/.claude/hooks/rtk-rewrite.sh"
+            "command": "$HOME/.claude/hooks/rtk-rewrite.sh"
           }
         ]
       }
@@ -78,7 +78,8 @@
   },
   "enabledPlugins": {
     "code-simplifier@claude-plugins-official": true,
-    "code-review@claude-plugins-official": true
+    "code-review@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "personal": {
@@ -108,7 +109,7 @@
   },
   "spinnerTipsEnabled": true,
   "autoUpdatesChannel": "latest",
+  "skipDangerousModePermissionPrompt": true,
   "terminalProgressBarEnabled": true,
-  "showTurnDuration": true,
-  "skipDangerousModePermissionPrompt": true
+  "showTurnDuration": true
 }
