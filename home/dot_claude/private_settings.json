@@ -79,13 +79,20 @@
   "enabledPlugins": {
     "code-simplifier@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true
+    "superpowers@claude-plugins-official": true,
+    "worktrunk@worktrunk": true
   },
   "extraKnownMarketplaces": {
     "personal": {
       "source": {
         "source": "github",
         "repo": "andimrob/claude-plugins"
+      }
+    },
+    "worktrunk": {
+      "source": {
+        "source": "github",
+        "repo": "max-sixty/worktrunk"
       }
     }
   },
@@ -104,7 +111,8 @@
         "*.pypi.org",
         "betterconfluence.atlassian.net"
       ],
-      "allowLocalBinding": true
+      "allowLocalBinding": true,
+      "allowUnixSockets": ["~/.gnupg/S.gpg-agent"]
     }
   },
   "spinnerTipsEnabled": true,
