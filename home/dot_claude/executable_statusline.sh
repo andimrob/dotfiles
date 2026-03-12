@@ -29,33 +29,40 @@ else
   TOKEN_FMT="$((TOKENS / 1000))K"
 fi
 
-# Progress bar with color based on context usage
-BAR_WIDTH=10
-FILLED=$((PCT * BAR_WIDTH / 100))
-EMPTY=$((BAR_WIDTH - FILLED))
+# Moon phase emoji based on context usage percentage (new → full)
+if [ "$PCT" -le 20 ]; then
+  MOON="🌑"
+elif [ "$PCT" -le 40 ]; then
+  MOON="🌒"
+elif [ "$PCT" -le 60 ]; then
+  MOON="🌓"
+elif [ "$PCT" -le 80 ]; then
+  MOON="🌔"
+else
+  MOON="🌕"
+fi
 
 RESET="\033[0m"
-if [ "$PCT" -ge 80 ]; then
-  COLOR="\033[31m"
-elif [ "$PCT" -ge 60 ]; then
-  COLOR="\033[33m"
-else
-  COLOR="\033[32m"
-fi
-
-FILLED_STR=$(printf "%${FILLED}s" | tr ' ' '▓')
-EMPTY_STR=$(printf "%${EMPTY}s" | tr ' ' '░')
-BAR=$(printf "%b" "${COLOR}[${FILLED_STR}${RESET}${EMPTY_STR}] ${PCT}% ${TOKEN_FMT}")
-
-# Git branch
-BRANCH=""
-if [ -n "$DIR" ] && [ -d "$DIR/.git" ]; then
-  BRANCH=$(git -C "$DIR" branch --show-current 2>/dev/null)
-fi
-
-# Assemble status line with emoji
 CYAN="\033[36m"
-STATUS=$(printf "%b" "🤖 ${CYAN}${MODEL}${RESET} │ 📊 ${BAR} │ 💰 \$${COST_FMT} │ ⏱️ ${MINS}m${SECS}s")
-[ -n "$BRANCH" ] && STATUS=$(printf "%b" "${STATUS} │ 🌿 ${CYAN}${BRANCH}${RESET}")
+YELLOW="\033[33m"
+CTX="${MOON} ${PCT}% ${TOKEN_FMT}"
+
+# Git branch and worktree detection
+BRANCH=""
+WORKTREE=""
+if [ -n "$DIR" ] && git -C "$DIR" rev-parse --git-dir &>/dev/null; then
+  BRANCH=$(git -C "$DIR" branch --show-current 2>/dev/null)
+  TOPLEVEL=$(git -C "$DIR" rev-parse --show-toplevel 2>/dev/null)
+  MAIN_TREE=$(git -C "$DIR" worktree list --porcelain 2>/dev/null | awk '/^worktree /{print $2; exit}')
+  [ -n "$MAIN_TREE" ] && [ "$MAIN_TREE" != "$TOPLEVEL" ] && WORKTREE=$(basename "$TOPLEVEL")
+fi
+
+# Assemble status line
+STATUS=$(printf "%b" "🤖 ${CYAN}${MODEL}${RESET} │ ${CTX} │ 💰 \$${COST_FMT} │ ⏱️ ${MINS}m${SECS}s")
+if [ -n "$WORKTREE" ]; then
+  STATUS=$(printf "%b" "${STATUS} │ 🌿 ${CYAN}${BRANCH}${RESET} ${YELLOW}[${WORKTREE}]${RESET}")
+elif [ -n "$BRANCH" ]; then
+  STATUS=$(printf "%b" "${STATUS} │ 🌿 ${CYAN}${BRANCH}${RESET}")
+fi
 
 echo "$STATUS"
