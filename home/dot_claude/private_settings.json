@@ -80,7 +80,8 @@
     "code-simplifier@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
-    "worktrunk@worktrunk": true
+    "worktrunk@worktrunk": true,
+    "ruby-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "personal": {
@@ -111,12 +112,15 @@
         "*.pypi.org",
         "betterconfluence.atlassian.net"
       ],
-      "allowLocalBinding": true,
-      "allowUnixSockets": ["~/.gnupg/S.gpg-agent"]
+      "allowUnixSockets": [
+        "~/.gnupg/S.gpg-agent"
+      ],
+      "allowLocalBinding": true
     }
   },
   "spinnerTipsEnabled": true,
   "autoUpdatesChannel": "latest",
+  "voiceEnabled": true,
   "skipDangerousModePermissionPrompt": true,
   "terminalProgressBarEnabled": true,
   "showTurnDuration": true
