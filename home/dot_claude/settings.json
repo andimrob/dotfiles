@@ -7,6 +7,14 @@
   },
   "permissions": {
     "allow": [
+      "Read",
+      "Glob",
+      "Grep",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:circleci.com)",
+      "WebFetch(domain:app.circleci.com)",
+      "mcp__atlassian__getJiraIssue",
+      "mcp__atlassian__getAccessibleAtlassianResources",
       "Bash(npm run *)",
       "Bash(yarn run *)",
       "Bash(pnpm run *)",
@@ -24,7 +32,17 @@
       "Bash(pytest *)",
       "Bash(rspec *)",
       "Bash(jest *)",
-      "Bash(vitest *)"
+      "Bash(vitest *)",
+      "Bash(git commit *)",
+      "Bash(pnpm test *)",
+      "Bash(pnpm --dir * test *)",
+      "Bash(pnpm --filter * test *)",
+      "Bash(pnpm lint *)",
+      "Bash(pnpm --dir * lint *)",
+      "Bash(pnpm --filter * lint *)",
+      "Bash(pnpm typecheck *)",
+      "Bash(pnpm --dir * typecheck *)",
+      "Bash(pnpm --filter * typecheck *)"
     ],
     "deny": [
       "Read(.env)",
@@ -44,21 +62,10 @@
       "Bash(kubectl *)",
       "Bash(rm -rf *)"
     ],
-    "defaultMode": "acceptEdits"
+    "defaultMode": "plan"
   },
-  "model": "claude-opus-4-6",
+  "model": "opus[1m]",
   "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.claude/hooks/rtk-rewrite.sh"
-          }
-        ]
-      }
-    ],
     "PostToolUse": [
       {
         "matcher": "Write",
@@ -78,10 +85,15 @@
   },
   "enabledPlugins": {
     "code-simplifier@claude-plugins-official": true,
-    "code-review@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
     "worktrunk@worktrunk": true,
-    "ruby-lsp@claude-plugins-official": true
+    "ruby-lsp@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "personal": {
@@ -110,18 +122,24 @@
         "*.rubygems.org",
         "pypi.org",
         "*.pypi.org",
-        "betterconfluence.atlassian.net"
+        "betterconfluence.atlassian.net",
+        "circleci.com",
+        "app.circleci.com"
       ],
       "allowUnixSockets": [
-        "~/.gnupg/S.gpg-agent"
+        "/Users/robblakey/.gnupg/S.gpg-agent",
+        "/Users/robblakey/.gnupg/S.gpg-agent.extra",
+        "/Users/robblakey/.gnupg/S.gpg-agent.ssh"
       ],
-      "allowLocalBinding": true
+      "allowLocalBinding": true,
+      "excludedCommands": ["bundle", "git", "gh", "docker"]
     }
   },
   "spinnerTipsEnabled": true,
   "autoUpdatesChannel": "latest",
-  "voiceEnabled": true,
   "skipDangerousModePermissionPrompt": true,
+  "showTurnDuration": true,
   "terminalProgressBarEnabled": true,
-  "showTurnDuration": true
+  "skipAutoPermissionPrompt": true,
+  "voiceEnabled": true
 }
