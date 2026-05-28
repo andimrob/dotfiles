@@ -94,3 +94,5 @@ Thumbs.db
 **/.claude/Claude.local.md
 **/.claude/artifacts/*
 
+
+**/.claude/settings.local.json
