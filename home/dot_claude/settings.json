@@ -3,7 +3,8 @@
   "respectGitignore": true,
   "cleanupPeriodDays": 60,
   "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+    "CLAUDE_CODE_AUTO_COMPACT_WINDOW": "400000"
   },
   "permissions": {
     "allow": [
@@ -42,7 +43,24 @@
       "Bash(pnpm --filter * lint *)",
       "Bash(pnpm typecheck *)",
       "Bash(pnpm --dir * typecheck *)",
-      "Bash(pnpm --filter * typecheck *)"
+      "Bash(pnpm --filter * typecheck *)",
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Bash(find *)",
+      "Bash(rtk grep*)",
+      "Bash(rtk find *)",
+      "Bash(rtk ls *)",
+      "Bash(rtk rg *)",
+      "Bash(rtk cat *)",
+      "Bash(rtk git status*)",
+      "Bash(rtk git log*)",
+      "Bash(rtk git diff*)",
+      "Bash(rtk git show*)",
+      "Bash(rtk git branch*)",
+      "Bash(rtk gh pr view*)",
+      "Bash(rtk gh pr list*)",
+      "Bash(rtk gh pr diff*)",
+      "Bash(rtk gh api *)"
     ],
     "deny": [
       "Read(.env)",
@@ -93,7 +111,10 @@
     "github@claude-plugins-official": true,
     "playwright@claude-plugins-official": true,
     "context7@claude-plugins-official": true,
-    "ralph-loop@claude-plugins-official": true
+    "ralph-loop@claude-plugins-official": true,
+    "session-analyzer@betterment-tools": true,
+    "triage-sentry@betterment-tools": true,
+    "managing-on-call@betterment-tools": true
   },
   "extraKnownMarketplaces": {
     "personal": {
