@@ -36,4 +36,7 @@ zoxide        = "0.9.8"
 lockfile = true
 pin = true
 experimental = true
-idiomatic_version_file_enable_tools = ["ruby"]
+idiomatic_version_file_enable_tools = ["ruby", "java", "node", "python"]
+
+[settings.ruby]
+compile = true
