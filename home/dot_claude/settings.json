@@ -133,6 +133,9 @@
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
+    "filesystem": {
+     "allowWrite": ["~/Library/pnpm/store"]
+    },
     "network": {
       "allowedDomains": [
         "github.com",
@@ -161,6 +164,8 @@
   "skipDangerousModePermissionPrompt": true,
   "showTurnDuration": true,
   "terminalProgressBarEnabled": true,
+  "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "effortLevel": "high"
 }
