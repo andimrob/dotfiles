@@ -1,3 +1,8 @@
+{{- $opSock := joinPath .chezmoi.homeDir ".1password/agent.sock" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $opSock = joinPath .chezmoi.homeDir "Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock" -}}
+{{- end -}}
+{{- $onepassword := not (not (stat $opSock)) -}}
 #        _ _                   __ _
 #   __ _(_) |_ ___ ___  _ __  / _(_) __ _
 #  / _` | | __/ __/ _ \| '_ \| |_| |/ _` |
@@ -8,14 +13,18 @@
 [user]
   name = {{ .name }}
   email = {{ .email }}
+{{- if $onepassword }}
   signingkey = {{ onepasswordRead "op://Developer/Personal - Github.com/public key" }}
+{{- end }}
 
 [github]
   user = {{ .githubUsername }}
 
+{{ if $onepassword -}}
 [gpg]
   format = ssh
 
+{{ end -}}
 [core]
   # editor = code --wait --new-window
   excludesFile = ~/.config/git/ignore
@@ -26,7 +35,7 @@
   templatedir = ~/.config/git/template
 
 [commit]
-  gpgSign = true
+  gpgSign = {{ $onepassword }}
   template = ~/.config/git/message
 
 [color]
