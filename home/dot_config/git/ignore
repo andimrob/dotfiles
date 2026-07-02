@@ -97,7 +97,7 @@ Thumbs.db
 docs/superpowers/
 
 # Claude
-**/.claude/Claude.local.md
+CLAUDE.local.md
 **/.claude/artifacts/*
 
 
