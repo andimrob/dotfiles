@@ -90,6 +90,9 @@ Thumbs.db
 # Git worktrees
 .worktrees/
 
+# Scratch files
+.scratch/
+
 # Claude
 **/.claude/Claude.local.md
 **/.claude/artifacts/*

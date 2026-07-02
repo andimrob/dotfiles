@@ -21,4 +21,8 @@ Before committing changes to code, always run the appropriate linter for the lan
 - JavaScript/TypeScript: prettier and eslint
 - Other languages: use the project's configured linter if available
 
+## Temporary Files
+
+Put temporary files (scratch scripts, screenshots, notes, intermediate outputs) in a `.scratch/` directory at the project root instead of `/tmp`, the session scratchpad, or other system temp directories. Create the directory if it doesn't exist — it is globally gitignored.
+
 @RTK.md
