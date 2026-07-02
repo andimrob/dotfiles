@@ -93,6 +93,9 @@ Thumbs.db
 # Scratch files
 .scratch/
 
+# Superpowers plan/design docs
+docs/superpowers/
+
 # Claude
 **/.claude/Claude.local.md
 **/.claude/artifacts/*
