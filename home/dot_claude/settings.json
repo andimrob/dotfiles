@@ -82,7 +82,7 @@
     ],
     "defaultMode": "plan"
   },
-  "model": "claude-opus-4-8[1m]",
+  "model": "claude-fable-5[1m]",
   "hooks": {
     "PostToolUse": [
       {
@@ -92,6 +92,180 @@
             "type": "command",
             "command": "$HOME/.claude/symlink-plan.sh",
             "timeout": 5000
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code"
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code"
+          }
+        ]
+      }
+    ],
+    "TeammateIdle": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code"
+          }
+        ]
+      }
+    ],
+    "TaskCompleted": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code"
+          }
+        ]
+      }
+    ],
+    "InstructionsLoaded": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code"
+          }
+        ]
+      }
+    ],
+    "ConfigChange": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code"
           }
         ]
       }
@@ -114,7 +288,10 @@
     "ralph-loop@claude-plugins-official": true,
     "session-analyzer@betterment-tools": true,
     "triage-sentry@betterment-tools": true,
-    "managing-on-call@betterment-tools": true
+    "managing-on-call@betterment-tools": true,
+    "figma@claude-plugins-official": true,
+    "bookworm@betterment-tools": true,
+    "datadog@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "personal": {
@@ -130,12 +307,10 @@
       }
     }
   },
+  "outputStyle": "Explanatory",
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
-    "filesystem": {
-     "allowWrite": ["~/Library/pnpm/store"]
-    },
     "network": {
       "allowedDomains": [
         "github.com",
@@ -155,17 +330,24 @@
         "/Users/robblakey/.gnupg/S.gpg-agent.extra",
         "/Users/robblakey/.gnupg/S.gpg-agent.ssh"
       ],
-      "allowLocalBinding": true,
-      "excludedCommands": ["bundle", "git", "gh", "docker"]
+      "allowLocalBinding": true
+    },
+    "filesystem": {
+      "allowWrite": [
+        "~/Library/pnpm/store"
+      ]
     }
   },
   "spinnerTipsEnabled": true,
+  "effortLevel": "xhigh",
   "autoUpdatesChannel": "latest",
+  "tui": "fullscreen",
+  "showThinkingSummaries": true,
   "skipDangerousModePermissionPrompt": true,
+  "skipWorkflowUsageWarning": true,
   "showTurnDuration": true,
   "terminalProgressBarEnabled": true,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "voiceEnabled": true,
-  "effortLevel": "high"
+  "voiceEnabled": true
 }
