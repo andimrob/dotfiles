@@ -21,6 +21,15 @@ Before committing changes to code, always run the appropriate linter for the lan
 - JavaScript/TypeScript: prettier and eslint
 - Other languages: use the project's configured linter if available
 
+## Code Comments
+
+Write self-documenting code with minimal comments. Do not add explanatory or narrative
+comments (restating what a line does, why a change was made, or where code came from)
+unless explicitly asked to comment something. Prefer extracting well-named variables,
+methods, and tests over commenting. Keep only functional pragmas (e.g. `# rubocop:disable`,
+`// eslint-disable-next-line`, `# frozen_string_literal: true`) and comments stating a
+constraint the code itself cannot express.
+
 ## Temporary Files
 
 Put temporary files (scratch scripts, screenshots, notes, intermediate outputs) in a `.scratch/` directory at the project root instead of `/tmp`, the session scratchpad, or other system temp directories. Create the directory if it doesn't exist — it is globally gitignored.
