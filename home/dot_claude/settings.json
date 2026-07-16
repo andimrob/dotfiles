@@ -82,7 +82,7 @@
     ],
     "defaultMode": "plan"
   },
-  "model": "claude-fable-5[1m]",
+  "model": "opusplan",
   "hooks": {
     "PostToolUse": [
       {
