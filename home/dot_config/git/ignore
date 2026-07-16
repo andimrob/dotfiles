@@ -93,6 +93,9 @@ Thumbs.db
 # Scratch files
 .scratch/
 
+# Conductor
+.conductor/
+
 # Superpowers plan/design docs
 docs/superpowers/
 
