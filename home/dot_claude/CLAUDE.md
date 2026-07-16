@@ -23,12 +23,14 @@ Before committing changes to code, always run the appropriate linter for the lan
 
 ## Code Comments
 
-Write self-documenting code with minimal comments. Do not add explanatory or narrative
-comments (restating what a line does, why a change was made, or where code came from)
-unless explicitly asked to comment something. Prefer extracting well-named variables,
-methods, and tests over commenting. Keep only functional pragmas (e.g. `# rubocop:disable`,
-`// eslint-disable-next-line`, `# frozen_string_literal: true`) and comments stating a
-constraint the code itself cannot express.
+Do NOT write comments. Write self-documenting code instead — extract well-named
+variables, methods, and tests to carry the meaning a comment would. This ban covers
+narrative/explanatory comments (restating what a line does, why a change was made, or
+where code came from) AND "constraint"/"gotcha" comments: encode the constraint in a
+test or a well-named symbol, not prose. The ONLY exceptions are functional pragmas that
+tooling requires (e.g. `# rubocop:disable`, `// eslint-disable-next-line`,
+`# frozen_string_literal: true`) and a comment the user has explicitly asked for in this
+task. When editing existing code, also delete any stray narrative comments you touch.
 
 ## Temporary Files
 
