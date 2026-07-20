@@ -1,0 +1,154 @@
+{{- /*
+  ~/.claude/settings.json — templated for multiple machines.
+
+  Machine selection: $isWork is true on the work machine. It is auto-detected by
+  the work account's username, or you can force it with `work = true` in that
+  machine's ~/.config/chezmoi/chezmoi.toml [data]. Personal machines get the else
+  branch. To onboard another work machine, set work = true in its chezmoi data.
+
+  The config is assembled as a data structure (shared base + per-machine overlays)
+  and emitted with toPrettyJson, so the output is always valid JSON. Claude Code
+  does not care about key order (toPrettyJson serialises keys alphabetically).
+*/ -}}
+{{- $isWork := or .work (eq .chezmoi.username "robblakey") -}}
+
+{{- /* ---------- env ---------- */ -}}
+{{- $env := dict "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS" "1" -}}
+{{- if $isWork }}{{ $env = merge $env (dict "CLAUDE_CODE_AUTO_COMPACT_WINDOW" "400000") }}{{ end -}}
+
+{{- /* ---------- permissions.allow ---------- */ -}}
+{{- $allow := list
+      "Bash(npm run *)" "Bash(yarn run *)" "Bash(pnpm run *)"
+      "Bash(rubocop *)" "Bash(prettier *)" "Bash(eslint *)"
+      "Bash(git status)" "Bash(git diff *)" "Bash(git log *)" "Bash(git branch *)"
+      "Bash(npm install *)" "Bash(pnpm install *)" "Bash(yarn install *)" "Bash(bundle install *)"
+      "Bash(pytest *)" "Bash(rspec *)" "Bash(jest *)" "Bash(vitest *)" -}}
+{{- if $isWork -}}
+{{-   $allow = concat
+        (list
+          "Read" "Glob" "Grep"
+          "WebFetch(domain:github.com)" "WebFetch(domain:circleci.com)" "WebFetch(domain:app.circleci.com)"
+          "mcp__atlassian__getJiraIssue" "mcp__atlassian__getAccessibleAtlassianResources")
+        $allow
+        (list
+          "Bash(git commit *)"
+          "Bash(pnpm test *)" "Bash(pnpm --dir * test *)" "Bash(pnpm --filter * test *)"
+          "Bash(pnpm lint *)" "Bash(pnpm --dir * lint *)" "Bash(pnpm --filter * lint *)"
+          "Bash(pnpm typecheck *)" "Bash(pnpm --dir * typecheck *)" "Bash(pnpm --filter * typecheck *)"
+          "Bash(grep *)" "Bash(rg *)" "Bash(find *)"
+          "Bash(rtk grep*)" "Bash(rtk find *)" "Bash(rtk ls *)" "Bash(rtk rg *)" "Bash(rtk cat *)"
+          "Bash(rtk git status*)" "Bash(rtk git log*)" "Bash(rtk git diff*)" "Bash(rtk git show*)" "Bash(rtk git branch*)"
+          "Bash(rtk gh pr view*)" "Bash(rtk gh pr list*)" "Bash(rtk gh pr diff*)" "Bash(rtk gh api *)") -}}
+{{- end -}}
+
+{{- /* ---------- permissions.deny (shared; Edit rules cover Write/Edit/NotebookEdit) ---------- */ -}}
+{{- $deny := list
+      "Read(.env)" "Read(.env.*)" "Read(secrets/**)"
+      "Read(**/.env)" "Read(**/.env.*)" "Read(**/secrets/**)"
+      "Edit(.env)" "Edit(.env.*)" "Edit(secrets/**)"
+      "Edit(**/.env)" "Edit(**/.env.*)" "Edit(**/secrets/**)" -}}
+
+{{- /* ---------- permissions.ask (shared) ---------- */ -}}
+{{- $ask := list "Bash(git push *)" "Bash(git force-push *)" "Bash(docker *)" "Bash(kubectl *)" "Bash(rm -rf *)" -}}
+
+{{- $defaultMode := "acceptEdits" -}}{{- if $isWork }}{{ $defaultMode = "plan" }}{{ end -}}
+{{- $permissions := dict "allow" $allow "deny" $deny "ask" $ask "defaultMode" $defaultMode -}}
+
+{{- $model := "opus" -}}{{- if $isWork }}{{ $model = "opusplan" }}{{ end -}}
+
+{{- /* ---------- hooks ---------- */ -}}
+{{- $symlinkHook := dict "matcher" "Write" "hooks" (list (dict "type" "command" "command" "$HOME/.claude/symlink-plan.sh" "timeout" 5000)) -}}
+{{- $hooks := dict -}}
+{{- if $isWork -}}
+{{-   $aiwatch := dict "matcher" "" "hooks" (list (dict "type" "command" "command" "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code")) -}}
+{{-   $hooks = dict
+        "PostToolUse" (list $symlinkHook $aiwatch)
+        "PreToolUse" (list $aiwatch)
+        "PostToolUseFailure" (list $aiwatch)
+        "SessionStart" (list $aiwatch)
+        "SessionEnd" (list $aiwatch)
+        "UserPromptSubmit" (list $aiwatch)
+        "SubagentStart" (list $aiwatch)
+        "SubagentStop" (list $aiwatch)
+        "Stop" (list $aiwatch)
+        "PreCompact" (list $aiwatch)
+        "PermissionRequest" (list $aiwatch)
+        "Notification" (list $aiwatch)
+        "TeammateIdle" (list $aiwatch)
+        "TaskCompleted" (list $aiwatch)
+        "InstructionsLoaded" (list $aiwatch)
+        "ConfigChange" (list $aiwatch) -}}
+{{- else -}}
+{{-   $rtkHook := dict "matcher" "Bash" "hooks" (list (dict "type" "command" "command" "$HOME/.claude/hooks/rtk-rewrite.sh")) -}}
+{{-   $hooks = dict "PreToolUse" (list $rtkHook) "PostToolUse" (list $symlinkHook) -}}
+{{- end -}}
+
+{{- /* ---------- enabledPlugins ---------- */ -}}
+{{- $plugins := dict
+      "code-simplifier@claude-plugins-official" true
+      "superpowers@claude-plugins-official" true
+      "worktrunk@worktrunk" true
+      "ruby-lsp@claude-plugins-official" true -}}
+{{- if $isWork -}}
+{{-   $plugins = merge $plugins (dict
+        "frontend-design@claude-plugins-official" true
+        "skill-creator@claude-plugins-official" true
+        "github@claude-plugins-official" true
+        "playwright@claude-plugins-official" true
+        "context7@claude-plugins-official" true
+        "ralph-loop@claude-plugins-official" true
+        "session-analyzer@betterment-tools" true
+        "triage-sentry@betterment-tools" true
+        "managing-on-call@betterment-tools" true
+        "figma@claude-plugins-official" true
+        "bookworm@betterment-tools" true
+        "datadog@claude-plugins-official" true) -}}
+{{- else -}}
+{{-   $plugins = merge $plugins (dict
+        "code-review@claude-plugins-official" true
+        "meal-planner@personal" true) -}}
+{{- end -}}
+
+{{- /* ---------- extraKnownMarketplaces (shared) ---------- */ -}}
+{{- $marketplaces := dict
+      "personal" (dict "source" (dict "source" "github" "repo" "andimrob/claude-plugins"))
+      "worktrunk" (dict "source" (dict "source" "github" "repo" "max-sixty/worktrunk")) -}}
+
+{{- /* ---------- sandbox ---------- */ -}}
+{{- $domains := list "github.com" "*.github.com" "*.npmjs.org" "registry.npmjs.org" "rubygems.org" "*.rubygems.org" "pypi.org" "*.pypi.org" "betterconfluence.atlassian.net" -}}
+{{- $sockets := list "~/.gnupg/S.gpg-agent" -}}
+{{- if $isWork -}}
+{{-   $domains = concat $domains (list "circleci.com" "app.circleci.com") -}}
+{{-   $sockets = list "~/.gnupg/S.gpg-agent" "~/.gnupg/S.gpg-agent.extra" "~/.gnupg/S.gpg-agent.ssh" -}}
+{{- end -}}
+{{- $network := dict "allowedDomains" $domains "allowUnixSockets" $sockets "allowLocalBinding" true -}}
+{{- $sandbox := dict "enabled" true "autoAllowBashIfSandboxed" true "network" $network -}}
+{{- if $isWork }}{{ $sandbox = merge $sandbox (dict "filesystem" (dict "allowWrite" (list "~/Library/pnpm/store"))) }}{{ end -}}
+
+{{- /* ---------- top-level assembly ---------- */ -}}
+{{- $cfg := dict
+      "$schema" "https://json.schemastore.org/claude-code-settings.json"
+      "respectGitignore" true
+      "cleanupPeriodDays" 60
+      "env" $env
+      "permissions" $permissions
+      "model" $model
+      "hooks" $hooks
+      "statusLine" (dict "type" "command" "command" "~/.claude/statusline.sh")
+      "enabledPlugins" $plugins
+      "extraKnownMarketplaces" $marketplaces
+      "sandbox" $sandbox
+      "spinnerTipsEnabled" true
+      "autoUpdatesChannel" "latest"
+      "tui" "fullscreen"
+      "skipDangerousModePermissionPrompt" true
+      "showTurnDuration" true
+      "terminalProgressBarEnabled" true
+      "agentPushNotifEnabled" true
+      "voiceEnabled" true -}}
+{{- if $isWork -}}
+{{-   $cfg = merge $cfg (dict "outputStyle" "Explanatory" "effortLevel" "xhigh" "showThinkingSummaries" true "skipWorkflowUsageWarning" true "skipAutoPermissionPrompt" true) -}}
+{{- else -}}
+{{-   $cfg = merge $cfg (dict "theme" "dark") -}}
+{{- end -}}
+{{ $cfg | toPrettyJson }}
