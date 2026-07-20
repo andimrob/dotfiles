@@ -12,9 +12,8 @@
 */ -}}
 {{- $isWork := or .work (eq .chezmoi.username "robblakey") -}}
 
-{{- /* ---------- env ---------- */ -}}
-{{- $env := dict "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS" "1" -}}
-{{- if $isWork }}{{ $env = merge $env (dict "CLAUDE_CODE_AUTO_COMPACT_WINDOW" "400000") }}{{ end -}}
+{{- /* ---------- env (shared: 400k compaction window on both machines) ---------- */ -}}
+{{- $env := dict "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS" "1" "CLAUDE_CODE_AUTO_COMPACT_WINDOW" "400000" -}}
 
 {{- /* ---------- permissions.allow ---------- */ -}}
 {{- $allow := list
@@ -54,7 +53,8 @@
 {{- $defaultMode := "acceptEdits" -}}{{- if $isWork }}{{ $defaultMode = "plan" }}{{ end -}}
 {{- $permissions := dict "allow" $allow "deny" $deny "ask" $ask "defaultMode" $defaultMode -}}
 
-{{- $model := "opus" -}}{{- if $isWork }}{{ $model = "opusplan" }}{{ end -}}
+{{- /* personal: full Opus with 1M context; work: opusplan hybrid ---------- */ -}}
+{{- $model := "claude-opus-4-8[1m]" -}}{{- if $isWork }}{{ $model = "opusplan" }}{{ end -}}
 
 {{- /* ---------- hooks ---------- */ -}}
 {{- $symlinkHook := dict "matcher" "Write" "hooks" (list (dict "type" "command" "command" "$HOME/.claude/symlink-plan.sh" "timeout" 5000)) -}}
@@ -139,6 +139,7 @@
       "extraKnownMarketplaces" $marketplaces
       "sandbox" $sandbox
       "spinnerTipsEnabled" true
+      "effortLevel" "xhigh"
       "autoUpdatesChannel" "latest"
       "tui" "fullscreen"
       "skipDangerousModePermissionPrompt" true
@@ -147,7 +148,7 @@
       "agentPushNotifEnabled" true
       "voiceEnabled" true -}}
 {{- if $isWork -}}
-{{-   $cfg = merge $cfg (dict "outputStyle" "Explanatory" "effortLevel" "xhigh" "showThinkingSummaries" true "skipWorkflowUsageWarning" true "skipAutoPermissionPrompt" true) -}}
+{{-   $cfg = merge $cfg (dict "outputStyle" "Explanatory" "showThinkingSummaries" true "skipWorkflowUsageWarning" true "skipAutoPermissionPrompt" true) -}}
 {{- else -}}
 {{-   $cfg = merge $cfg (dict "theme" "dark") -}}
 {{- end -}}
