@@ -5,7 +5,7 @@
 
 {{/* boolean feature tags */}}
 {{- $ephemeral := false -}}{{/* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
-{{- $work := false -}}{{/* true if this machine is a work machine */}}
+{{- $work := hasSuffix "@betterment.com" $email -}}
 {{- $headless := false -}}{{/* true if this machine does not have a screen and keyboard */}}
 {{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
 
@@ -29,9 +29,6 @@
 {{- if not $ephemeral -}}
 {{-   if eq $hostname "shadowbox" -}}
 {{-     $personal = true -}}
-{{-   else if eq $hostname "REM-BETTERMENT02134" -}}
-{{-     $work = true -}}
-{{-     $headless = false -}}
 {{-   else if eq $hostname "ubuntu" -}}
 {{-     $headless = true -}}
 {{-     $personal = true -}}
