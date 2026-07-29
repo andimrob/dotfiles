@@ -1,16 +1,4 @@
-{{- /*
-  ~/.claude/settings.json — templated for multiple machines.
-
-  Machine selection: $isWork is true on the work machine. It is auto-detected by
-  the work account's username, or you can force it with `work = true` in that
-  machine's ~/.config/chezmoi/chezmoi.toml [data]. Personal machines get the else
-  branch. To onboard another work machine, set work = true in its chezmoi data.
-
-  The config is assembled as a data structure (shared base + per-machine overlays)
-  and emitted with toPrettyJson, so the output is always valid JSON. Claude Code
-  does not care about key order (toPrettyJson serialises keys alphabetically).
-*/ -}}
-{{- $isWork := or .work (eq .chezmoi.username "robblakey") -}}
+{{- $isWork := .work -}}
 
 {{- /* ---------- env (shared: 400k compaction window on both machines) ---------- */ -}}
 {{- $env := dict "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS" "1" "CLAUDE_CODE_AUTO_COMPACT_WINDOW" "400000" -}}
@@ -61,17 +49,20 @@
 {{- $hooks := dict -}}
 {{- if $isWork -}}
 {{-   $aiwatch := dict "matcher" "" "hooks" (list (dict "type" "command" "command" "/usr/local/lib/runlayer/aiwatch/aiwatch hook --client claude_code")) -}}
+{{-   $dxHook := list (dict "type" "command" "command" "/usr/local/bin/aicodemetricsd hook claude --hook-input stdin" "timeout" 2) -}}
+{{-   $dxOnEdit := dict "matcher" "Write|Edit|MultiEdit" "hooks" $dxHook -}}
+{{-   $dxOnEvent := dict "hooks" $dxHook -}}
 {{-   $hooks = dict
-        "PostToolUse" (list $symlinkHook $aiwatch)
-        "PreToolUse" (list $aiwatch)
+        "PostToolUse" (list $symlinkHook $dxOnEdit $aiwatch)
+        "PreToolUse" (list $dxOnEdit $aiwatch)
         "PostToolUseFailure" (list $aiwatch)
-        "SessionStart" (list $aiwatch)
-        "SessionEnd" (list $aiwatch)
+        "SessionStart" (list $dxOnEvent $aiwatch)
+        "SessionEnd" (list $dxOnEvent $aiwatch)
         "UserPromptSubmit" (list $aiwatch)
         "SubagentStart" (list $aiwatch)
         "SubagentStop" (list $aiwatch)
         "Stop" (list $aiwatch)
-        "PreCompact" (list $aiwatch)
+        "PreCompact" (list $dxOnEvent $aiwatch)
         "PermissionRequest" (list $aiwatch)
         "Notification" (list $aiwatch)
         "TeammateIdle" (list $aiwatch)
@@ -115,15 +106,16 @@
       "worktrunk" (dict "source" (dict "source" "github" "repo" "max-sixty/worktrunk")) -}}
 
 {{- /* ---------- sandbox ---------- */ -}}
-{{- $domains := list "github.com" "*.github.com" "*.npmjs.org" "registry.npmjs.org" "rubygems.org" "*.rubygems.org" "pypi.org" "*.pypi.org" "betterconfluence.atlassian.net" -}}
-{{- $sockets := list "~/.gnupg/S.gpg-agent" -}}
+{{- $domains := list "github.com" "*.github.com" "*.npmjs.org" "registry.npmjs.org" "rubygems.org" "*.rubygems.org" "pypi.org" "*.pypi.org" -}}
+{{- $gnupg := printf "%s/.gnupg" .chezmoi.homeDir -}}
+{{- $sockets := list (printf "%s/S.gpg-agent" $gnupg) -}}
 {{- if $isWork -}}
-{{-   $domains = concat $domains (list "circleci.com" "app.circleci.com") -}}
-{{-   $sockets = list "~/.gnupg/S.gpg-agent" "~/.gnupg/S.gpg-agent.extra" "~/.gnupg/S.gpg-agent.ssh" -}}
+{{-   $domains = concat $domains (list "betterconfluence.atlassian.net" "circleci.com" "app.circleci.com") -}}
+{{-   $sockets = list (printf "%s/S.gpg-agent" $gnupg) (printf "%s/S.gpg-agent.extra" $gnupg) (printf "%s/S.gpg-agent.ssh" $gnupg) -}}
 {{- end -}}
 {{- $network := dict "allowedDomains" $domains "allowUnixSockets" $sockets "allowLocalBinding" true -}}
 {{- $sandbox := dict "enabled" true "autoAllowBashIfSandboxed" true "network" $network -}}
-{{- if $isWork }}{{ $sandbox = merge $sandbox (dict "filesystem" (dict "allowWrite" (list "~/Library/pnpm/store"))) }}{{ end -}}
+{{- if $isWork }}{{ $sandbox = merge $sandbox (dict "filesystem" (dict "allowWrite" (list (printf "%s/Library/pnpm/store" .chezmoi.homeDir)))) }}{{ end -}}
 
 {{- /* ---------- top-level assembly ---------- */ -}}
 {{- $cfg := dict
