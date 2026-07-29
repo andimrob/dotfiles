@@ -78,11 +78,19 @@ print(" ".join(pairs))' <<<"$output")
 	[ "$matchers" = "PostToolUse=Write|Edit|MultiEdit PreCompact=- PreToolUse=Write|Edit|MultiEdit SessionEnd=- SessionStart=-" ]
 }
 
-@test "work profile keeps betterment plugins and circleci access" {
+@test "work profile keeps every betterment plugin and circleci access" {
 	run render true
 	[ "$status" -eq 0 ]
-	[ "$(count_matches "betterment-tools" "$output")" -eq 4 ]
 	[ "$(count_matches "circleci" "$output")" -eq 4 ]
+
+	local plugins
+	plugins=$(python3 -c '
+import json, sys
+cfg = json.load(sys.stdin)
+print(" ".join(sorted(
+    name for name in cfg["enabledPlugins"] if name.endswith("@betterment-tools")
+)))' <<<"$output")
+	[ "$plugins" = "bookworm@betterment-tools managing-on-call@betterment-tools session-analyzer@betterment-tools triage-sentry@betterment-tools writing-for-audience@betterment-tools" ]
 }
 
 @test "sandbox paths are absolute so claude code cannot rewrite them" {
