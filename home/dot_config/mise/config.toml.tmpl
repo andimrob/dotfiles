@@ -37,16 +37,14 @@ lockfile = true
 pin = true
 experimental = true
 idiomatic_version_file_enable_tools = ["ruby", "java", "node", "python"]
-{{- if .work }}
 minimum_release_age = "7d"
-{{- end }}
 
 [settings.ruby]
 compile = true
-{{- if .work }}
 
 [settings.github]
 credential_command = "gh auth token"
+{{- if .work }}
 
 [hooks]
 postinstall = "{{ .chezmoi.homeDir }}/.bootstrap/resources/mise_hooks/postinstall"
