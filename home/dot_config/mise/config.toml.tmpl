@@ -37,6 +37,17 @@ lockfile = true
 pin = true
 experimental = true
 idiomatic_version_file_enable_tools = ["ruby", "java", "node", "python"]
+minimum_release_age = "7d"
 
 [settings.ruby]
 compile = true
+
+[settings.github]
+credential_command = "gh auth token"
+
+[hooks]
+{{- if .work }}
+postinstall = "{{ .chezmoi.homeDir }}/.bootstrap/resources/mise_hooks/postinstall"
+{{- else }}
+postinstall = "{{ .chezmoi.homeDir }}/.config/mise/hooks/postinstall.sh"
+{{- end }}
