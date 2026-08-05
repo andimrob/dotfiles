@@ -4,5 +4,9 @@ font-feature = calt
 font-feature = liga
 font-size = 14
 theme = 0x96f
+background-opacity = 1
 
 mouse-shift-capture = never
+
+fullscreen = non-native-visible-menu
+macos-non-native-fullscreen = visible-menu
