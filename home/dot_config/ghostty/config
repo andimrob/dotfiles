@@ -11,7 +11,7 @@ mouse-shift-capture = never
 fullscreen = non-native-visible-menu
 macos-non-native-fullscreen = visible-menu
 
-command = /opt/homebrew/bin/tmux attach || /opt/homebrew/bin/tmux new-session -s main
+command = /opt/homebrew/bin/tmux new-session -A -s main
 
 keybind = super+t=text:\x01c
 keybind = super+1=text:\x011
