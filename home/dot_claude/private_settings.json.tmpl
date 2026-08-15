@@ -1,7 +1,12 @@
 {{- $isWork := .work -}}
 
-{{- /* ---------- env (shared: 400k compaction window on both machines) ---------- */ -}}
-{{- $env := dict "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS" "1" "CLAUDE_CODE_AUTO_COMPACT_WINDOW" "400000" -}}
+{{- /* ---------- env ---------- */ -}}
+{{- $env := dict
+      "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS" "1"
+      "CLAUDE_CODE_AUTO_COMPACT_WINDOW" "400000"
+      "GIT_CONFIG_COUNT" "1"
+      "GIT_CONFIG_KEY_0" "commit.gpgsign"
+      "GIT_CONFIG_VALUE_0" "false" -}}
 
 {{- /* ---------- permissions.allow ---------- */ -}}
 {{- $allow := list
