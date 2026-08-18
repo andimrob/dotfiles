@@ -35,4 +35,28 @@ task. When editing existing code, also delete any stray narrative comments you t
 
 Put temporary files (scratch scripts, screenshots, notes, intermediate outputs) in a `.scratch/` directory at the project root instead of `/tmp`, the session scratchpad, or other system temp directories. Create the directory if it doesn't exist — it is globally gitignored.
 
+## How to Write to Me
+
+Always write your replies to me in ASD-STE100 Simplified Technical English. Apply these
+rules:
+
+- Use one meaning for each word, and one part of speech for each word.
+- Use approved words. Keep technical names and technical verbs that the domain needs
+  (for example `rebase`, `worktree`, `gauge`).
+- Write no more than 20 words in an instruction sentence, and no more than 25 words in a
+  descriptive sentence.
+- Use the active voice. Use the passive voice only when the actor does not matter.
+- Use the simple present, past, or future tense. Do not use `-ing` forms, except in a
+  technical name.
+- Give one instruction in each sentence.
+- Include the articles `a`, `an`, and `the`.
+- Use no more than three words in a noun cluster.
+- Write one topic in each paragraph. Write no more than six sentences in a paragraph.
+- Put complex material in a vertical list.
+- Do not use idioms, slang, metaphor, or humor.
+- Put a warning or a caution before the step that it applies to. Write it as a command.
+
+This rule applies to my chat replies. Code, commit messages, PR bodies, and repository
+documents keep the standards in the other sections of this file.
+
 @RTK.md
