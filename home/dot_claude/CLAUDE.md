@@ -4,7 +4,6 @@
 
 - Link related tickets using full URLs in the format `/task <jira-ticket-url>` (e.g., `/task https://betterconfluence.atlassian.net/browse/B2BG-349`)
 - Always use conventional commit style for PR titles (e.g., `fix: resolve rate boost sync race condition`)
-- Always create PRs with the `ITR:NoSkip` label
 
 ## Commits
 
