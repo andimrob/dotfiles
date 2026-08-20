@@ -144,9 +144,10 @@
       "showTurnDuration" true
       "terminalProgressBarEnabled" true
       "agentPushNotifEnabled" true
+      "outputStyle" "Concise"
       "voiceEnabled" true -}}
 {{- if $isWork -}}
-{{-   $cfg = merge $cfg (dict "outputStyle" "Explanatory" "showThinkingSummaries" true "skipWorkflowUsageWarning" true "skipAutoPermissionPrompt" true) -}}
+{{-   $cfg = merge $cfg (dict "showThinkingSummaries" true "skipWorkflowUsageWarning" true "skipAutoPermissionPrompt" true) -}}
 {{- else -}}
 {{-   $cfg = merge $cfg (dict "theme" "dark") -}}
 {{- end -}}
