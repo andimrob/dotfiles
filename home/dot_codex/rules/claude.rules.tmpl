@@ -1,0 +1,17 @@
+{{- $claude := includeTemplate "dot_claude/private_settings.json.tmpl" . | fromJson -}}
+# Managed by chezmoi; edit dot_claude/private_settings.json.tmpl.
+# Codex allow rules authorize execution OUTSIDE the sandbox. Filesystem denies
+# and network domain restrictions only protect sandboxed commands.
+# Keep interactive approvals in default.rules; chezmoi does not manage that file.
+{{ range $decision, $entries := dict "allow" $claude.permissions.allow "prompt" $claude.permissions.ask -}}
+{{ range $entry := $entries -}}
+{{ if hasPrefix "Bash(" $entry -}}
+{{ $prefix := $entry | trimPrefix "Bash(" | trimSuffix ")" | trimSuffix "*" | trim -}}
+{{ if regexMatch "^[A-Za-z0-9_./-]+( [A-Za-z0-9_./-]+)*$" $prefix -}}
+prefix_rule(pattern={{ splitList " " $prefix | toJson }}, decision={{ $decision | quote }}, match=[{{ $prefix | quote }}])
+{{ else -}}
+# Not translated (not a literal argv prefix): {{ $entry }}
+{{ end -}}
+{{ end -}}
+{{ end -}}
+{{ end -}}
