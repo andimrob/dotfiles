@@ -1,6 +1,6 @@
 #!/usr/bin/env bats
 
-WORK_ONLY_PATTERNS="runlayer aiwatch aicodemetricsd betterment-tools circleci atlassian"
+WORK_ONLY_PATTERNS="runlayer aiwatch aicodemetricsd betterment-tools circleci atlassian the-book"
 
 render() {
 	printf '[data]\nwork = %s\n' "$1" >"$BATS_TEST_TMPDIR/chezmoi.toml"
@@ -81,7 +81,7 @@ print(" ".join(pairs))' <<<"$output")
 @test "work profile keeps betterment plugins and circleci access" {
 	run render true
 	[ "$status" -eq 0 ]
-	[ "$(count_matches "betterment-tools" "$output")" -eq 4 ]
+	[ "$(count_matches "betterment-tools" "$output")" -eq 5 ]
 	[ "$(count_matches "circleci" "$output")" -eq 4 ]
 }
 
@@ -105,4 +105,59 @@ print("\n".join(sandbox["network"]["allowUnixSockets"] + sandbox["filesystem"]["
 		[ "$status" -eq 0 ]
 		echo "$output" | python3 -m json.tool >/dev/null
 	done
+}
+
+tmux_wiring() {
+	python3 -c '
+import json, sys
+cfg = json.load(sys.stdin)
+pairs = []
+for event, entries in cfg["hooks"].items():
+    for entry in entries:
+        for hook in entry["hooks"]:
+            if "tmux-state.sh" in hook["command"]:
+                pairs.append("%s=%s=%s" % (event, entry.get("matcher") or "-", hook["command"].split()[-1]))
+print("\n".join(sorted(pairs)))' <<<"$1"
+}
+
+@test "both profiles wire the tmux state hook to the same events" {
+	local expected
+	expected="Notification=idle_prompt|agent_completed=idle
+Notification=permission_prompt|agent_needs_input|elicitation_dialog|elicitation_url_dialog=blocked
+PostToolUse=-=busy
+PreToolUse=AskUserQuestion|ExitPlanMode=blocked
+SessionEnd=-=off
+Stop=-=idle
+UserPromptSubmit=-=busy"
+
+	for profile in true false; do
+		run render "$profile"
+		[ "$status" -eq 0 ]
+		[ "$(tmux_wiring "$output")" = "$expected" ]
+	done
+}
+
+@test "work profile keeps the book standards hook on writes" {
+	run render true
+	[ "$status" -eq 0 ]
+
+	local matchers
+	matchers=$(python3 -c '
+import json, sys
+cfg = json.load(sys.stdin)
+print(" ".join(
+    entry.get("matcher") or "-"
+    for entry in cfg["hooks"]["PreToolUse"]
+    for hook in entry["hooks"]
+    if "the-book" in hook["command"]
+))' <<<"$output")
+	[ "$matchers" = "Write" ]
+}
+
+@test "work profile keeps the model and marketplace picked in the ui" {
+	run render true
+	[ "$status" -eq 0 ]
+	[ "$(count_matches '"model": "opus\[1m\]"' "$output")" -eq 1 ]
+	[ "$(count_matches "Betterment/claude-plugins" "$output")" -eq 1 ]
+	[ "$(count_matches "mattpocock-skills" "$output")" -eq 1 ]
 }

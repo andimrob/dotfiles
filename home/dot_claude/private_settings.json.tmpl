@@ -48,7 +48,7 @@
 {{- $permissions := dict "allow" $allow "deny" $deny "ask" $ask "defaultMode" $defaultMode -}}
 
 {{- /* personal: full Opus with 1M context; work: opusplan hybrid ---------- */ -}}
-{{- $model := "claude-opus-4-8[1m]" -}}{{- if $isWork }}{{ $model = "opusplan" }}{{ end -}}
+{{- $model := "claude-opus-4-8[1m]" -}}{{- if $isWork }}{{ $model = "opus[1m]" }}{{ end -}}
 
 {{- /* ---------- hooks ---------- */ -}}
 {{- $symlinkHook := dict "matcher" "Write" "hooks" (list (dict "type" "command" "command" "$HOME/.claude/symlink-plan.sh" "timeout" 5000)) -}}
@@ -58,9 +58,10 @@
 {{-   $dxHook := list (dict "type" "command" "command" "/usr/local/bin/aicodemetricsd hook claude --hook-input stdin" "timeout" 2) -}}
 {{-   $dxOnEdit := dict "matcher" "Write|Edit|MultiEdit" "hooks" $dxHook -}}
 {{-   $dxOnEvent := dict "hooks" $dxHook -}}
+{{-   $bookHook := dict "matcher" "Write" "hooks" (list (dict "type" "command" "command" "the-book ai hooks pre-tool-use")) -}}
 {{-   $hooks = dict
         "PostToolUse" (list $symlinkHook $dxOnEdit $aiwatch)
-        "PreToolUse" (list $dxOnEdit $aiwatch)
+        "PreToolUse" (list $dxOnEdit $bookHook $aiwatch)
         "PostToolUseFailure" (list $aiwatch)
         "SessionStart" (list $dxOnEvent $aiwatch)
         "SessionEnd" (list $dxOnEvent $aiwatch)
@@ -78,6 +79,20 @@
 {{- else -}}
 {{-   $rtkHook := dict "matcher" "Bash" "hooks" (list (dict "type" "command" "command" "$HOME/.claude/hooks/rtk-rewrite.sh")) -}}
 {{-   $hooks = dict "PreToolUse" (list $rtkHook) "PostToolUse" (list $symlinkHook) -}}
+{{- end -}}
+
+{{- /* ---------- tmux window-list state dots (both profiles) ---------- */ -}}
+{{- $tmuxSignals := list
+      (dict "event" "PreToolUse"       "matcher" "AskUserQuestion|ExitPlanMode" "state" "blocked")
+      (dict "event" "Notification"     "matcher" "permission_prompt|agent_needs_input|elicitation_dialog|elicitation_url_dialog" "state" "blocked")
+      (dict "event" "Notification"     "matcher" "idle_prompt|agent_completed" "state" "idle")
+      (dict "event" "Stop"             "matcher" "" "state" "idle")
+      (dict "event" "UserPromptSubmit" "matcher" "" "state" "busy")
+      (dict "event" "PostToolUse"      "matcher" "" "state" "busy")
+      (dict "event" "SessionEnd"       "matcher" "" "state" "off") -}}
+{{- range $signal := $tmuxSignals -}}
+{{-   $entry := dict "matcher" $signal.matcher "hooks" (list (dict "type" "command" "command" (printf "$HOME/.claude/tmux-state.sh %s" $signal.state))) -}}
+{{-   $hooks = set $hooks $signal.event (append (default (list) (get $hooks $signal.event)) $entry) -}}
 {{- end -}}
 
 {{- /* ---------- enabledPlugins ---------- */ -}}
@@ -99,7 +114,8 @@
         "managing-on-call@betterment-tools" true
         "figma@claude-plugins-official" true
         "bookworm@betterment-tools" true
-        "datadog@claude-plugins-official" true) -}}
+        "datadog@claude-plugins-official" true
+        "mattpocock-skills@claude-plugins-official" true) -}}
 {{- else -}}
 {{-   $plugins = merge $plugins (dict
         "code-review@claude-plugins-official" true
@@ -110,6 +126,9 @@
 {{- $marketplaces := dict
       "personal" (dict "source" (dict "source" "github" "repo" "andimrob/claude-plugins"))
       "worktrunk" (dict "source" (dict "source" "github" "repo" "max-sixty/worktrunk")) -}}
+{{- if $isWork -}}
+{{-   $marketplaces = merge $marketplaces (dict "betterment-tools" (dict "source" (dict "source" "github" "repo" "Betterment/claude-plugins"))) -}}
+{{- end -}}
 
 {{- /* ---------- sandbox ---------- */ -}}
 {{- $domains := list "github.com" "*.github.com" "*.npmjs.org" "registry.npmjs.org" "rubygems.org" "*.rubygems.org" "pypi.org" "*.pypi.org" -}}
