@@ -1,0 +1,68 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /* Manage only migrated permissions; local models, plugins and credentials stay local. */ -}}
+{{- $original := .chezmoi.stdin | fromToml -}}
+{{- $cfg := deepCopy $original -}}
+{{- $claude := includeTemplate "dot_claude/private_settings.json.tmpl" . | fromJson -}}
+
+{{- /* Legacy sandbox keys override permission profiles, so remove both. */ -}}
+{{- $_ := unset $cfg "sandbox_mode" -}}
+{{- $_ := unset $cfg "sandbox_workspace_write" -}}
+{{- $_ := set $cfg "approval_policy" "on-request" -}}
+{{- $_ := set $cfg "default_permissions" "claude" -}}
+{{- $features := get $cfg "features" | default dict -}}
+{{- $_ := set $features "network_proxy" true -}}
+{{- $_ := set $cfg "features" $features -}}
+
+{{- $workspace := dict -}}
+{{- range $entry := $claude.permissions.deny -}}
+{{- if or (hasPrefix "Read(" $entry) (hasPrefix "Edit(" $entry) -}}
+{{- $path := $entry | trimPrefix "Read(" | trimPrefix "Edit(" | trimSuffix ")" -}}
+{{- $_ := set $workspace $path "deny" -}}
+{{- end -}}
+{{- end -}}
+{{- $filesystem := dict ":workspace_roots" $workspace -}}
+{{- if ne .chezmoi.os "darwin" -}}
+{{- $_ := set $filesystem "glob_scan_max_depth" 16 -}}
+{{- end -}}
+{{- $claudeFilesystem := get $claude.sandbox "filesystem" | default dict -}}
+{{- range $path := get $claudeFilesystem "allowWrite" | default list -}}
+{{- $_ := set $filesystem $path "write" -}}
+{{- end -}}
+
+{{- $domains := dict -}}
+{{- range $domain := $claude.sandbox.network.allowedDomains -}}
+{{- $_ := set $domains $domain "allow" -}}
+{{- end -}}
+{{- $sockets := dict -}}
+{{- range $path := $claude.sandbox.network.allowUnixSockets -}}
+{{- $_ := set $sockets $path "allow" -}}
+{{- end -}}
+{{- $network := dict "enabled" true "domains" $domains "unix_sockets" $sockets
+      "allow_local_binding" $claude.sandbox.network.allowLocalBinding -}}
+{{- $profile := dict "extends" ":workspace" "description" "Permissions migrated from Claude dotfiles."
+      "filesystem" $filesystem "network" $network -}}
+{{- $permissions := get $cfg "permissions" | default dict -}}
+{{- $_ := set $permissions "claude" $profile -}}
+{{- $_ := set $cfg "permissions" $permissions -}}
+
+{{- /* Only change tools on already configured servers; never copy endpoints or credentials. */ -}}
+{{- $servers := get $cfg "mcp_servers" | default dict -}}
+{{- range $entry := $claude.permissions.allow -}}
+{{- if hasPrefix "mcp__" $entry -}}
+{{- $parts := splitList "__" $entry -}}
+{{- if and (eq (len $parts) 3) (hasKey $servers (index $parts 1)) -}}
+{{- $server := get $servers (index $parts 1) -}}
+{{- $tools := get $server "tools" | default dict -}}
+{{- $tool := get $tools (index $parts 2) | default dict -}}
+{{- $_ := set $tool "approval_mode" "approve" -}}
+{{- $_ := set $tools (index $parts 2) $tool -}}
+{{- $_ := set $server "tools" $tools -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+
+{{- if deepEqual $original $cfg -}}
+{{ .chezmoi.stdin -}}
+{{- else -}}
+{{ $cfg | toToml -}}
+{{- end -}}

@@ -61,3 +61,85 @@ decision() {
 	[ "$(decision git commit -m example)" = unmatched ]
 	[ "$(decision rtk gh api repos/owner/repo)" = unmatched ]
 }
+
+@test "config migration preserves local settings and removes legacy sandbox overrides" {
+	[ -f "$BATS_TEST_DIRNAME/modify_private_config.toml" ]
+	render modify_private_config.toml <<'TOML' >"$BATS_TEST_TMPDIR/result.toml"
+model = "local-model"
+sandbox_mode = "workspace-write"
+[sandbox_workspace_write]
+network_access = false
+[features]
+multi_agent = true
+[mcp_servers.atlassian]
+url = "https://example.invalid/mcp"
+[mcp_servers.atlassian.http_headers]
+Authorization = "local-only-value"
+[mcp_servers.atlassian.tools.otherTool]
+approval_mode = "prompt"
+[permissions.other]
+extends = ":read-only"
+TOML
+	python3 - "$BATS_TEST_TMPDIR/result.toml" <<'PY'
+import sys, tomllib
+with open(sys.argv[1], 'rb') as f:
+    c = tomllib.load(f)
+assert c['model'] == 'local-model'
+assert c['features']['multi_agent'] is True
+assert c['features']['network_proxy'] is True
+assert 'sandbox_mode' not in c and 'sandbox_workspace_write' not in c
+assert c['approval_policy'] == 'on-request'
+assert c['default_permissions'] == 'claude'
+assert c['permissions']['other']['extends'] == ':read-only'
+a = c['mcp_servers']['atlassian']
+assert a['url'] == 'https://example.invalid/mcp'
+assert a['http_headers']['Authorization'] == 'local-only-value'
+assert a['tools']['otherTool']['approval_mode'] == 'prompt'
+assert a['tools']['getJiraIssue']['approval_mode'] == 'approve'
+assert a['tools']['getAccessibleAtlassianResources']['approval_mode'] == 'approve'
+PY
+}
+
+@test "fresh configs carry secret exclusions and proxy-enforced work domains" {
+	[ -f "$BATS_TEST_DIRNAME/modify_private_config.toml" ]
+	render modify_private_config.toml </dev/null >"$BATS_TEST_TMPDIR/result.toml"
+	python3 - "$BATS_TEST_TMPDIR/result.toml" <<'PY'
+import sys, tomllib
+with open(sys.argv[1], 'rb') as f:
+    c = tomllib.load(f)
+p = c['permissions']['claude']
+assert p['extends'] == ':workspace'
+fs = p['filesystem'][':workspace_roots']
+for path in ['.env', '.env.*', 'secrets/**', '**/.env', '**/.env.*', '**/secrets/**']:
+    assert fs[path] == 'deny', path
+assert c['features']['network_proxy'] is True
+assert p['network']['enabled'] is True
+for host in ['github.com', 'registry.npmjs.org', 'betterconfluence.atlassian.net']:
+    assert p['network']['domains'][host] == 'allow'
+assert '*' not in p['network']['domains']
+assert 'mcp_servers' not in c
+PY
+}
+
+@test "personal config excludes work domains and cache writes" {
+	[ -f "$BATS_TEST_DIRNAME/modify_private_config.toml" ]
+	printf '[data]\nwork = false\npersonal = true\n' >"$BATS_TEST_TMPDIR/chezmoi.toml"
+	render modify_private_config.toml </dev/null >"$BATS_TEST_TMPDIR/result.toml"
+	python3 - "$BATS_TEST_TMPDIR/result.toml" <<'PY'
+import sys, tomllib
+with open(sys.argv[1], 'rb') as f:
+    c = tomllib.load(f)
+p = c['permissions']['claude']
+assert p['network']['domains']['github.com'] == 'allow'
+for host in ['betterconfluence.atlassian.net', 'circleci.com', 'app.circleci.com']:
+    assert host not in p['network']['domains']
+assert not any('pnpm/store' in key for key in p['filesystem'])
+PY
+}
+
+@test "reapplying the config migration produces identical output" {
+	[ -f "$BATS_TEST_DIRNAME/modify_private_config.toml" ]
+	render modify_private_config.toml </dev/null >"$BATS_TEST_TMPDIR/first.toml"
+	render modify_private_config.toml <"$BATS_TEST_TMPDIR/first.toml" >"$BATS_TEST_TMPDIR/second.toml"
+	cmp "$BATS_TEST_TMPDIR/first.toml" "$BATS_TEST_TMPDIR/second.toml"
+}
