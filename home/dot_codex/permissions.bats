@@ -118,6 +118,7 @@ for host in ['github.com', 'registry.npmjs.org', 'betterconfluence.atlassian.net
     assert p['network']['domains'][host] == 'allow'
 assert '*' not in p['network']['domains']
 assert 'mcp_servers' not in c
+assert 'plugins' not in c
 PY
 }
 
@@ -134,6 +135,42 @@ assert p['network']['domains']['github.com'] == 'allow'
 for host in ['betterconfluence.atlassian.net', 'circleci.com', 'app.circleci.com']:
     assert host not in p['network']['domains']
 assert not any('pnpm/store' in key for key in p['filesystem'])
+PY
+}
+
+@test "the migration removes retired MCP servers and keeps the rest" {
+	[ -f "$BATS_TEST_DIRNAME/modify_private_config.toml" ]
+	render modify_private_config.toml <<'TOML' >"$BATS_TEST_TMPDIR/result.toml"
+[mcp_servers.paper]
+url = "http://127.0.0.1:29979/mcp"
+[mcp_servers.keepme]
+url = "https://example.invalid/mcp"
+TOML
+	python3 - "$BATS_TEST_TMPDIR/result.toml" <<'PY'
+import sys, tomllib
+with open(sys.argv[1], 'rb') as f:
+    c = tomllib.load(f)
+servers = c['mcp_servers']
+assert 'paper' not in servers
+assert servers['keepme']['url'] == 'https://example.invalid/mcp'
+PY
+}
+
+@test "the migration disables retired plugins and leaves others enabled" {
+	[ -f "$BATS_TEST_DIRNAME/modify_private_config.toml" ]
+	render modify_private_config.toml <<'TOML' >"$BATS_TEST_TMPDIR/result.toml"
+[plugins."linear@claude-plugins-official"]
+enabled = true
+[plugins."context7@claude-plugins-official"]
+enabled = true
+TOML
+	python3 - "$BATS_TEST_TMPDIR/result.toml" <<'PY'
+import sys, tomllib
+with open(sys.argv[1], 'rb') as f:
+    c = tomllib.load(f)
+plugins = c['plugins']
+assert plugins['linear@claude-plugins-official']['enabled'] is False
+assert plugins['context7@claude-plugins-official']['enabled'] is True
 PY
 }
 

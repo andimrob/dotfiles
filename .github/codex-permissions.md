@@ -6,14 +6,32 @@ No machine-local credentials or MCP endpoints are stored in this repository.
 
 | User-level file | Purpose |
 | --- | --- |
-| `~/.codex/config.toml` | Select the `claude` permission profile, configure sandbox access and approvals, and approve the two Jira read tools when the server already exists. |
+| `~/.codex/config.toml` | Select the `claude` permission profile, configure sandbox access and approvals, approve the two Jira read tools when the server already exists, and retire the listed MCP servers and plugins. |
 | `~/.codex/rules/claude.rules` | Translate supported Claude Bash allow/ask entries to Codex command-prefix rules. |
 | `~/.codex/rules/default.rules` | Keep approvals saved interactively by Codex; chezmoi leaves this file alone. |
 
 The config modifier preserves unrelated values, including models, plugins,
-server credentials and other named permission profiles. Its first update may
-reformat TOML and remove comments. Later applications preserve the original text
-when the configuration values already match.
+server credentials and other named permission profiles. The retirement lists
+below are the only exception. Its first update may reformat TOML and remove
+comments. Later applications preserve the original text when the configuration
+values already match.
+
+## Retired servers and plugins
+
+Two lists in `home/dot_codex/modify_private_config.toml` withdraw tooling that
+every machine should stop loading:
+
+- `$retiredServers` deletes the named entries from `mcp_servers`. Codex warns at
+  startup about a server it cannot reach, so a dead endpoint costs noise on
+  every launch.
+- `$retiredPlugins` sets `enabled = false` on the named plugins. A plugin can
+  supply its own MCP server, so disabling the plugin is what withdraws it.
+  The modifier only edits a plugin that the local config already lists, so it
+  never invents an entry.
+
+The repository records the name of a retired server, never its endpoint.
+Authentication is separate. Run `codex mcp login <name>` for each server you
+keep; those credentials stay in `~/.codex/auth.json` on the machine.
 
 ## How the translation works
 
@@ -64,7 +82,7 @@ as well as broad commands such as `find` and `rtk gh api`.
 ## Apply and verify
 
 Requires a Codex version supporting permission profiles, profile inheritance,
-network proxy rules and per-tool MCP approval overrides. Validated with 0.153.4.
+network proxy rules and per-tool MCP approval overrides. Validated with 0.154.0.
 Preview locally (the config diff can contain machine-local credentials):
 
 ```sh

@@ -47,6 +47,20 @@
 
 {{- /* Only change tools on already configured servers; never copy endpoints or credentials. */ -}}
 {{- $servers := get $cfg "mcp_servers" | default dict -}}
+
+{{- $retiredServers := list "paper" -}}
+{{- range $name := $retiredServers -}}
+{{- $_ := unset $servers $name -}}
+{{- end -}}
+
+{{- $retiredPlugins := list "linear@claude-plugins-official" -}}
+{{- $plugins := get $cfg "plugins" | default dict -}}
+{{- range $name := $retiredPlugins -}}
+{{- if hasKey $plugins $name -}}
+{{- $_ := set (get $plugins $name) "enabled" false -}}
+{{- end -}}
+{{- end -}}
+
 {{- range $entry := $claude.permissions.allow -}}
 {{- if hasPrefix "mcp__" $entry -}}
 {{- $parts := splitList "__" $entry -}}
