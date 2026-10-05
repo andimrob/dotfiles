@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+session="piserv1"
+
+if tmux has-session -t "$session" 2>/dev/null; then
+	exit 0
+fi
+
+tmux new-session -d -s "$session" -n claude -c "$HOME"
+tmux send-keys -t "$session:claude" "claude rc" C-m
+tmux new-window -d -t "$session" -n shell -c "$HOME"

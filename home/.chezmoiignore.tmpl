@@ -5,6 +5,11 @@
 # Machine-local secret files, never manage/propagate (auto-sourced by dot_zshrc's zsh/ loader)
 .config/zsh/*.local.sh
 
+{{ if ne .chezmoi.os "linux" }}
+.config/systemd
+.local/bin/tmux-piserv1
+{{ end }}
+
 {{ if ne .chezmoi.os "darwin" }}
 .Brewfile
 .config/zsh/90-macos.sh
