@@ -33,7 +33,7 @@ logged() {
 @test "runs claude rc with subscription auth inside a shell in the claude window" {
 	run "$SCRIPT"
 	[ "$status" -eq 0 ]
-	logged "send-keys -t piserv1:claude env -u ANTHROPIC_API_KEY claude rc C-m"
+	logged "send-keys -t piserv1:claude env -u ANTHROPIC_API_KEY claude rc --spawn=same-dir C-m"
 }
 
 @test "adds a shell window" {

@@ -8,5 +8,5 @@ if tmux has-session -t "$session" 2>/dev/null; then
 fi
 
 tmux new-session -d -s "$session" -n claude -c "$HOME/src"
-tmux send-keys -t "$session:claude" "env -u ANTHROPIC_API_KEY claude rc" C-m
+tmux send-keys -t "$session:claude" "env -u ANTHROPIC_API_KEY claude rc --spawn=same-dir" C-m
 tmux new-window -d -t "$session" -n shell -c "$HOME"
