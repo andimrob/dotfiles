@@ -24,10 +24,10 @@ logged() {
 	grep -qxF "$1" "$TMUX_LOG"
 }
 
-@test "creates the piserv1 session with a claude window" {
+@test "creates the piserv1 session with a claude window in ~/src" {
 	run "$SCRIPT"
 	[ "$status" -eq 0 ]
-	logged "new-session -d -s piserv1 -n claude -c $HOME"
+	logged "new-session -d -s piserv1 -n claude -c $HOME/src"
 }
 
 @test "runs claude rc with subscription auth inside a shell in the claude window" {
